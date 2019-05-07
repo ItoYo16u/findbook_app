@@ -1,0 +1,24 @@
+%p.subtitle
+  あなたが探しているのは...
+.columns
+  .column.is-2
+  .column.is-8
+    -if @book_list
+      -@book_list.each do |book|
+        %a.book_list.each_book
+          %table
+            %tr
+              %td
+                -if book.image_url != nil
+                  %img{src:"#{book.image_url["thumbnail"]}"}
+                -else
+                  %img{src:"https://bulma.io/images/placeholders/64x64.png"}
+              %td
+                = book.title
+                -if book.identifier.present?
+                  = hash = book.identifier[0]
+                  =hash["type"]
+                  =hash["identifier"] 
+                  =link_to "detail",books_show_path(type:book.identifier[0]["type"],identifier:book.identifier[0]["identifier"]),class:"button"
+  .column.is-2
+
