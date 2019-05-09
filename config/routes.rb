@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   get 'search/index'
 
   get 'books/show'
-
+  post 'review/create' => 'review#create'
   get 'home/index'
-  post 'search' => 'search#search'
+  get 'search' => 'search#search'
   root :to => 'home#index'
 
   

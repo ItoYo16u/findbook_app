@@ -1,8 +1,8 @@
 %nav.navbar{role:"navigation","aria-label":"main navigation",style:"border-bottom:1px solid #bdbdbd"}
   .navbar-brand
-    %a.navbar-item
+    %a.navbar-item{href:"/"}
       %p.subtitle
-        Find Invest book
+        Find book
 
     %a.navbar-burger.burger{role:"button","aria-label":"menu","aria--expanded":"false","data-target":"navbarBasicExample"}
       %span{"aria-hidden":"true"}
@@ -17,16 +17,16 @@
         
     .navbar-end
       .navbar-item
-        #search-box{style:"padding-right: 10px;padding-bottom:5px"}
-          =form_tag(search_path, method: :post,class:"field is-grouped") do
+        #search-box{style:"padding-right: 10px;padding-bottom:3px"}
+          =form_tag(search_path, method: :get,class:"field is-grouped") do
             %p.control
               =text_field_tag :keyword, '', id:"book_search",class:"input",placeholder:"enter book title"
             %p.control
               %button.button{title:"search", type:"submit"} Search
         .buttons
-          %a.button.is-primary
-            Sign up
-          %a.button.is-light
-            log in
-         
+          = link_to "sign up",new_user_registration_path,class:"button is-primary"
+          -if user_signed_in?
+            =link_to "Log out", destroy_user_session_path,method: :delete,class:"button is-light"
+          -else
+            = link_to "log in",new_user_session_path,class:"button is-light"
 

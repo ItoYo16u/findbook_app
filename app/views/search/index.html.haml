@@ -1,24 +1,24 @@
-%p.subtitle
-  あなたが探しているのは...
+
 .columns
   .column.is-2
   .column.is-8
+    %p.subtitle
+      あなたが探しているのは...
     -if @book_list
-      -@book_list.each do |book|
-        %a.book_list.each_book
-          %table
-            %tr
-              %td
+      -@book_list.select!{|target| target.identifier.present?}
+      -@book_list.select!{|book| book.identifier.find{|hash| hash["type"]=="ISBN_10" or hash["type"] =="ISBN_13" }  }
+      -book_table=@book_list.each_slice(4).to_a
+      -book_table.each do |books|
+        .columns
+          -books.each do |book|
+            .column.is-3{style:"border:1px solid #bdbdbd;margin:3px;text-align:center"}
+              .div{style:"margin:10px;display:inline-block"}
                 -if book.image_url != nil
-                  %img{src:"#{book.image_url["thumbnail"]}"}
+                  %img{src:"#{book.image_url["thumbnail"]}",style:"display:block;padding:10px"}
                 -else
                   %img{src:"https://bulma.io/images/placeholders/64x64.png"}
-              %td
-                = book.title
-                -if book.identifier.present?
-                  = hash = book.identifier[0]
-                  =hash["type"]
-                  =hash["identifier"] 
-                  =link_to "detail",books_show_path(type:book.identifier[0]["type"],identifier:book.identifier[0]["identifier"]),class:"button"
+              %p{style:"font-size:10px"}
+                =book.title
+              =link_to "details",books_show_path(type:book.identifier[0]["type"],identifier:book.identifier[0]["identifier"]),class:"button is-light",style:"text-align:center"          
   .column.is-2
-
+        

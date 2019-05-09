@@ -1,42 +1,58 @@
+-@book = Book.find_by(identifier: params[:identifier])
+-@reviews = Book.find_by(identifier: params[:identifier]).try(:reviews)
 .container
   .columns
-    .column.is-4{style:"padding:20px"}
-      %p.subtitle Book Title
-      .card
-        .card-image
-          %img{src:"https://images-jp.amazon.com/images/P/#{params["identifier"]}.09.THUMBZZZ.jpg"}
+    .column.is-2
+    .column.is-3{style:"padding:20px;padding-right:5px!important"}
+      .card{style:"padding:20px;text-align:center;margin:20px 0px"}
+        %p
+          = @book_title
+        .card-image{style:"margin:10px"}
+          %img{src:"#{@book_img_urls["thumbnail"]}",style:"width:80%"}
         .card-content
-          .media
-            .media-content
-              .subtitle.is-4 book title
           .content
-            description
-    .column.is-8{style:"padding:20px"}
-      %p.subtitle レビュー
-      %article.media.card{style:"padding:5px"}
-        %figure.media-left
-          %p.image.is-64x64
-            %img{src:"https://bulma.io/images/placeholders/128x128.png"}
-        .media-content
-          .content
-            %p.subtitle User Name
-            %p loeagdb dsajdiagreo eagjs gaejadngs agdjgnadsg dgsajansgd dasgj adsgjageo adg
-      %article.media.card{style:"padding:5px"}
-        %figure.media-left
-          %p.image.is-64x64
-            %img{src:"https://bulma.io/images/placeholders/128x128.png"}
-        .media-content
-          .content
-            %p.subtitle User Name
-            %p loeagdb dsajdiagreo eagjs gaejadngs agdjgnadsg dgsajansgd dasgj adsgjageo adg
-      %article.media.card{style:"padding:5px"}
-        %figure.media-left
-          %p.image.is-64x64
-            %img{src:"https://bulma.io/images/placeholders/128x128.png"}
-        .media-content
-          .content
-            %p.subtitle User Name
-            %p loeagdb dsajdiagreo eagjs gaejadngs agdjgnadsg dgsajansgd dasgj adsgjageo adg  
+            %p
+              - @book_authors.try(:each) do |name|
+                = name
+            %p{style:"font-size:13px"}
+              = @book_description || "No Description"
+            =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/s?rh=p_66%3A#{params[:identifier]}",class:"button is-light is-fullwidth"
+    .column.is-5{style:"padding:20px;padding-left:5px!important"}
+      .card{style:"padding:20px;text-align:center;margin:20px 0px"}
+        %p.subtitle レビュー
+        -if @reviews.present?
+          -@reviews.each do |review|
+            %article.media.card{style:"padding:15px"} 
+              %figure.media-left
+                %p.image.is-64x64
+                  %img{src:"https://bulma.io/images/placeholders/64x64.png"}
+              .media-content
+                %p
+                  = review.content
+          -if user_signed_in?
+            -unless current_user.books.find_by(identifier:params[:identifier]).present?
+              .div{style:"margin:10px"}
+                ="user:#{current_user.email}"
+                = form_with model: @reviews,local: true,url: review_create_path do |form|
+                  = form.text_area :content,class:"textarea"
+                  = hidden_field_tag :title, @book_title
+                  = hidden_field_tag :identifier, params[:identifier]
+                  = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
+                  = form.submit :subit,class:"button is-fullwidth"        
+        -else
+          %article{style:"padding:5px"}
+            %p まだレビューがありません
+            -if user_signed_in?
+              -unless current_user.books.find_by(identifier:params[:identifier]).present?
+                .div{style:"margin:10px"}
+                  ="user:#{current_user.email}"
+                  = form_with model: @reviews,local: true,url: review_create_path do |form|
+                    = form.text_area :content,class:"textarea"
+                    = hidden_field_tag :title, @book_title
+                    = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
+                    = hidden_field_tag :identifier, params[:identifier]
+                    = form.submit :subit,class:"button is-fullwidth"
+    .column.is-2
 %hr
 .container
   %p.subtitle Analytics
