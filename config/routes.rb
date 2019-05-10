@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get 'users/show' => 'users#show'
+
   get 'search/index'
 
   get 'books/show'
@@ -7,9 +10,11 @@ Rails.application.routes.draw do
   get 'search' => 'search#search'
   root :to => 'home#index'
 
-  
+ 
     devise_for :users, controllers: {
-      sessions: 'users/sessions'
+      sessions: 'users/sessions',
+      registrations: 'users/registrations',
+      "users/show" => "users#show"
     }
  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

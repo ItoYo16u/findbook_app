@@ -11,8 +11,9 @@
   #navbarBasicExample.navbar-menu
     .navbar-start
       =link_to "home",root_path,class:"navbar-item"
-      %a.navbar-item
-        hoge
+      -if user_signed_in?
+        =link_to "my page",users_show_path(current_user.id),class:"navbar-item"
+        =link_to "edit",edit_user_registration_path(current_user.id),class:"navbar-item"
       %a.navbar-item
         
     .navbar-end
