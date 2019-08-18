@@ -1,3 +1,27 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.tab_item{
+    display:none!important;
+}
+.tab_item.is-active{
+    display:flex!important;
+}
+.stat-val {
+    font-size: 3em;
+    padding-top: 20px;
+    font-weight: bold;
+  }
+  .container.profile {
+    margin-top: 1%;
+  }
+  
+  .control.is-pulled-left span.select {
+    margin-right: 5px;
+    border-radius: 2px;
+  }
+  .section.profile-heading .column.is-2-tablet.has-text-centered + .has-text-centered {
+    border-left: 1px dotted rgba(0, 0, 0, .2);
+    border-right: 1px dotted rgba(0, 0, 0, .2);
+
+  }

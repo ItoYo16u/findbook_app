@@ -1,8 +1,9 @@
-.columns
+.columns.is-desktop
   .column.is-4
-  .column.is-4
+  .column.is-4-desktop.is-12-tablet.is-12-mobile
     %p.subtitle
-      Edit #{resource_name.to_s.humanize}
+      %br
+      登録情報編集
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = render "devise/shared/error_messages", resource: resource
       .field
@@ -14,27 +15,33 @@
           Currently waiting confirmation for: #{resource.unconfirmed_email}
       .field
         = f.label :password,class:"label"
-        %i (leave blank if you don't want to change it)
+        %i (変更しない場合は、空白にしてください。)
         %br/
         = f.password_field :password, autocomplete: "new-password",class:"input"
         - if @minimum_password_length
           %br/
           %em
             = @minimum_password_length
-            characters minimum
+            文字以上
       .field
         = f.label :password_confirmation,class:"label"
         %br/
         = f.password_field :password_confirmation, autocomplete: "new-password",class:"input"
       .field
         = f.label :current_password,class:"label"
-        %i (we need your current password to confirm your changes)
+        %i (変更する場合、現在のパスワードを入力してください。)
         %br/
         = f.password_field :current_password, autocomplete: "current-password",class:"input"
-      .actions
-        = f.submit "Update",class:"button is-primary is-outlined"
-    %p.subtitle Cancel my account
-    %p
-      Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,class:"button is-danger is-outlined"}
-    = link_to "Back", root_path,class:"button"
+      .actions.has-text-centered
+        = f.submit "更新する",class:"button is-primary is-outlined"
+    %hr
+    %p.subtitle 退会
+    %p.has-text-centered
+      退会しますか? 
+    
+    .has-text-centered
+      %br
+      #{button_to "退会する", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,class:"button is-danger is-outlined"}
+      %br
+      = link_to "戻る", root_path,class:"button"
   .column.is-4

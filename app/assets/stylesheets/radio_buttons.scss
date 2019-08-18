@@ -1,0 +1,23 @@
+.interesting,
+.evaluation{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+.interesting input[type='radio'],
+.evaluation input[type='radio']{
+    display:none;
+}
+.interesting label,
+.evaluation label{
+    position:relative;
+    padding:10px 10px 0;
+    color:gray;
+    cursor: pointer;
+    font-size: 25px;
+}
+.stars label:hover,
+.stars label:hover ~ label,
+.stars input[type='radio']:checked ~ label{
+    color:#ffcc00;
+}

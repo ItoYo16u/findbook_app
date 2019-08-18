@@ -1,0 +1,18 @@
+-@reviews= Review.order(created_at: "DESC").limit(12)
+
+-@reviews.each_slice(4) do |reviews_x4|
+  .columns.is-desktop
+    .column.is-1-desktop
+    -reviews_x4.each do |r|
+      .column
+        %article.message
+          .message-body
+            %a.has-text-link{href:"/books/show?identifier=#{r.book.identifier}"}  
+              =r.book.title
+            %p
+              ="#{r.content.slice(0..99)}....."
+            %p.has-text-right
+              ="reviewed by :"
+              %i
+                ="#{r.user.name ||"John Doe/Jane Doe" }"
+    .column.is-1-desktop

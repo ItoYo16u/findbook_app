@@ -21,11 +21,12 @@
         #search-box{style:"padding-right: 10px;padding-bottom:3px"}
           =form_tag(search_path, method: :get,class:"field is-grouped") do
             %p.control
-              =text_field_tag :keyword, '', id:"book_search",class:"input",placeholder:"enter book title"
+              =text_field_tag :keyword, '', id:"book_search",class:"input",placeholder:"本のタイトルを入力してください",style:"width:400px"
             %p.control
-              %button.button{title:"search", type:"submit"} Search
+              %button.button#searchBtn{title:"search", type:"submit"} Search
         .buttons
-          = link_to "sign up",new_user_registration_path,class:"button is-primary"
+          -unless user_signed_in?
+            = link_to "sign up",new_user_registration_path,class:"button is-primary"
           -if user_signed_in?
             =link_to "Log out", destroy_user_session_path,method: :delete,class:"button is-light"
           -else

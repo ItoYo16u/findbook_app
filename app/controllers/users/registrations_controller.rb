@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
-  # GET /resource/sign_up
+  before_action :configure_profile_update_params,only: [:update]
+    # GET /resource/sign_up
   # def new
   #   super
   # end
@@ -20,9 +20,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if params[:user][:profile]
+      current_user.update(profile:params[:user][:profile])
+      redirect_to users_show_path(current_user.id)
+      flash[:notice]= "プロフィールを更新しました"
+    else
+      super
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -59,4 +65,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  def configure_profile_update_params
+    devise_parameter_sanitizer.permit(:account_update,keys: [:profile])
+  end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up,keys:[:name])
+  end
 end

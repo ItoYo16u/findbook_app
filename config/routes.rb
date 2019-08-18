@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'users/show' => 'users#show'
-
+  get 'users/show/:id' => 'users#show', as: "users_show"
   get 'search/index'
-
   get 'books/show'
   post 'review/create' => 'review#create'
   get 'home/index'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190509164158) do
+ActiveRecord::Schema.define(version: 20190729105045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20190509164158) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "img_url"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "description", null: false
+    t.string "url"
+    t.boolean "is_pr"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -41,6 +49,8 @@ ActiveRecord::Schema.define(version: 20190509164158) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "profile"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

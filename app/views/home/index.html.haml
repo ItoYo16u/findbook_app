@@ -1,16 +1,32 @@
 .container{style:"padding:30px 15px"}
   .columns.is-desktop
-    .column.is-2
+    .column.is-1
     .column{style:"margin:14px 10px;box-shadow: 0 0 5px rgba(0,0,0,0.2);"}
-      .div{style:"height:400px;padding:15px"}
+      .div.content{style:"padding:15px"}
         %p.subtitle.has-text-centered このサイトについて
         %hr
         %p
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-        %p 
-          ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          客観的な投資ノウハウを学ぶために、投資に関する書籍情報や書籍のレビューをまとめて見れるようにこのウェブサービスを作りました。
+        %p
+          このウェブアプリケーションでは、メニューバーにある検索ウィジェットから本を検索してレビューを追加できます。
+        %p
+          %a{href:"#new_reviews"}レビュー
+          %span を投稿したり自分の読書履歴を管理するだけでなく、投資に関係した本を
+        %ul
+          %li おすすめ度
+          %li 信頼性
+          %li 読みやすさ
+        %p で評価することもできます。
+        %p
+          あなたの読書記録やレビューは
+          %a{href:"/users/show/#{current_user&.id}"} マイページ
+          %span から確認できます。
+      #ad-here-02{style:"padding:15px;"}
+        here is ad
     .column
-      %p.subtitle.has-text-centered{style:"margin:20px 0px"} rankings
+      %p.subtitle.has-text-centered{style:"margin:20px 0px"}
+        %strong
+          rankings
       -best_seller = @books[0]
       -if best_seller.present?
         .card{style:"padding-top:40px"}
@@ -24,7 +40,7 @@
                   = best_seller.title
             .content
               =link_to "reviewsを見る",books_show_path(identifier:best_seller.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
-              =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/s?rh=p_66%3A#{best_seller.identifier}",class:"button is-light is-fullwidth"
+              =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(best_seller.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
     .column
       .space{style:"height:50px"}
       -@books=@books.drop(1)
@@ -39,6 +55,60 @@
                 = book.title
                 = book.id
               =link_to "reviewsを見る",books_show_path(identifier:book.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
-              =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/s?rh=p_66%3A#{book.identifier}",class:"button is-light is-fullwidth"      
-    .column.is-2
-=render :partial=>"partials/book_list" 
+              =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"      
+    .column.is-1
+  %hr
+  %p.subtitle
+    %strong
+      お知らせ
+  .columns.is-desktop
+    .column.is-1
+    .column
+      %table.table.is-striped.is-fullwidth
+        %thead
+          %tr
+            %th
+            %th
+        %tbody
+          - @info= Notification.order(created_at: "DESC").limit(5)
+          - @info.each do |notification|
+            %tr
+              %td.is-narrow
+                - if notification.is_pr
+                  %p.tag.is-light 
+                    PR
+                -else
+                  %p.tag.is-success
+                    =notification.created_at.strftime("%Y-%m-%d")
+              %td
+                =link_to "#{notification.description}",notification.url
+    .column.is-1         
+  %hr
+  %p.subtitle#new_reviews
+    %strong
+      新着レビュー
+  =render :partial=>"partials/book_list" 
+  %hr
+  .columns.is-desktop
+    .column.is-1-desktop
+    .column
+      %p.has-text-centered
+        %strong
+          content1
+      %hr
+    .column
+      %p.has-text-centered
+        %strong
+          content2
+      %hr
+    .column
+      %p.has-text-centered
+        %strong
+          content3
+      %hr
+    .column
+      %p.has-text-centered
+        %strong
+          content4
+      %hr
+    .column.is-1-desktop

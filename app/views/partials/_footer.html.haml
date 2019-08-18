@@ -1,0 +1,16 @@
+.columns{style:"margin:0;padding:0"}
+  .column.is-6{style:"min-height:300px;"}
+  .column.is-6
+
+.links.has-text-centered{style:"margin:0px"}
+  %hr
+  %span.inner-link-wrap
+    -if user_signed_in?
+      =link_to "My Page",users_show_path(id: current_user.id),class:"inner-link"
+  %span.inner-link-wrap
+    =link_to "Edit",edit_user_registration_path,class:"inner-link"
+  %a.inner-link link03
+.copyRight{style:"margin:0px"}
+  %hr
+  .copyRight-text-wrap
+  %p.subtitle All Right Reserved 
