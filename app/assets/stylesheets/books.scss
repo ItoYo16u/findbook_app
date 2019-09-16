@@ -1,3 +1,31 @@
 // Place all the styles related to the books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@media (max-width:1000px){
+    .card.about-this-book{
+        font-size: 24px;
+        p{
+            font-size:24px;
+        }
+        p.subtitle{
+            font-size: 32px;
+        }
+        a.button{
+            font-size:32px;
+        }
+    }
+    .content.reviews-of-this-book{
+        margin:30px 0px;
+        p{
+            font-size:24px;
+        }
+        p.subtitle{
+            font-size:32px;
+        }
+        a{
+            font-size:32px;
+        }
+    }
+}

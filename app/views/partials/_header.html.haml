@@ -18,10 +18,10 @@
         
     .navbar-end
       .navbar-item
-        #search-box{style:"padding-right: 10px;padding-bottom:3px"}
+        #search-box
           =form_tag(search_path, method: :get,class:"field is-grouped") do
             %p.control
-              =text_field_tag :keyword, '', id:"book_search",class:"input",placeholder:"本のタイトルを入力してください",style:"width:400px"
+              =text_field_tag :keyword, '', id:"book_search",class:"input",placeholder:"本のタイトルを入力してください"
             %p.control
               %button.button#searchBtn{title:"search", type:"submit"} Search
         .buttons

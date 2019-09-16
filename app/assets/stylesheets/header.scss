@@ -1,0 +1,66 @@
+.navbar-end{
+    #search-box{
+        padding-bottom: 3px;
+        padding-right: 10px;
+        input.book_search{
+            width:400px;
+        }
+    }
+}
+@media (max-width:1000px){
+    nav{
+        padding:30px 15px;
+        font-size:32px;
+    }
+    p{
+        font-size: 40px;
+    }
+    .navbar{
+        a.navbar-burger{
+            border:1px solid #bdbdbd;
+            width:70px;
+            height:70px;
+        }
+        .navbar-burger{
+            span{
+                width:60px;
+                height:3px;
+                color:#888888;
+                left: calc(50% - 30px);
+            }
+        }
+    }
+    .navbar-start{
+        a{
+            font-size:32px;
+            padding:20px 10px;
+        }
+        a:nth-child(odd){
+            border:solid #bdbdbd;
+            border-width:1px 0px 1px 0px; 
+        }
+    }
+    .navbar-end{
+        #search-box{
+            padding-bottom: 48px;
+            border-bottom: 1px solid #bdbdbd;
+            p{
+                font-size:32px;
+            }
+            input#book_search{
+                font-size:24px;
+                width:500px;
+            }
+            button.button#searchBtn{
+                font-size:24px;
+                padding: 0px 40px;
+            }
+        }
+        .buttons{
+            a{
+                font-size:24px;
+                margin:20px 0px;
+            }
+        }
+    }
+}

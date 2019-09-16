@@ -7,7 +7,7 @@
   .columns.is-desktop
     .column.is-2
     .column.is-3-desktop{style:"padding:20px;padding-right:5px!important;"}
-      .card{style:"padding:20px;text-align:center;margin:20px 0px"}
+      .card.about-this-book{style:"padding:20px;text-align:center;margin:20px 0px"}
         %p.subtitle
           = @book_title
         .card-image{style:"margin:10px"}
@@ -29,7 +29,7 @@
         %p.has-text-centered#ad-here-01
           here is ad
     .column.is-5-desktop{style:"padding:20px;padding-left:5px!important"}
-      .card{style:"padding:20px;text-align:center;margin:20px 0px"}
+      .content.reviews-of-this-book{style:"padding:20px;text-align:center;margin:20px 0px"}
         %p.subtitle レビュー
         -if @reviews.present?
           -@reviews.each do |review|

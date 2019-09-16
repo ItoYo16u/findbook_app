@@ -1,10 +1,91 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.content.about-this-site{
+    padding:15px;
+    font-size:16px;
+}
+.content.best-seller{
+    .card{
+        .card-image{
+            img{
+                width:170px;
+            }
+        }
+    }
+}
+.content.good-sellers{
+   article.media{
+       figure.media-left{
+           img{
+               width:96px;
+           }
+       }
+   }
+}
+
 .message-body{
     min-height:250px
 }
 @media (max-width:1000px){
+    p.subtitle{
+        font-size:32px;
+    }
+    .content.about-this-site{
+        font-size: 24px;
+        p{
+            font-size:32px;
+        }
+        p.subtitle{
+            font-size:32px;
+        }
+    }
+    .content.best-seller{
+        font-size:24px;
+        p.subtitle{
+            font-size: 32px;
+        }
+        .card{
+            .card-image{
+                img{
+                    width:340px;
+                }
+            }
+            .links{
+                a.button{
+                    font-size:32px;
+                    margin:20px 0px;
+                }
+            }
+        }
+    }
+    .content.good-sellers{
+        p{
+            font-size: 24px;
+        }
+        a.button{
+            font-size:32px;
+            margin:20px 0px;
+        }
+        article.media{
+            figure.media-left{
+                img{
+                    width:176px;
+                }
+            }
+        }
+    }
+    .content.information{
+        font-size: 24px;
+    }
+    .content.review_list{
+        a{
+            font-size:32px;
+        }
+        p{
+            font-size:24px;
+        }
+    }
     .message-body{
         min-height:30px;
     }

@@ -2,7 +2,7 @@
   .columns.is-desktop
     .column.is-1
     .column{style:"margin:14px 10px;box-shadow: 0 0 5px rgba(0,0,0,0.2);"}
-      .div.content{style:"padding:15px"}
+      .div.content.about-this-site
         %p.subtitle.has-text-centered このサイトについて
         %hr
         %p
@@ -24,38 +24,40 @@
       #ad-here-02{style:"padding:15px;"}
         here is ad
     .column
-      %p.subtitle.has-text-centered{style:"margin:20px 0px"}
-        %strong
-          rankings
-      -best_seller = @books[0]
-      -if best_seller.present?
-        .card{style:"padding-top:40px"}
-          .card-image
-            %figure.image.has-text-centered
-              %img{src:best_seller.img_url||"https://bulma.io/images/placeholders/1280x960.png",style:"width:170px;display:inline-block"}
-          .card-content
-            .media
-              .media-content
-                .subtitle.is-4{style:"font-size:20px"}
-                  = best_seller.title
-            .content
-              =link_to "reviewsを見る",books_show_path(identifier:best_seller.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
-              =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(best_seller.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
+      .content.best-seller
+        %p.subtitle.has-text-centered{style:"margin:20px 0px"}
+          %strong
+            rankings
+        -best_seller = @books[0]
+        -if best_seller.present?
+          .card{style:"padding-top:40px"}
+            .card-image
+              %figure.image.has-text-centered
+                %img{src:best_seller.img_url||"https://bulma.io/images/placeholders/1280x960.png",style:"display:inline-block"}
+            .card-content
+              .media
+                .media-content.has-text-centered
+                  .subtitle.is-4{style:"font-size:20px"}
+                    %p
+                      = best_seller.title
+              .links
+                =link_to "reviewsを見る",books_show_path(identifier:best_seller.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
+                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(best_seller.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
     .column
-      .space{style:"height:50px"}
-      -@books=@books.drop(1)
-      -@books.each do |book|
-        %article.media{style:"padding:5px;margin-top:10px"}
-          %figure.media-left
-            %p.image
-              %img{src:book.img_url||"https://bulma.io/images/placeholders/96x96.png",style:"width:96px;margin:3px 0px"}
-          .media-content
-            .content
-              %p
-                = book.title
-                = book.id
-              =link_to "reviewsを見る",books_show_path(identifier:book.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
-              =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"      
+      .content.good-sellers
+        .space{style:"height:50px"}
+        -@books=@books.drop(1)
+        -@books.each do |book|
+          %article.media{style:"padding:5px;margin-top:10px"}
+            %figure.media-left
+              %img{src:book.img_url||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
+            .media-content
+              .content
+                %p
+                  = book.title
+                  = book.id
+                =link_to "reviewsを見る",books_show_path(identifier:book.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
+                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"      
     .column.is-1
   %hr
   %p.subtitle
@@ -64,24 +66,25 @@
   .columns.is-desktop
     .column.is-1
     .column
-      %table.table.is-striped.is-fullwidth
-        %thead
-          %tr
-            %th
-            %th
-        %tbody
-          - @info= Notification.order(created_at: "DESC").limit(5)
-          - @info.each do |notification|
+      .content.information
+        %table.table.is-striped.is-fullwidth
+          %thead
             %tr
-              %td.is-narrow
-                - if notification.is_pr
-                  %p.tag.is-light 
-                    PR
-                -else
-                  %p.tag.is-success
-                    =notification.created_at.strftime("%Y-%m-%d")
-              %td
-                =link_to "#{notification.description}",notification.url
+              %th
+              %th
+          %tbody
+            - @info= Notification.order(created_at: "DESC").limit(5)
+            - @info.each do |notification|
+              %tr
+                %td.is-narrow
+                  - if notification.is_pr
+                    %p.tag.is-light 
+                      PR
+                  -else
+                    %p.tag.is-success
+                      =notification.created_at.strftime("%Y-%m-%d")
+                %td
+                  =link_to "#{notification.description}",notification.url
     .column.is-1         
   %hr
   %p.subtitle#new_reviews
