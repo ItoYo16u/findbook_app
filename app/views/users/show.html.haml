@@ -52,25 +52,39 @@
     .section.profile-heading
       .columns.is-multiline
         .column.is-2-desktop.is-4-tablet
-          %span.header-icon.user-profile-image
-            %img{:alt => "", :src => "http://placehold.it/300x225"}
-        .column.is-4-desktop.is-8-tablet.name
-          %p
+          %p{style:"padding-bottom:10px"}
             %span.title.is-bold
               -@this_user= User.find(params[:id])
               =@this_user.name
-
-            %br/
-          -if current_user.id ==  params[:id].to_i
-            = form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f|
-              =f.label :profile
-              = f.text_area :profile,class:"textarea",style:"min-height:200px",placeholder:"このページはあなたのユーザーページです。自分のマイページに限り、フォームを生成してるので、プロフィールを更新することができます。変更するにはupdateボタンを押してください。"
-              %br
-              =f.submit :update,class:"button"
-          -else
-            %p Profile
-            %p.tagline
-              = @this_user.profile
+          %br
+          %span.header-icon.user-profile-image
+            %img{:alt => "", :src => "http://placehold.it/300x300"}
+        .column.is-4-desktop.is-8-tablet.name
+          .content.profile
+            .links
+              %hr
+              .twitter
+                %p.subtitle
+                  ="Twitter:#{}" 
+              %hr
+              .note
+                %p.subtitle
+                  ="Note:#{}"
+              %hr
+              .blog
+                %p.subtitle
+                  ="Blog:#{}"
+              %hr
+            -if current_user.id ==  params[:id].to_i
+              = form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f|
+                =f.label :profile
+                = f.text_area :profile,class:"textarea",style:"min-height:200px",placeholder:"このページはあなたのユーザーページです。自分のマイページに限り、フォームを生成してるので、プロフィールを更新することができます。変更するにはupdateボタンを押してください。"
+                %br
+                =f.submit :update,class:"button"
+            -else
+              %p Profile
+              %p.tagline
+                = @this_user.profile
           
         .column.is-2-desktop.is-6-tablet.has-text-centered
           %p.stat-val.subtitle{style:"padding-top:35px"}
