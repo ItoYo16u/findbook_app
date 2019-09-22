@@ -78,29 +78,31 @@
             %p まだレビューがありません
             -if user_signed_in?
               -unless current_user.books.find_by(identifier:params[:identifier]).present?
-                .div{style:"margin:10px"}
-                  %p.has-text-right
+                .content.new_review{style:"margin:10px"}
+                  %p.has-text-centered
                     %strong
-                      ="#{current_user.name|| 'Jhon Doe/ Jane Doe'}のレビュー"
+                      ="#{current_user.name|| 'Jhon Doe/ Jane Doe'}さんのレビューを追加"
+                  
                   = form_with model: @reviews,local: true,url: review_create_path do |form|
-                    = form.text_area :content,class:"textarea"
+                    .textarea_wrap
+                      = form.text_area :content,class:"textarea"
                     %hr
-                    %p recommend
+                    %p.subtitle recommend
                     .evaluation.stars
                       -(1..5).each do |i|
                         =form.radio_button :recommend,"#{6-i}",id:"star_#{6-i}"
-                        =form.label "★",value:"#{6-i}",for:"star_#{6-i}"
+                        =form.label "★",value:"#{6-i}",for:"star_#{6-i}",class:"star"
                     %hr
-                    %p trustable
+                    %p.subtitle trustable
                     .evaluation.stars
                       -('a'..'e').each.with_index do |c,i|
                         =form.radio_button :trustable,"#{5-i}",id:"star_#{c}"
-                        =form.label "★",value:"#{5-i}",for:"star_#{c}"
+                        =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
                     = hidden_field_tag :title, @book_title
                     = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
                     = hidden_field_tag :identifier, params[:identifier]
                     %hr
-                    = form.submit :subit,class:"button is-fullwidth"
+                    = form.submit :subit,class:"button is-fullwidth is-medium-mobile"
             -else
               =link_to "レビューを投稿するにはログインしてください"
     .column.is-2
