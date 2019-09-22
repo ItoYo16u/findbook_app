@@ -16,7 +16,7 @@
   .column.is-8
     %p.subtitle
       レビュー済
-    -@book_list =User.find(params[:id]).books
+    -@book_list =User.find(params[:id])&.books
     -if !@book_list.empty?
       -book_table=@book_list.each_slice(4).to_a
       -book_table.each do |books|
@@ -99,10 +99,11 @@
           %br
           %p.stat-key Reviews
           %br
-          - latest_review= Review.find_by(user_id: @this_user.id)
-          %p 直近のレビュー
-          %a{href:"/books/show?identifier=#{latest_review.book.identifier}"}
-            #{latest_review.created_at.strftime("%Y/%m/%d")}
+          - latest_review = Review.find_by(user_id: @this_user.id) || false
+          -if latest_review
+            %p 直近のレビュー
+            %a{href:"/books/show?identifier=#{latest_review.book.identifier}"}
+              #{latest_review.created_at.strftime("%Y/%m/%d")}
           
   .column.is-1
     

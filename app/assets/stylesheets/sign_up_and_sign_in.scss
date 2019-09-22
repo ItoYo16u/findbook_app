@@ -1,0 +1,36 @@
+@media (max-width:1000px){
+    h2.subtitle{
+        font-size: 32px;
+    }
+    .box{
+        margin:7%;
+    }
+    .fields{
+        text-align: center;
+        .button{
+            font-size:32px;
+            width:300px;
+            margin-top: 50px;
+        }
+
+    }
+    .field.sign_in,.field.sign_up{
+        
+        .control{
+            text-align: left;
+            margin:auto;
+            display:inline-block;
+            
+        }
+        .label{
+            text-align: left;
+        }
+        .input{
+            text-align: left;
+            font-size:24px;
+            width:550px;
+
+        }
+        
+    }
+}

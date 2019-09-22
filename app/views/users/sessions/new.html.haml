@@ -2,23 +2,26 @@
   .column.is-4
   .column.is-4.is-4-desktop.is-12-mobile.is-12-tablet{style:"margin-top:100px"}
     .box
-      %h2 Log in
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .field
-          = f.label :email
-          %br/
-          = f.email_field :email, autofocus: true, autocomplete: "email",class:"input"
-        .field
-          = f.label :password
-          %br/
-          = f.password_field :password, autocomplete: "current-password",class:"input"
-        - if devise_mapping.rememberable?
-          .field
+        .fields  
+          .field.sign_in
+            %h2.subtitle Log in
             .control
-              = f.check_box :remember_me
-              = f.label :remember_me
-        .actions.has-text-centered
-          = f.submit "Log in",class:"button"
-      = render "users/shared/links"
+              = f.label :email
+              %br/
+              = f.email_field :email, autofocus: true, autocomplete: "email",class:"input"
+          .field.sign_in
+            .control
+              = f.label :password
+              %br/
+              = f.password_field :password, autocomplete: "current-password",class:"input"
+          - if devise_mapping.rememberable?
+            .field.sign_in
+              .control
+                = f.check_box :remember_me
+                = f.label :remember_me
+          .actions.has-text-centered
+            = f.submit "Log in",class:"button"
+        = render "users/shared/links"
 
   .column.is-4
