@@ -28,4 +28,29 @@
             font-size:32px;
         }
     }
+    .content.new_review{
+        font-size:24px;
+        p.subtitle{
+            font-weight: 600;
+        }
+        .textarea_wrap{
+            padding:5%;
+        }
+        textarea.textarea{
+            font-size: 24px;
+            width:350px!important;
+            height:300px;
+        }
+        .star{
+            font-size:60px;
+        }
+        .button.is-medium-mobile{
+            width:300px;
+            margin:auto;
+            margin-top: 50px;
+            font-size:32px;
+        }
+
+    }
+
 }
