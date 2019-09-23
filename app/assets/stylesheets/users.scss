@@ -69,4 +69,20 @@
       height:80px;
     }
   }
+  .profile-heading{
+    .follow,.following,.followed{
+      font-size:32px;
+      padding:20px auto;
+      width:200px;
+      margin:10px;
+    }
+  }
+  
+}
+@media (max-width:1000px){
+  .profile-heading{
+    p.instruction{
+      font-size:24px;
+    }
+  }
 }

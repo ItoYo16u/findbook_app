@@ -8,7 +8,14 @@ class ReviewController < ApplicationController
         else
           @book=Book.create(book_params)
           if @book.save
-            @rvw = current_user.reviews.create(user_id:current_user.id,content:params[:content],book_id:@book.id)
+            @rvw = current_user.reviews.create(
+                user_id:current_user.id,
+                content:params[:content],
+                book_id:@book.id,
+                trustable:params[:trustable],
+                understandable:params[:understandable],
+                interesting:params[:interesting]
+            )
             if @rvw.save
                 flash[:notice] = "レビューを投稿しました。"
             end
@@ -18,7 +25,7 @@ class ReviewController < ApplicationController
 
     end
     def review_params
-        params.require(:review).permit(:content)
+        params.permit(:content,:interesting,:understandable,:trustable)
     end
     def book_params
         params.permit(:title,:identifier,:img_url)

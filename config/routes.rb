@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'follow/:id',to: "follow#index"
   get 'users/show/:id' => 'users#show', as: "users_show"
   get 'search/index'
   get 'books/show'

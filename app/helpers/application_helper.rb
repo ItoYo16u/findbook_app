@@ -7,4 +7,31 @@ module ApplicationHelper
             isbn
         end
     end
+    def default_meta_tags
+        {
+            site: "findbook app",
+            reverse: true,
+            separator: "|",
+            og:default_og,
+            twitter: default_twitter_card
+        }
+    end
+
+    private
+    def default_og
+        {
+            title: :full_title,
+            description: :description,
+            url: request.url,
+            image:""
+        }
+    end
+    
+    def default_twitter_card
+        {
+            card: "summary",
+            site: "@twitter_account_id"
+        }
+    end
+
 end

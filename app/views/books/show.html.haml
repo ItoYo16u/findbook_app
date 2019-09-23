@@ -1,3 +1,4 @@
+-set_meta_tags title:"本の詳細情報",description:"本の詳細情報ページです。"
 -@book = Book.find_by(identifier: params[:identifier])
 -@reviews = Book.find_by(identifier: params[:identifier])&.reviews
 .container
@@ -52,18 +53,24 @@
                   ="#{current_user.name || 'Jhon Doe/Jane Doe'}さんのレビューを追加"
                 = form_with model: @reviews,local: true,url: review_create_path do |form|
                   .textarea_wrap
-                    = form.text_area :content,class:"textarea"
+                    = form.text_area :content,class:"textarea",required:"required"
                   %hr
-                  %p.subtitle recommend
+                  %p.subtitle わかりやすさ
                   .evaluation.stars
                     -(1..5).each do |i|
-                      =form.radio_button :recommend,"#{6-i}",id:"star_#{6-i}"
+                      =form.radio_button :understandable,"#{6-i}",id:"star_#{6-i}",required:"required"
                       =form.label "★",value:"#{6-i}",for:"star_#{6-i}",class:"star"
                   %hr
-                  %p.subtitle trustable
-                  .evaluation.stars
+                  %p.subtitle 信頼性
+                  .evaluation.stars.blue
                     -('a'..'e').each.with_index do |c,i|
-                      =form.radio_button :trustable,"#{5-i}",id:"star_#{c}"
+                      =form.radio_button :trustable,"#{5-i}",id:"star_#{c}",required:"required"
+                      =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                  %hr
+                  %p.subtitle おもしろさ
+                  .evaluation.stars.pink
+                    -('f'..'j').each.with_index do |c,i|
+                      =form.radio_button :interesting,"#{5-i}",id:"star_#{c}",required:"required"
                       =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
                   = hidden_field_tag :title, @book_title
                   = hidden_field_tag :identifier, params[:identifier]
@@ -85,18 +92,24 @@
                   
                   = form_with model: @reviews,local: true,url: review_create_path do |form|
                     .textarea_wrap
-                      = form.text_area :content,class:"textarea"
+                      = form.text_area :content,class:"textarea",required:"required"
                     %hr
-                    %p.subtitle recommend
+                    %p.subtitle わかりやすさ
                     .evaluation.stars
                       -(1..5).each do |i|
-                        =form.radio_button :recommend,"#{6-i}",id:"star_#{6-i}"
+                        =form.radio_button :understandable,"#{6-i}",id:"star_#{6-i}",required:"required"
                         =form.label "★",value:"#{6-i}",for:"star_#{6-i}",class:"star"
                     %hr
-                    %p.subtitle trustable
-                    .evaluation.stars
+                    %p.subtitle 信頼性
+                    .evaluation.stars.blue
                       -('a'..'e').each.with_index do |c,i|
-                        =form.radio_button :trustable,"#{5-i}",id:"star_#{c}"
+                        =form.radio_button :trustable,"#{5-i}",id:"star_#{c}",required:"required"
+                        =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                    %hr
+                    %p.subtitle おもしろさ
+                    .evaluation.stars.pink
+                      -('f'..'j').each.with_index do |c,i|
+                        =form.radio_button :interesting,"#{5-i}",id:"star_#{c}",required:"required"
                         =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
                     = hidden_field_tag :title, @book_title
                     = hidden_field_tag :img_url,@book_img_urls["thumbnail"]

@@ -1,0 +1,56 @@
+
+-followings = User.find(params[:id]).followings
+
+-followers = User.find(params[:id]).followers
+.columns.is-desktop
+  .column.is-2
+  .column
+    .tabs.is-centered.is-boxed.is-fullwidth
+      %ul
+        %li.tab_menu.is-active{target:"#followings_tab"}
+          %a{} 
+            following
+            
+        %li.tab_menu{target:"#followers_tab"}
+          %a{}
+            followed
+  .column.is-2
+
+.tab_item#followings_tab.is-active
+  .content_wrap.followings_and_followers
+    %hr{style:"margin-top:0px"}
+    %p.has-text-centered
+      ="#{followings.count()}人をフォローしています."
+
+    -followings.each do |following|
+      .content.followings.card
+        %a.following_name{href:"/users/show/#{following.id}"}
+          = following.name
+        %span.right.review_count
+          ="#{following.reviews.count()}件のレビューを投稿しています." 
+        %hr
+        %p.profile_content_head
+          = following.profile || "まだ自己紹介文がありません."
+        %hr
+        .follow_btn_wrap
+          =link_to "follow now","", class:"button follow is-outlined is-info"
+                
+
+      
+.tab_item#followers_tab
+  .content_wrap.followings_and_followers
+    %hr{style:"margin-top:0px"}
+    %p.has-text-centered
+      = "#{followers.count()}人にフォローされています."
+    - followers.each do |follower|
+      .content.followers.card
+        %a.follower_name{href:"/users/show/#{follower.id}"}
+        = follower.name
+        %span.right.review_count
+          ="#{follower.reviews.count()}件のレビューを投稿しています." 
+        %hr
+        %p.profile_content_head
+          = follower.profile || "まだ自己紹介文がありません."
+        %hr
+        .follow_btn_wrap
+          =link_to "follow now","", class:"button follow is-outlined is-info"

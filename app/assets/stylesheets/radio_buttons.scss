@@ -21,3 +21,13 @@
 .stars input[type='radio']:checked ~ label{
     color:#ffcc00;
 }
+.stars.blue label:hover,
+.stars.blue label:hover ~ label,
+.stars.blue input[type='radio']:checked ~ label{
+    color:#00ced1;
+}
+.stars.pink label:hover,
+.stars.pink label:hover ~ label,
+.stars.pink input[type='radio']:checked ~ label{
+    color:#f08080;
+}

@@ -1,3 +1,5 @@
+-set_meta_tags title:"マイページ",description:"ユーザーのマイページです."
+-this_user = User.find(params[:id])
 .columns.is-desktop
   .column.is-2
   .column
@@ -16,7 +18,7 @@
   .column.is-8
     %p.subtitle
       レビュー済
-    -@book_list =User.find(params[:id])&.books
+    -@book_list =this_user&.books
     -if !@book_list.empty?
       -book_table=@book_list.each_slice(4).to_a
       -book_table.each do |books|
@@ -54,11 +56,16 @@
         .column.is-2-desktop.is-4-tablet
           %p{style:"padding-bottom:10px"}
             %span.title.is-bold
-              -@this_user= User.find(params[:id])
-              =@this_user.name
+              
+              =this_user.name
           %br
-          %span.header-icon.user-profile-image
-            %img{:alt => "", :src => "http://placehold.it/300x300"}
+          .profile
+            -unless current_user == this_user
+              %a.follow.button.is-info.is-outlined follow now
+            %hr
+            %a.following.button{href:"/follow/#{params[:id]}"} relationship
+            %p.instruction{style:"color:#888888;"}
+              ="#{this_user.name}さんのフォロー・フォロワーを見れます."
         .column.is-4-desktop.is-8-tablet.name
           .content.profile
             .links
@@ -84,12 +91,12 @@
             -else
               %p Profile
               %p.tagline
-                = @this_user.profile
+                = this_user.profile
           
         .column.is-2-desktop.is-6-tablet.has-text-centered
           %p.stat-val.subtitle{style:"padding-top:35px"}
             %b
-              =@this_user.created_at.strftime("%Y/%m/%d")
+              =this_user.created_at.strftime("%Y/%m/%d")
           %br
           %p から利用しています。
         .column.is-4-desktop.is-6-tablet.has-text-centered
@@ -99,7 +106,7 @@
           %br
           %p.stat-key Reviews
           %br
-          - latest_review = Review.find_by(user_id: @this_user.id) || false
+          - latest_review = Review.find_by(user_id: this_user.id) || false
           -if latest_review
             %p 直近のレビュー
             %a{href:"/books/show?identifier=#{latest_review.book.identifier}"}
