@@ -31,3 +31,13 @@
 .stars.pink input[type='radio']:checked ~ label{
     color:#f08080;
 }
+.stars.purple label:hover,
+.stars.purple label:hover ~ label,
+.stars.purple input[type='radio']:checked ~ label{
+    color:#9932cc;
+}
+.stars.green label:hover,
+.stars.green label:hover ~ label,
+.stars.green input[type='radio']:checked ~ label{
+    color:#3cb371;
+}

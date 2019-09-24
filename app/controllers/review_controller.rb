@@ -14,7 +14,9 @@ class ReviewController < ApplicationController
                 book_id:@book.id,
                 trustable:params[:trustable],
                 understandable:params[:understandable],
-                interesting:params[:interesting]
+                interesting:params[:interesting],
+                recommend:params[:recommend],
+                price:params[:price]
             )
             if @rvw.save
                 flash[:notice] = "レビューを投稿しました。"
@@ -25,7 +27,7 @@ class ReviewController < ApplicationController
 
     end
     def review_params
-        params.permit(:content,:interesting,:understandable,:trustable)
+        params.permit(:content,:interesting,:understandable,:trustable,:recommend,:price)
     end
     def book_params
         params.permit(:title,:identifier,:img_url)

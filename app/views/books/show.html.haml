@@ -72,6 +72,16 @@
                     -('f'..'j').each.with_index do |c,i|
                       =form.radio_button :interesting,"#{5-i}",id:"star_#{c}",required:"required"
                       =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                  %p.subtitle おすすめ度
+                  .evaluation.stars.purple
+                    -('k'..'o').each.with_index do |c,i|
+                      =form.radio_button :recommend,"#{5-i}",id:"star_#{c}",required:"required"
+                      =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                  %p.subtitle 価格
+                  .evaluation.stars.green
+                    -('p'..'t').each.with_index do |c,i|
+                      =form.radio_button :price,"#{5-i}",id:"star_#{c}",required:"required"
+                      =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
                   = hidden_field_tag :title, @book_title
                   = hidden_field_tag :identifier, params[:identifier]
                   = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
@@ -110,6 +120,16 @@
                     .evaluation.stars.pink
                       -('f'..'j').each.with_index do |c,i|
                         =form.radio_button :interesting,"#{5-i}",id:"star_#{c}",required:"required"
+                        =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                    %p.subtitle おすすめ度
+                    .evaluation.stars.purple
+                      -('k'..'o').each.with_index do |c,i|
+                        =form.radio_button :recommend,"#{5-i}",id:"star_#{c}",required:"required"
+                        =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                    %p.subtitle 価格
+                    .evaluation.stars.green
+                      -('p'..'t').each.with_index do |c,i|
+                        =form.radio_button :price,"#{5-i}",id:"star_#{c}",required:"required"
                         =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
                     = hidden_field_tag :title, @book_title
                     = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
