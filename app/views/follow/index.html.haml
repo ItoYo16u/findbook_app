@@ -33,7 +33,9 @@
           = following.profile || "まだ自己紹介文がありません."
         %hr
         .follow_btn_wrap
-          =link_to "follow now","", class:"button follow is-outlined is-info"
+          -unless current_user == following or current_user.following?(following)
+            = form_with url: "/follow/#{following.id}" do |f|
+              = f.submit "follow", class:"button is-info is-outlined"
                 
 
       
@@ -53,4 +55,8 @@
           = follower.profile || "まだ自己紹介文がありません."
         %hr
         .follow_btn_wrap
-          =link_to "follow now","", class:"button follow is-outlined is-info"
+          -if  current_user == follower or current_user.following?(follower)
+            %a.button{disabled:"disabled"} already following
+          -else
+            = form_with url: "/follow/#{follower.id}" do |f|
+              = f.submit "follow", class:"button is-info is-outlined"

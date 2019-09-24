@@ -56,12 +56,18 @@
         .column.is-2-desktop.is-4-tablet
           %p{style:"padding-bottom:10px"}
             %span.title.is-bold
-              
               =this_user.name
+            %p.is-bold
+              ="所属組織："
           %br
           .profile
-            -unless current_user == this_user
-              %a.follow.button.is-info.is-outlined follow now
+            -if current_user == this_user
+              =""
+            -elsif current_user.following?(this_user)
+              %a.button.following{disabled:"disabled"} alrady following
+            -else
+              = form_with url: "/follow/#{this_user.id}" do |f|
+                = f.submit "follow", class:"button is-info is-outlined"
             %hr
             %a.following.button{href:"/follow/#{params[:id]}"} relationship
             %p.instruction{style:"color:#888888;"}
