@@ -1,11 +1,23 @@
 class BooksController < ApplicationController
   def show
+    
     def request_google_book_api_with(isbn_code)
       url="https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn_code}"
       url=URI.encode(url)
       res=Net::HTTP.get(URI.parse(url))
       res_json = JSON.parse(res)
       res_json
+    end
+    @book = Book.find_by(identifier: params[:identifier])
+    @reviews= @book&.reviews.presence
+    @reviewSummary = Review.summary(@book&.id)
+    reviewCountByGroup=@reviews&.count_by_group
+    if reviewCountByGroup
+      @recommend=reviewCountByGroup[:recommend].values
+      @price = reviewCountByGroup[:price].values
+      @understandable = reviewCountByGroup[:understandable].values
+      @trustable=reviewCountByGroup[:trustable].values
+      @interesting = reviewCountByGroup[:interesting].values
     end
     book_identifier = params[:identifier]
     counter=0
@@ -33,5 +45,9 @@ class BooksController < ApplicationController
       flash["alert"]="データを取得できませんでした"
       redirect_to root_path
     end
+  end
+
+  private
+  def set_book_information
   end
 end

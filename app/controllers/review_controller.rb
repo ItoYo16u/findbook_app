@@ -2,7 +2,16 @@ class ReviewController < ApplicationController
     def create
         existing_book = Book.find_by(identifier: params[:identifier])
         if existing_book.present?
-            current_user.reviews.create(user_id:current_user.id,content:params[:review][:content],book_id:existing_book.id)
+            current_user.reviews.create(
+                user_id:current_user.id,
+                content:params[:review][:content],
+                book_id:existing_book.id,
+                trustable:params[:review][:trustable],
+                understandable:params[:review][:understandable],
+                interesting:params[:review][:interesting],
+                recommend:params[:review][:recommend],
+                price:params[:review][:recommend]
+            )
             flash[:notice] = "レビューを投稿しました。"
             redirect_to root_path
         else
@@ -10,13 +19,13 @@ class ReviewController < ApplicationController
           if @book.save
             @rvw = current_user.reviews.create(
                 user_id:current_user.id,
-                content:params[:content],
+                content:params[:review][:content],
                 book_id:@book.id,
-                trustable:params[:trustable],
-                understandable:params[:understandable],
-                interesting:params[:interesting],
-                recommend:params[:recommend],
-                price:params[:price]
+                trustable:params[:review][:trustable],
+                understandable:params[:review][:understandable],
+                interesting:params[:review][:interesting],
+                recommend:params[:review][:recommend],
+                price:params[:review][:price]
             )
             if @rvw.save
                 flash[:notice] = "レビューを投稿しました。"
@@ -27,7 +36,7 @@ class ReviewController < ApplicationController
 
     end
     def review_params
-        params.permit(:content,:interesting,:understandable,:trustable,:recommend,:price)
+        params.require(:review).permit(:content,:interesting,:understandable,:trustable,:recommend,:price)
     end
     def book_params
         params.permit(:title,:identifier,:img_url)

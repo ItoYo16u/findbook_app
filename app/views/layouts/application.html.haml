@@ -4,10 +4,12 @@
     = display_meta_tags(default_meta_tags)
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title find book app
+    %script{src:"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js",type:"text/javascript"}
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %link{rel:"stylesheet",href:"https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"}
+
   %body
     = render :partial=> "partials/header"
     -if flash[:notice]

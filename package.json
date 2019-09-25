@@ -1,5 +1,7 @@
 {
   "name": "investbookfinder",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "chart.js":"2.8.0"
+  }
 }

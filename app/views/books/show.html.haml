@@ -1,6 +1,13 @@
+
 -set_meta_tags title:"本の詳細情報",description:"本の詳細情報ページです。"
--@book = Book.find_by(identifier: params[:identifier])
--@reviews = Book.find_by(identifier: params[:identifier])&.reviews
+%script{onload:"paramsLoaded()"}
+  var recommendData = #{@recommend}
+  var priceData = #{@price}
+  var understandableData=#{@understandable}
+  var trustableData =#{@trustable}
+  var interestingData = #{@interesting}
+%dataset#reviewDataset{style:"display:none;",recommend:@reviewSummary[0],price:@reviewSummary[1],understandable:@reviewSummary[2],trustable:@reviewSummary[3],interesting:@reviewSummary[4]}
+
 .container
   %p.subtitle
     %strong
@@ -72,11 +79,13 @@
                     -('f'..'j').each.with_index do |c,i|
                       =form.radio_button :interesting,"#{5-i}",id:"star_#{c}",required:"required"
                       =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                  %hr
                   %p.subtitle おすすめ度
                   .evaluation.stars.purple
                     -('k'..'o').each.with_index do |c,i|
                       =form.radio_button :recommend,"#{5-i}",id:"star_#{c}",required:"required"
                       =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                  %hr
                   %p.subtitle 価格
                   .evaluation.stars.green
                     -('p'..'t').each.with_index do |c,i|
@@ -100,7 +109,7 @@
                     %strong
                       ="#{current_user.name|| 'Jhon Doe/ Jane Doe'}さんのレビューを追加"
                   
-                  = form_with model: @reviews,local: true,url: review_create_path do |form|
+                  = form_with model: Review.new,local: true,url: review_create_path do |form|
                     .textarea_wrap
                       = form.text_area :content,class:"textarea",required:"required"
                     %hr
@@ -108,29 +117,31 @@
                     .evaluation.stars
                       -(1..5).each do |i|
                         =form.radio_button :understandable,"#{6-i}",id:"star_#{6-i}",required:"required"
-                        =form.label "★",value:"#{6-i}",for:"star_#{6-i}",class:"star"
+                        =form.label :understandable,"★",value:"#{6-i}",for:"star_#{6-i}",class:"star"
                     %hr
                     %p.subtitle 信頼性
                     .evaluation.stars.blue
                       -('a'..'e').each.with_index do |c,i|
                         =form.radio_button :trustable,"#{5-i}",id:"star_#{c}",required:"required"
-                        =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                        =form.label :trustable,"★",value:"#{5-i}",for:"star_#{c}",class:"star"
                     %hr
                     %p.subtitle おもしろさ
                     .evaluation.stars.pink
                       -('f'..'j').each.with_index do |c,i|
                         =form.radio_button :interesting,"#{5-i}",id:"star_#{c}",required:"required"
-                        =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                        =form.label :interesting,"★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                    %hr
                     %p.subtitle おすすめ度
                     .evaluation.stars.purple
                       -('k'..'o').each.with_index do |c,i|
                         =form.radio_button :recommend,"#{5-i}",id:"star_#{c}",required:"required"
-                        =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                        =form.label :recommend,"★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                    %hr
                     %p.subtitle 価格
                     .evaluation.stars.green
                       -('p'..'t').each.with_index do |c,i|
                         =form.radio_button :price,"#{5-i}",id:"star_#{c}",required:"required"
-                        =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
+                        =form.label :price,"★",value:"#{5-i}",for:"star_#{c}",class:"star"
                     = hidden_field_tag :title, @book_title
                     = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
                     = hidden_field_tag :identifier, params[:identifier]
@@ -147,13 +158,34 @@
     .column.is-1-desktop
     .column
       %p
-        レビュー数推移
+        レビュー数分布
+      .bar_chart_wrap
+        .bar_chart
+          %canvas#reviewBarChart
+      .tags.are-medium
+        %span.tag.is-info.for-barChart#recommend
+          おすすめ度
+        %span.tag.for-barChart#price
+          価格
+        %span.tag.for-barChart#understandable
+          わかりやすさ
+        %span.tag.for-barChart#trustable
+          信頼度
+        %span.tag.for-barChart#interesting
+          おもしろさ
     .column
       %p
-        評価分布
+        評価平均
+      .radar_chart_wrap
+        .radar_chart
+          %canvas#reviewDistrib
+      .buttons
+        
+            
     .column.is-1-desktop
   %hr
   .columns.is-desktop
     %p.subtitle
       %strong
         関連書籍
+.reloader{onload:"reloadBarChart()"}
