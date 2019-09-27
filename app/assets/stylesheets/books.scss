@@ -5,6 +5,9 @@
     .column.is-2{
         display:none;
     }
+    .column.is-8{
+        margin:auto;
+    }
 }
 .content.reviews-of-this-book{
     p.recommend{
@@ -30,6 +33,7 @@
 }
 
 @media (max-width:1000px){
+    
     .card.about-this-book{
         font-size: 24px;
         p{
