@@ -1,5 +1,5 @@
 
--set_meta_tags title:"#{@book_title}",description:"#{@book_authors.join(",")}が書いた#{@book_title}の詳細情報ページです.#{@book_title}のレビューが#{@reviews.count()}件掲載されています."
+-set_meta_tags title:"#{@book_title}",description:"#{@book_authors.join(",")}が書いた#{@book_title}の詳細情報ページです.#{@book_title}のレビューが#{@reviews&.count()}件掲載されています."
 %script{onload:"paramsLoaded()"}
   var recommendData = #{@recommend}
   var priceData = #{@price}
@@ -38,7 +38,7 @@
           here is ad
     .column.is-5-desktop{style:"padding:20px;padding-left:5px!important"}
       .content.reviews-of-this-book{style:"padding:20px;text-align:center;margin:20px 0px"}
-        %p.subtitle #{@reviews.count()}件のレビュー
+        %p.subtitle #{@reviews&.count()}件のレビュー
         -if @reviews.present?
           -@reviews.each do |review|
             %article.media.card{style:"padding:15px"} 

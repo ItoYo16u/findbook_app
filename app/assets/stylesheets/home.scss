@@ -1,6 +1,14 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#search-box.on_home{
+    text-align:center;
+    .control{
+        input,button{
+            font-size:16px;
+        }
+    }
+}
 .content.about-this-site{
     padding:15px;
     font-size:16px;
@@ -28,6 +36,13 @@
     min-height:250px
 }
 @media (max-width:1000px){
+    #search-box.on_home{
+        .control{
+            input,button{
+                font-size:24px;
+            }
+        }
+    }
     p.subtitle{
         font-size:32px;
     }

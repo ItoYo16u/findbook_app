@@ -1,4 +1,11 @@
 .container{style:"padding:30px 15px"}
+  #search-box.on_home
+    =form_tag(search_path, method: :get,class:"field is-grouped is-expanded") do
+      %p.control.keyword_field.is-expanded
+        =text_field_tag :keyword, '', id:"book_search",class:"input",placeholder:"本のタイトルを入力してください"
+      %p.control.submit_field
+        %button.button#searchBtn{title:"search", type:"submit"} 検索する
+  %hr
   .columns.is-desktop
     .column.is-1
     .column{style:"margin:14px 10px;box-shadow: 0 0 5px rgba(0,0,0,0.2);"}
