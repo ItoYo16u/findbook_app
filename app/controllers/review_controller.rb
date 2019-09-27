@@ -1,4 +1,7 @@
 class ReviewController < ApplicationController
+    def index
+        @reviews= Review.order(created_at: "DESC").limit(12)
+    end
     def create
         existing_book = Book.find_by(identifier: params[:identifier])
         if existing_book.present?

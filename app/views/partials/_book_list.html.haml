@@ -1,19 +1,20 @@
--@reviews= Review.order(created_at: "DESC").limit(12)
-
--@reviews.each_slice(4) do |reviews_x4|
-  .columns.is-desktop
-    .column.is-1-desktop
-    -reviews_x4.each do |r|
-      .column
-        .content.review_list
-          %article.message
-            .message-body
-              %a.has-text-link{href:"/books/show?identifier=#{r.book.identifier}"}  
-                =r.book.title
-              %p
-                ="#{r.content.slice(0..99)}....."
-              %p.has-text-right
-                ="reviewed by :"
-                %i
-                  ="#{r.user.name ||"John Doe/Jane Doe" }"
-    .column.is-1-desktop
+%hr
+.columns.nook_list
+  .column.is-2.is-hidden-touch
+  .column.is-8.is-12-tablet
+    -book_table=@books.each_slice(3).to_a
+    -book_table.each do |books|
+      .columns.is-desktop.book_ranking
+        -books.each do |book|
+          %article.media{style:"padding:5px;margin-top:10px"}
+            %figure.media-left{href:"https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22"}
+              %a{href:"/books/show/?identifier=#{book.identifier}"}
+                %img{src:book.img_url||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
+            .media-content
+              .content
+                %p
+                  = book.title
+                  = book.id
+                =link_to "reviewsを見る",books_show_path(identifier:book.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
+                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
+  .column.is-2.is-hidden-touch

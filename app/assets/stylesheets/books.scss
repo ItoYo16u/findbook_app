@@ -1,7 +1,33 @@
 // Place all the styles related to the books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.book_list.on_top_page{
+    .column.is-2{
+        display:none;
+    }
+}
+.content.reviews-of-this-book{
+    p.recommend{
+        color:#9932cc;
+    }
+    p.price{
+        color:#3cb371;
+    }
+    p.understandable{
+        color:#ffcc00;
+    }
+    p.trustable{
+        color:#00ced1;
+    }
 
+    p.interest{
+        color:#f08080;
+    }
+
+    span.star.gray{
+        color:rgb(83, 83, 83);
+    }
+}
 
 @media (max-width:1000px){
     .card.about-this-book{
@@ -52,5 +78,30 @@
         }
 
     }
-
+    .book_ranking{
+        article.media{
+            figure.media-left{
+                img{
+                    width:250px;
+                }
+            }
+            .media-content{
+                font-size:32px;
+                a.button{
+                    padding:45px;
+                    font-size:32px;
+                }
+            }
+        }
+    }
+    .tags{
+        text-align:center;
+        font-size:32px;
+        width:100%;
+        span.tag.for-barChart{
+            font-size:24px!important;
+            width:19%;
+            padding:40px;
+        }
+    }
 }

@@ -38,18 +38,40 @@
           here is ad
     .column.is-5-desktop{style:"padding:20px;padding-left:5px!important"}
       .content.reviews-of-this-book{style:"padding:20px;text-align:center;margin:20px 0px"}
-        %p.subtitle レビュー
+        %p.subtitle #{@reviews.count()}件のレビュー
         -if @reviews.present?
           -@reviews.each do |review|
             %article.media.card{style:"padding:15px"} 
-              %figure.media-left
+              -#%figure.media-left
                 %p.image.is-64x64
                   %img{src:"https://bulma.io/images/placeholders/64x64.png"}
+              %figure.media-left
+                %p.recommend
+                  ="★"*review.recommend
+                  %span.star.gray
+                    ="★"*(5 - review.recommend)
+                %p.price
+                  ="★"*review.price
+                  %span.star.gray
+                    ="★"*(5-review.price)
+                %p.understandable
+                  ="★"*review.understandable
+                  %span.star.gray
+                    ="★"*(5-review.understandable)
+                %p.trustable
+                  ="★"*review.trustable
+                  %span.star.gray
+                    ="★"*(5-review.trustable)
+                %p.interest
+                  ="★"*review.interesting
+                  %span.star.gray
+                    ="★"*(5-review.interesting)
               .media-content
                 %p
                   %a{href:"/users/show/#{review.user.id}"}
                     %strong
                       =review.user.name||"John Doe/Jane Doe"
+                  %span.created_at{style:"float:right"} post at #{review.created_at.strftime("%Y/%m/%d")}
                 %p
                   = review.content
           -if user_signed_in?

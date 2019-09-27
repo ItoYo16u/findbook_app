@@ -23,7 +23,8 @@ var barChartConfig ={
         ]
     },
     options:{
-        showtoolTips:false
+        showtoolTips:false,
+        
     }
 }
 

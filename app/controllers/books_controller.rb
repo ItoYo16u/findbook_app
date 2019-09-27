@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+  def index
+    @books=Book.joins(:reviews).group(:id).order('count(user_id) desc').limit(15)
+  end
   def show
     
     def request_google_book_api_with(isbn_code)

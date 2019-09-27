@@ -34,7 +34,7 @@
         %p.subtitle.has-text-centered{style:"margin:20px 0px"}
           %strong
             rankings
-        -best_seller = @books[0]
+        -best_seller = @popular_books[0]
         -if best_seller.present?
           .card{style:"padding-top:40px"}
             .card-image
@@ -52,8 +52,8 @@
     .column
       .content.good-sellers
         .space{style:"height:50px"}
-        -@books=@books.drop(1)
-        -@books.each do |book|
+        -popular_books=@popular_books.drop(1)
+        -popular_books.each do |book|
           %article.media{style:"padding:5px;margin-top:10px"}
             %figure.media-left
               %img{src:book.img_url||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
@@ -63,7 +63,8 @@
                   = book.title
                   = book.id
                 =link_to "reviewsを見る",books_show_path(identifier:book.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
-                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"      
+                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"  
+        %a.more{href:"books/index"} もっと見る            
     .column.is-1
   %hr
   %p.subtitle
@@ -96,7 +97,18 @@
   %p.subtitle#new_reviews
     %strong
       新着レビュー
-  =render :partial=>"partials/book_list" 
+  =render :partial=>"partials/review_list"
+  .has-text-right
+    %a.more{href:"/review/index"} レビューをもっと見る
+
+  %p.subtitle#new_books
+    %strong
+      新着書籍
+  .has-text-right.book_list.on_top_page
+    =render "partials/book_list"
+    %a.more 新着書籍をもっと見る
+    
+    
   %hr
   .columns.is-desktop
     .column.is-1-desktop
