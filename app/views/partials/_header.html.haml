@@ -12,8 +12,8 @@
     .navbar-start
       =link_to "home",root_path,class:"navbar-item"
       -if user_signed_in?
-        =link_to "my page",users_show_path(current_user.id),class:"navbar-item"
-        =link_to "edit",edit_user_registration_path(current_user.id),class:"navbar-item"
+        =link_to "My Page",users_show_path(current_user.id),class:"navbar-item"
+        =link_to "登録情報編集",edit_user_registration_path(current_user.id),class:"navbar-item"
         =link_to "Time Line","#",class:"navbar-item"
       %a.navbar-item
         
@@ -24,12 +24,12 @@
             %p.control
               =text_field_tag :keyword, '', id:"book_search",class:"input",placeholder:"本のタイトルを入力してください"
             %p.control
-              %button.button#searchBtn{title:"search", type:"submit"} Search
+              %button.button#searchBtn{title:"search", type:"submit"} 検索する
         .buttons
           -unless user_signed_in?
-            = link_to "sign up",new_user_registration_path,class:"button is-primary"
+            = link_to "新規会員登録",new_user_registration_path,class:"button is-primary"
           -if user_signed_in?
-            =link_to "Log out", destroy_user_session_path,method: :delete,class:"button is-light"
+            =link_to "ログアウト", destroy_user_session_path,method: :delete,class:"button is-light"
           -else
-            = link_to "log in",new_user_session_path,class:"button is-light"
+            = link_to "ログイン",new_user_session_path,class:"button is-light"
 

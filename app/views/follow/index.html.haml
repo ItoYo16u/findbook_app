@@ -1,7 +1,8 @@
+-this_user = User.find(params[:id])
+-followings = this_user.followings
+-followers = this_user.followers
+-set_meta_tags title:"#{this_user.name}のつながり",description:"#{this_user.name}さんのフォロワーとフォロー中のユーザーです。現在、#{this_user.name}さんは#{followings.count()}人をフォロー中です.}"
 
--followings = User.find(params[:id]).followings
-
--followers = User.find(params[:id]).followers
 .columns.is-desktop
   .column.is-2
   .column

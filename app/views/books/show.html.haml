@@ -1,5 +1,5 @@
 
--set_meta_tags title:"本の詳細情報",description:"本の詳細情報ページです。"
+-set_meta_tags title:"#{@book_title}",description:"#{@book_authors.join(",")}が書いた#{@book_title}の詳細情報ページです.#{@book_title}のレビューが#{@reviews.count()}件掲載されています."
 %script{onload:"paramsLoaded()"}
   var recommendData = #{@recommend}
   var priceData = #{@price}

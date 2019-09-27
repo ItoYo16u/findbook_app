@@ -1,5 +1,5 @@
--set_meta_tags title:"マイページ",description:"ユーザーのマイページです."
 -this_user = User.find(params[:id])
+-set_meta_tags title:"#{this_user.name}のマイページ",description:"#{this_user.name}のマイページです.#{this_user}が投稿した、参考書・実用書・教科書のレビューを見ることができます。"
 .columns.is-desktop
   .column.is-2
   .column
@@ -69,7 +69,7 @@
               = form_with url: "/follow/#{this_user.id}" do |f|
                 = f.submit "follow", class:"button is-info is-outlined"
             %hr
-            %a.following.button{href:"/follow/#{params[:id]}"} relationship
+            %a.following.button{href:"/follow/#{params[:id]}"} つながり
             %p.instruction{style:"color:#888888;"}
               ="#{this_user.name}さんのフォロー・フォロワーを見れます."
         .column.is-4-desktop.is-8-tablet.name
@@ -93,7 +93,7 @@
                 =f.label :profile
                 = f.text_area :profile,class:"textarea",style:"min-height:200px",placeholder:"このページはあなたのユーザーページです。自分のマイページに限り、フォームを生成してるので、プロフィールを更新することができます。変更するにはupdateボタンを押してください。"
                 %br
-                =f.submit :update,class:"button"
+                =f.submit "更新",class:"button"
             -else
               %p Profile
               %p.tagline
