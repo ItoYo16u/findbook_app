@@ -6,13 +6,20 @@
       %p 専門書・技術書・参考書のレビューサイト
   %hr
   .footer_item.links
-    %span.innner-link-wrap
+    %span.inner-link-wrap
       = link_to :home,root_path,class:"inner_link"
+    %span.inner-link-wrap
+      =link_to "新着レビュー",review_index_path
     %span.inner-link-wrap
       -if user_signed_in?
         =link_to "My Page",users_show_path(id: current_user.id),class:"inner-link"
     %span.inner-link-wrap
       =link_to "登録情報編集",edit_user_registration_path,class:"inner-link"
+  %hr
+  .footer_item.contact
+    %span
+      %a  お問い合わせ
+    
   .copyRight
     .copyRight-text-wrap.has-text-centered
       %p.subtitle Copyright🄫 #{"110416"} All Right Reserved.

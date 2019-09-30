@@ -16,9 +16,15 @@
 body{
     font-size:16px;
 }
+#header-space{
+    height:0px;
+}
 
 @media (max-width:1000px){
     body{
         font-size: 24px;
+    }
+    #header-space{
+        height:100px;
     }
 }

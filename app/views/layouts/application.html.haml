@@ -1,5 +1,5 @@
 !!!
-%html
+%html.has-navbar-fixed-top
   %head
     = display_meta_tags(default_meta_tags)
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
@@ -21,6 +21,6 @@
       .notification.is-danger{style:"width:300px;margin:auto;"}
         %button.delete
         =alert
-        
+    #header-space
     = yield
     = render partial:"partials/footer"

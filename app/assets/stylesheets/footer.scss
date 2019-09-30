@@ -6,6 +6,13 @@
     .footer_item{
         text-align: center;
         margin:0px;
+        span.inner-link-wrap{
+            text-align: center;
+        }
+        span.inner-link-wrap:after{
+            content:"|";
+            color:#bdbdbd;
+        }
     }
     .footer_item.about_this_service{
         padding:50px;
