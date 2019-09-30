@@ -85,17 +85,20 @@
                 .twitter
                   %p.subtitle
                     %span Twitter:
-                    %a #{this_user&.profile_link&.twitter_url}
+                    %a{href:"#{this_user&.profile_link&.twitter_url}"} 
+                      #{this_user&.profile_link&.twitter_url}
                 %hr
                 .note
                   %p.subtitle
                     %span Note:
-                    %a #{this_user&.profile_link&.note_url}
+                    %a{href:"#{this_user&.profile_link&.note_url}"}
+                      #{this_user&.profile_link&.note_url}
                 %hr
                 .blog
                   %p.subtitle
-                    %span Blog:
-                    %a #{this_user&.profile_link&.website_url}
+                    %span Website/Blog:
+                    %a{href:"#{this_user&.profile_link&.website_url}"}
+                      #{this_user&.profile_link&.website_url}
                 %hr
               -if current_user.id ==  params[:id].to_i
                 = form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f|
