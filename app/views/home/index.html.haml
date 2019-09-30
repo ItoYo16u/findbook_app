@@ -82,10 +82,6 @@
     .column
       .content.information
         %table.table.is-striped.is-fullwidth
-          %thead
-            %tr
-              %th
-              %th
           %tbody
             - @info= Notification.order(created_at: "DESC").limit(5)
             - @info.each do |notification|
@@ -107,16 +103,17 @@
   =render :partial=>"partials/review_list"
   .has-text-right
     %a.more{href:"/review/index"} レビューをもっと見る
-
+  %hr
   %p.subtitle#new_books
     %strong
       新着書籍
   .has-text-right.book_list.on_top_page
     =render "partials/book_list"
     %a.more 新着書籍をもっと見る
-    
-    
   %hr
+  %p.subtitle#new_posts
+    %strong
+      新着記事  
   .columns.is-desktop
     .column.is-1-desktop
     .column

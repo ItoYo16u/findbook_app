@@ -1,122 +1,127 @@
 -this_user = User.find(params[:id])
 -set_meta_tags title:"#{this_user.name}のマイページ",description:"#{this_user.name}のマイページです.#{this_user}が投稿した、参考書・実用書・教科書のレビューを見ることができます。"
-.columns.is-desktop
-  .column.is-2
-  .column
-    .tabs.is-centered.is-boxed.is-fullwidth
-      %ul
-        %li.tab_menu.is-active{target:"#user_info_tab"}
-          %a
-            基本情報
-        %li.tab_menu{target:"#reviews_tab"}
-          %a
-            レビュー済
-  .column.is-2
+.container{style:"padding:30px 15px"}
+  .columns.is-desktop
+    .column.is-2
+    .column
+      .tabs.is-centered.is-boxed.is-fullwidth
+        %ul
+          %li.tab_menu.is-active{target:"#user_info_tab"}
+            %a
+              基本情報
+          %li.tab_menu{target:"#reviews_tab"}
+            %a
+              レビュー済
+    .column.is-2
 
-.columns.is-desktop.tab_item#reviews_tab
-  .column.is-2
-  .column.is-8
-    %p.subtitle
-      レビュー済
-    -@book_list =this_user&.books
-    -if !@book_list.empty?
-      -book_table=@book_list.each_slice(4).to_a
-      -book_table.each do |books|
-        .columns.is-desktop
-          -books.each do |book|
-            %a.column.is-3-desktop.card.has-text-centered{href:"/books/show?identifier=#{book.identifier}"}
-              .div{style:"margin:10px;display:inline-block"}
-                -if book.img_url != nil
-                  %img{src:"#{book.img_url}",style:"display:block;padding:10px;height:320px"}
-                -else
-                  %img{src:"https://bulma.io/images/placeholders/64x64.png"}
-              %p{style:"font-size:10px"}
-                =book.title
-    - else
+  .columns.is-desktop.tab_item#reviews_tab
+    .column.is-1
+    .column.is-10
+      %p.subtitle
+        レビュー済
+      -@book_list =this_user&.books
+      -if !@book_list.empty?
+        -book_table=@book_list.each_slice(4).to_a
+        -book_table.each do |books|
+          .columns.is-desktop
+            -books.each do |book|
+              %a.column.is-3-desktop.card.has-text-centered{href:"/books/show?identifier=#{book.identifier}"}
+                .div{style:"margin:10px;display:inline-block"}
+                  -if book.img_url != nil
+                    %img{src:"#{book.img_url}",style:"display:block;padding:10px;height:320px"}
+                  -else
+                    %img{src:"https://bulma.io/images/placeholders/64x64.png"}
+                %p{style:"font-size:10px"}
+                  =book.title
+      - else
+        %p
+          まだレビューが投稿されていません。
+        %p 
+          画面右上のフォームから検索できます。
+        %script
+          $(function(){setInterval(function(){$("#book_search,#searchBtn").toggleClass("is-warning")},700)})
+                    
+    .column.is-1
+  .columns.is-desktop.tab_item#records_tab
+    .column.is-2
+    .column.is-8
       %p
-        まだレビューが投稿されていません。
-      %p 
-        画面右上のフォームから検索できます。
-      %script
-        $(function(){setInterval(function(){$("#book_search,#searchBtn").toggleClass("is-warning")},700)})
-                   
-  .column.is-2
-.columns.is-desktop.tab_item#records_tab
-  .column.is-2
-  .column.is-8
-    %p
-      all your data
-    
-  .column.is-2
-.columns.is-desktop.tab_item#user_info_tab.is-active
-  .column.is-1
-  .column.is-10
-    .section.profile-heading
-      .columns.is-multiline
-        .column.is-2-desktop.is-4-tablet
-          %p{style:"padding-bottom:10px"}
-            %span.title.is-bold
-              =this_user.name
-            %p.is-bold
-              ="所属組織："
-          %br
-          .profile
-            -if current_user == this_user
-              =""
-            -elsif current_user.following?(this_user)
-              %a.button.following{disabled:"disabled"} alrady following
-            -else
-              = form_with url: "/follow/#{this_user.id}" do |f|
-                = f.submit "follow", class:"button is-info is-outlined"
-            %hr
-            %a.following.button{href:"/follow/#{params[:id]}"} つながり
-            %p.instruction{style:"color:#888888;"}
-              ="#{this_user.name}さんのフォロー・フォロワーを見れます."
-        .column.is-4-desktop.is-8-tablet.name
-          .content.profile
-            .links
+        all your data
+      
+    .column.is-2
+  .columns.is-desktop.tab_item#user_info_tab.is-active
+    .column.is-1
+    .column.is-10
+      .section.profile-heading
+        .columns.is-multiline
+          .column.is-2-desktop.is-4-tablet
+            %p{style:"padding-bottom:10px"}
+              %span.title.is-bold
+                =this_user.name
+              %p.is-bold
+                ="所属組織："
+            %br
+            .profile
+              -if current_user == this_user
+                =""
+              -elsif current_user.following?(this_user)
+                %a.button.following{disabled:"disabled"} alrady following
+              -else
+                = form_with url: "/follow/#{this_user.id}" do |f|
+                  = f.submit "follow", class:"button is-info is-outlined"
               %hr
-              .twitter
-                %p.subtitle
-                  ="Twitter:#{}" 
-              %hr
-              .note
-                %p.subtitle
-                  ="Note:#{}"
-              %hr
-              .blog
-                %p.subtitle
-                  ="Blog:#{}"
-              %hr
-            -if current_user.id ==  params[:id].to_i
-              = form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f|
-                =f.label :profile
-                = f.text_area :profile,class:"textarea",style:"min-height:200px",placeholder:"このページはあなたのユーザーページです。自分のマイページに限り、フォームを生成してるので、プロフィールを更新することができます。変更するにはupdateボタンを押してください。"
-                %br
-                =f.submit "更新",class:"button"
-            -else
-              %p Profile
-              %p.tagline
-                = this_user.profile
-          
-        .column.is-2-desktop.is-6-tablet.has-text-centered
-          %p.stat-val.subtitle{style:"padding-top:35px"}
-            %b
-              =this_user.created_at.strftime("%Y/%m/%d")
-          %br
-          %p から利用しています。
-        .column.is-4-desktop.is-6-tablet.has-text-centered
-          %p.stat-val
-            %strong
-              =User.find(params[:id]).reviews.count()
-          %br
-          %p.stat-key Reviews
-          %br
-          - latest_review = Review.find_by(user_id: this_user.id) || false
-          -if latest_review
-            %p 直近のレビュー
-            %a{href:"/books/show?identifier=#{latest_review.book.identifier}"}
-              #{latest_review.created_at.strftime("%Y/%m/%d")}
-          
-  .column.is-1
+              %a.following.button{href:"/follow/#{params[:id]}"} つながり
+              %p.instruction{style:"color:#888888;"}
+                ="#{this_user.name}さんのフォロー・フォロワーを見れます."
+          .column.is-4-desktop.is-8-tablet.name
+            .content.profile
+              .links
+                %hr
+                .twitter
+                  %p.subtitle
+                    ="Twitter:#{}" 
+                %hr
+                .note
+                  %p.subtitle
+                    ="Note:#{}"
+                %hr
+                .blog
+                  %p.subtitle
+                    ="Blog:#{}"
+                %hr
+              -if current_user.id ==  params[:id].to_i
+                = form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f|
+                  =f.label :profile
+                  = f.text_area :profile,class:"textarea",style:"min-height:200px",placeholder:"このページはあなたのユーザーページです。自分のマイページに限り、フォームを生成してるので、プロフィールを更新することができます。変更するにはupdateボタンを押してください。"
+                  %br
+                  =f.submit "更新",class:"button"
+              -else
+                %p Profile
+                %p.tagline
+                  = this_user.profile
+            
+          .column.is-2-desktop.is-6-tablet.has-text-centered
+            %p.stat-val.subtitle{style:"padding-top:35px"}
+              %b
+                =this_user.created_at.strftime("%Y/%m/%d")
+            %br
+            %p から利用しています。
+          .column.is-4-desktop.is-6-tablet.has-text-centered
+            %p.stat-val
+              %strong
+                =User.find(params[:id]).reviews.count()
+            %br
+            %p.stat-key Reviews
+            %br
+            - latest_review = Review.find_by(user_id: this_user.id) || false
+            -if latest_review
+              %p 直近のレビュー
+              %a{href:"/books/show?identifier=#{latest_review.book.identifier}"}
+                #{latest_review.created_at.strftime("%Y/%m/%d")}
+            
+    .column.is-1
+  %hr
+    %p.subtitle
+      %strong
+        このユーザーの記事
     

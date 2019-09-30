@@ -1,0 +1,53 @@
+.footer_items{
+    margin-top:100px;
+    width:101%;
+    text-align: center;
+    background-color:#f8f8ff!important;
+    .footer_item{
+        text-align: center;
+        margin:0px;
+    }
+    .footer_item.about_this_service{
+        padding:50px;
+        .service_name{
+            font-size:24px;
+            font-weight: 600;
+            padding:20px 0px;
+        }
+        .description{
+            font-size: 16px;
+        }
+    }
+    .footer_item.links{
+        span{
+            font-size:16px;
+            padding:10px;
+        }
+    }
+    .copyRight{
+        margin-top:30px;
+          padding:60px 0px;
+          background-color: #66cdda;
+        p{
+            color:#FFF;
+        }
+    }
+}
+@media (max-width:1000px){
+    .footer_items{
+        .footer_item.about_this_service{
+            .service_name p{
+                font-size: 40px;
+            }
+            .description p{
+                font-size: 24px;
+            }
+        }
+        .footer_item.links{
+            span{
+                font-size:24px!important;
+
+            }
+                }
+    }
+}

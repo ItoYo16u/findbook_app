@@ -1,6 +1,8 @@
 -set_meta_tags title:"新着レビュー",description:"最近追加されたレビューを表示します表示します."
-.has-text-centered
-  %p
-    #{}件中、#{}～#{}件を表示
+.container{style:"padding:30px 15px"}
+  .has-text-centered
+    %p
+      #{}件中、#{}～#{}件を表示
 
-=render "partials/review_list"
+
+  =render "partials/review_list"

@@ -1,8 +1,8 @@
-%nav.navbar{role:"navigation","aria-label":"main navigation",style:"border-bottom:1px solid #bdbdbd"}
+%nav.navbar{role:"navigation","aria-label":"main navigation"}
   .navbar-brand
     %a.navbar-item{href:"/"}
       %p.subtitle
-        Find book
+        Service Name
 
     %a.navbar-burger.burger{role:"button","aria-label":"menu","aria--expanded":"false","data-target":"navbarBasicExample"}
       %span{"aria-hidden":"true"}
@@ -15,7 +15,6 @@
         =link_to "My Page",users_show_path(current_user.id),class:"navbar-item"
         =link_to "登録情報編集",edit_user_registration_path(current_user.id),class:"navbar-item"
         =link_to "Time Line","#",class:"navbar-item"
-      %a.navbar-item
         
     .navbar-end
       .navbar-item

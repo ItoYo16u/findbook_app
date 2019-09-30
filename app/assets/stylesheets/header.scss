@@ -1,3 +1,19 @@
+nav.navbar{
+    width:101%;
+    background-color:#66cdda;
+    .navbar-brand p{
+        color:#f0f8ff;
+        font-weight: 500;
+    }
+    .navbar-start{
+        a.navbar-item{
+            color:#f0f8ff;
+        }
+        a.navbar-item:hover{
+            color:#3273dc;
+        }
+    }
+}
 .navbar-end{
     #search-box{
         padding-bottom: 3px;
@@ -11,13 +27,16 @@
     nav{
         padding:30px 15px;
         font-size:32px;
+        .navbar-start a{
+            color:#3273dc!important;
+        }
     }
     p{
         font-size: 40px;
     }
     .navbar{
         a.navbar-burger{
-            border:1px solid #bdbdbd;
+            border:1px solid #FFFFFF;
             width:70px;
             height:70px;
         }
@@ -25,24 +44,39 @@
             span{
                 width:60px;
                 height:3px;
-                color:#888888;
+                color:#FFF;
                 left: calc(50% - 30px);
             }
         }
     }
     .navbar-start{
         a{
+            
             font-size:32px;
             padding:20px 10px;
         }
+        a:before{
+            content:">";
+            padding:0px 10px;
+            color: #6a5acd;
+            font-weight: 600;
+        }
+        
         a:nth-child(odd){
             border:solid #bdbdbd;
             border-width:1px 0px 1px 0px; 
         }
+        a:first-child{
+            border-top:0px;
+        }
+        a:last-child{
+            border-bottom:1px solid #bdbdbd;
+        }
     }
     .navbar-end{
         #search-box{
-            padding-bottom: 48px;
+            padding-top: 24px;
+            padding-bottom: 24px;
             border-bottom: 1px solid #bdbdbd;
             p{
                 font-size:32px;

@@ -2,62 +2,62 @@
 -followings = this_user.followings
 -followers = this_user.followers
 -set_meta_tags title:"#{this_user.name}のつながり",description:"#{this_user.name}さんのフォロワーとフォロー中のユーザーです。現在、#{this_user.name}さんは#{followings.count()}人をフォロー中です.}"
+.container{style:"padding:30px 15px"}
+  .columns.is-desktop
+    .column.is-2
+    .column
+      .tabs.is-centered.is-boxed.is-fullwidth
+        %ul
+          %li.tab_menu.is-active{target:"#followings_tab"}
+            %a{} 
+              フォロー
+              
+          %li.tab_menu{target:"#followers_tab"}
+            %a{}
+              フォロワー
+    .column.is-2
 
-.columns.is-desktop
-  .column.is-2
-  .column
-    .tabs.is-centered.is-boxed.is-fullwidth
-      %ul
-        %li.tab_menu.is-active{target:"#followings_tab"}
-          %a{} 
-            following
-            
-        %li.tab_menu{target:"#followers_tab"}
-          %a{}
-            followed
-  .column.is-2
+  .tab_item#followings_tab.is-active
+    .content_wrap.followings_and_followers
+      %hr{style:"margin-top:0px"}
+      %p.has-text-centered
+        ="#{followings.count()}人をフォローしています."
 
-.tab_item#followings_tab.is-active
-  .content_wrap.followings_and_followers
-    %hr{style:"margin-top:0px"}
-    %p.has-text-centered
-      ="#{followings.count()}人をフォローしています."
+      -followings.each do |following|
+        .content.followings.card
+          %a.following_name{href:"/users/show/#{following.id}"}
+            = following.name
+          %span.right.review_count
+            ="#{following.reviews.count()}件のレビューを投稿しています." 
+          %hr
+          %p.profile_content_head
+            = following.profile || "まだ自己紹介文がありません."
+          %hr
+          .follow_btn_wrap
+            -unless current_user == following or current_user.following?(following)
+              = form_with url: "/follow/#{following.id}" do |f|
+                = f.submit "follow", class:"button is-info is-outlined"
+                  
 
-    -followings.each do |following|
-      .content.followings.card
-        %a.following_name{href:"/users/show/#{following.id}"}
-          = following.name
-        %span.right.review_count
-          ="#{following.reviews.count()}件のレビューを投稿しています." 
-        %hr
-        %p.profile_content_head
-          = following.profile || "まだ自己紹介文がありません."
-        %hr
-        .follow_btn_wrap
-          -unless current_user == following or current_user.following?(following)
-            = form_with url: "/follow/#{following.id}" do |f|
-              = f.submit "follow", class:"button is-info is-outlined"
-                
-
-      
-.tab_item#followers_tab
-  .content_wrap.followings_and_followers
-    %hr{style:"margin-top:0px"}
-    %p.has-text-centered
-      = "#{followers.count()}人にフォローされています."
-    - followers.each do |follower|
-      .content.followers.card
-        %a.follower_name{href:"/users/show/#{follower.id}"}
-        = follower.name
-        %span.right.review_count
-          ="#{follower.reviews.count()}件のレビューを投稿しています." 
-        %hr
-        %p.profile_content_head
-          = follower.profile || "まだ自己紹介文がありません."
-        %hr
-        .follow_btn_wrap
-          -if  current_user == follower or current_user.following?(follower)
-            %a.button{disabled:"disabled"} already following
-          -else
-            = form_with url: "/follow/#{follower.id}" do |f|
-              = f.submit "follow", class:"button is-info is-outlined"
+        
+  .tab_item#followers_tab
+    .content_wrap.followings_and_followers
+      %hr{style:"margin-top:0px"}
+      %p.has-text-centered
+        = "#{followers.count()}人にフォローされています."
+      - followers.each do |follower|
+        .content.followers.card
+          %a.follower_name{href:"/users/show/#{follower.id}"}
+          = follower.name
+          %span.right.review_count
+            ="#{follower.reviews.count()}件のレビューを投稿しています." 
+          %hr
+          %p.profile_content_head
+            = follower.profile || "まだ自己紹介文がありません."
+          %hr
+          .follow_btn_wrap
+            -if  current_user == follower or current_user.following?(follower)
+              %a.button{disabled:"disabled"} already following
+            -else
+              = form_with url: "/follow/#{follower.id}" do |f|
+                = f.submit "follow", class:"button is-info is-outlined"
