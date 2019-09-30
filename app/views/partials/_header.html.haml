@@ -10,12 +10,12 @@
       %span{"aria-hidden":"true"}
   #navbarBasicExample.navbar-menu
     .navbar-start
-      =link_to "home",root_path,class:"navbar-item"
+      =link_to "トップページ",root_path,class:"navbar-item"
       -if user_signed_in?
         =link_to "My Page",users_show_path(current_user.id),class:"navbar-item"
         =link_to "登録情報編集",edit_user_registration_path(current_user.id),class:"navbar-item"
         =link_to "Time Line","#",class:"navbar-item"
-        
+      =link_to "お問い合わせ","",class:"navbar-item"  
     .navbar-end
       .navbar-item
         #search-box

@@ -1,4 +1,6 @@
 -this_user = User.find(params[:id])
+-@book_list =this_user&.books
+      
 -set_meta_tags title:"#{this_user.name}のマイページ",description:"#{this_user.name}のマイページです.#{this_user}が投稿した、参考書・実用書・教科書のレビューを見ることができます。"
 .container{style:"padding:30px 15px"}
   .columns.is-desktop
@@ -17,9 +19,12 @@
   .columns.is-desktop.tab_item#reviews_tab
     .column.is-1
     .column.is-10
-      %p.subtitle
-        レビュー済
-      -@book_list =this_user&.books
+      .content
+        %p.subtitle
+          #{this_user.name}さんのレビュー
+        %p
+          現在、#{this_user.name}さんは#{@book_list.count()||0}件のレビューを投稿しています。
+      
       -if !@book_list.empty?
         -book_table=@book_list.each_slice(4).to_a
         -book_table.each do |books|
@@ -58,7 +63,7 @@
             %p{style:"padding-bottom:10px"}
               %span.title.is-bold
                 =this_user.name
-              %p.is-bold
+              %p.is-bold.organization
                 ="所属組織："
             %br
             .profile
@@ -124,4 +129,13 @@
     %p.subtitle
       %strong
         このユーザーの記事
+  .content.related_post
+    %a sample link
+  
+  %hr
+    %p.subtitle
+      %strong
+        Ads
+  .content.ads
+    .ad
     

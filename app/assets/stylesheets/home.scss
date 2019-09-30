@@ -9,9 +9,22 @@
         }
     }
 }
+.content{
+    p.section_title{
+        border-left:10px solid #f08080;
+        padding:5px 10px;
+    }
+}
 .content.about-this-site{
     padding:15px;
     font-size:16px;
+    p.catch_copy{
+        font-size:24px;
+        font-weight: 600;
+    }
+    a.button.sign_up,a.button.sign_in{
+        font-size:24px;
+    }
 }
 .content.best-seller{
     .card{
@@ -46,12 +59,34 @@
     p.subtitle{
         font-size:32px;
     }
+    .content{
+        p.section_title{
+            background-color:#f08080;
+            border:none;
+            padding:10px 10px;
+        }
+        p.section_title strong{
+            color:#FFF!important;
+        }
+    }
+    
     .content.about-this-site{
         font-size: 24px;
         p{
             font-size:32px;
         }
         p.subtitle{
+            font-size:32px;
+        }
+        p.catch_copy{
+            font-size:40px;
+            font-weight:600;
+        }
+        a.button.sign_up,a.button.sign_in{
+            font-size:32px;
+            padding:30px 5px;;
+        }
+        a.link{
             font-size:32px;
         }
     }

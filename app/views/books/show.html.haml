@@ -19,7 +19,7 @@
         %p.subtitle
           = @book_title
         .card-image{style:"margin:10px"}
-          %img{src:"#{@book_img_urls["thumbnail"]}",style:"height:320px"}
+          %img{src:"#{@book_img_urls["thumbnail"]}"}
         .card-content
           .content
             %span
@@ -29,7 +29,7 @@
                 - @book_authors.try(:each) do |name|
                   = name
             %hr
-            %p{style:"font-size:13px"}
+            %p
               = @book_description || "No Description"
             %hr
             =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(params[:identifier])}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
@@ -216,4 +216,10 @@
       %p.subtitle
         %strong
           この本に関連する記事
+  %hr
+  .columns.is-desktop
+    .has-text-left
+      %p.subtitle
+        %strong
+          Ads
 .reloader{onload:"reloadBarChart()"}

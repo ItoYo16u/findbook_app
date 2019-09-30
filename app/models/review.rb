@@ -8,7 +8,6 @@ class Review < ApplicationRecord
       col_names.each do |c|
       review_summary << self.where(book_id:book_id).average(c)
       end
-      logger.debug(review_summary)
       review_summary.map!{|v| v ? v : 0}
    end
 
