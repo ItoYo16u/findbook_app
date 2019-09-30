@@ -19,6 +19,14 @@ body{
 #header-space{
     height:0px;
 }
+hr.dotted{
+    border-top: 7px dotted #bdbdbd;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    margin:5px 0px;
+
+}
 
 @media (max-width:1000px){
     body{

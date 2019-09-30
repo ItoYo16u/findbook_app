@@ -9,6 +9,10 @@
         margin:auto;
     }
 }
+button.button#show_more{
+    margin:10px;
+    font-size:20px;
+}
 .content.reviews-of-this-book{
     p.recommend{
         color:#9932cc;
@@ -33,6 +37,10 @@
 }
 
 @media (max-width:1000px){
+    button.button#show_more{
+        margin:40px;
+        font-size:32px;
+    }
     
     .card.about-this-book{
         font-size: 24px;

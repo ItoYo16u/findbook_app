@@ -22,6 +22,13 @@
           %img{src:"#{@book_img_urls["thumbnail"]}"}
         .card-content
           .content
+            %p
+              総合評価
+            %p{style:"color:#ffcd56;font-size:32px"}
+              ="★"*(@reviewSummary.inject(0.0){|r,i| r+=i }/@reviewSummary.size).floor
+            %p
+              =@reviewSummary.inject(0.0){|r,i| r+=i }/@reviewSummary.size
+            %hr
             %span
               著者: 
             %span
@@ -40,8 +47,8 @@
       .content.reviews-of-this-book{style:"padding:20px;text-align:center;margin:20px 0px"}
         %p.subtitle #{@reviews&.count()}件のレビュー
         -if @reviews.present?
-          -@reviews.each do |review|
-            %article.media.card{style:"padding:15px"} 
+          -@reviews.each.with_index do |review,idx|
+            %article.media.card.review_card{style:"padding:15px;#{'display:none;' if idx >= 2}"} 
               -#%figure.media-left
                 %p.image.is-64x64
                   %img{src:"https://bulma.io/images/placeholders/64x64.png"}
@@ -74,6 +81,11 @@
                   %span.created_at{style:"float:right"} post at #{review.created_at.strftime("%Y/%m/%d")}
                 %p
                   = review.content
+          -if @reviews.length >= 3
+            %hr.dotted
+            %button.button.is-large#show_more
+              レビューをもっとみる
+              
           -if user_signed_in?
             -unless current_user.books.find_by(identifier:params[:identifier]).present?
               .content.new_review{style:"margin:10px"}
