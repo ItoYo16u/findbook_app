@@ -64,7 +64,7 @@
               %span.title.is-bold
                 =this_user.name
               %p.is-bold.organization
-                ="所属組織："
+                ="所属組織：#{this_user.profile_link&.organization}"
             %br
             .profile
               -if current_user == this_user
@@ -84,15 +84,18 @@
                 %hr
                 .twitter
                   %p.subtitle
-                    ="Twitter:#{}" 
+                    %span Twitter:
+                    %a #{this_user&.profile_link&.twitter_url}
                 %hr
                 .note
                   %p.subtitle
-                    ="Note:#{}"
+                    %span Note:
+                    %a #{this_user&.profile_link&.note_url}
                 %hr
                 .blog
                   %p.subtitle
-                    ="Blog:#{}"
+                    %span Blog:
+                    %a #{this_user&.profile_link&.website_url}
                 %hr
               -if current_user.id ==  params[:id].to_i
                 = form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f|

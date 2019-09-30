@@ -40,6 +40,9 @@ ja:
       inactive: 'アカウントがアクティベートされていません。'
 #      inactive: 'Your account was not activated yet.'
       already_authenticated: すでにログインしています.
+      user:
+        not_found_in_database:
+          ユーザーデータが見つかりません。メールアドレスとパスワードを確認してください。
     sessions:
       signed_in: 'ログインしました。'
 #      signed_in: 'Signed in successfully.'

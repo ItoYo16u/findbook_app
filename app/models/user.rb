@@ -5,10 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :reviews, dependent: :destroy
   has_many :books, through: :reviews
-  has_many :user_users
-  has_many :followings,through: :user_users,source: :follow
-  has_many :reverse_of_user_users,class_name: "UserUser",foreign_key:"follow_id"
+  has_many :user_users,dependent: :destroy
+  has_many :followings,through: :user_users,source: :follow,dependent: :destroy
+  has_many :reverse_of_user_users,class_name: "UserUser",foreign_key:"follow_id",dependent: :destroy
   has_many :followers, through: :reverse_of_user_users,source: :user
+  has_many :related_posts,dependent: :destroy
+  has_one :profile_link
 
   def follow(other_user)
     unless self == other_user

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190924090827) do
+ActiveRecord::Schema.define(version: 20190930173336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,29 @@ ActiveRecord::Schema.define(version: 20190924090827) do
     t.boolean "is_pr"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "profile_links", force: :cascade do |t|
+    t.string "twitter_url"
+    t.string "note_url"
+    t.string "website_url"
+    t.string "organization"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profile_links_on_user_id"
+  end
+
+  create_table "related_posts", force: :cascade do |t|
+    t.string "url"
+    t.string "title"
+    t.string "author"
+    t.bigint "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["book_id"], name: "index_related_posts_on_book_id"
+    t.index ["user_id"], name: "index_related_posts_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -70,6 +93,8 @@ ActiveRecord::Schema.define(version: 20190924090827) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "related_posts", "books"
+  add_foreign_key "related_posts", "users"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
   add_foreign_key "user_users", "users"
