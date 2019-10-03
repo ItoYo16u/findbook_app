@@ -235,7 +235,7 @@
         %strong
           この本に関連する記事
     .related_posts{style:"font-size:24px;"}
-      -@book&.related_posts.each do |p|
+      -@book&.related_posts&.each do |p|
         .realated_post
           %hr
           %span.tag.is-rounded{style:"font-size:18px"}
