@@ -1,6 +1,6 @@
 class ReviewController < ApplicationController
     def index
-        @reviews= Review.order(created_at: "DESC").limit(12)
+        @reviews = Review.page(params[:page]).per(20) 
     end
     def create
         existing_book = Book.find_by(identifier: params[:identifier])

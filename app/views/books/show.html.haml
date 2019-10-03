@@ -1,11 +1,16 @@
 
 -set_meta_tags title:"#{@book_title}",description:"#{@book_authors.join(",")}が書いた#{@book_title}の詳細情報ページです.#{@book_title}のレビューが#{@reviews&.count()}件掲載されています."
-%script{onload:"paramsLoaded()"}
-  var recommendData = #{@recommend}
-  var priceData = #{@price}
-  var understandableData=#{@understandable}
-  var trustableData =#{@trustable}
-  var interestingData = #{@interesting}
+-if @reviews
+  %script{onload:"paramsLoaded()"}
+    var doReviewsExist = true
+    var recommendData = #{@recommend}
+    var priceData = #{@price}
+    var understandableData=#{@understandable}
+    var trustableData =#{@trustable}
+    var interestingData = #{@interesting}
+-else
+  %script{onload:"paramsLoaded()"}
+    var doReviewsExist =false
 %dataset#reviewDataset{style:"display:none;",recommend:@reviewSummary[0],price:@reviewSummary[1],understandable:@reviewSummary[2],trustable:@reviewSummary[3],interesting:@reviewSummary[4]}
 
 .container
@@ -81,6 +86,7 @@
                   %span.created_at{style:"float:right"} post at #{review.created_at.strftime("%Y/%m/%d")}
                 %p
                   = review.content
+          
           -if @reviews.length >= 3
             %hr.dotted
             %button.button.is-large#show_more
@@ -88,7 +94,9 @@
               
           -if user_signed_in?
             -unless current_user.books.find_by(identifier:params[:identifier]).present?
-              .content.new_review{style:"margin:10px"}
+              %br
+              %a.button#openModaal{href:"#target"} レビューを投稿する
+              .content.new_review#target{style:"margin:10px;display:none"}
                 %hr
                 %p
                   ="#{current_user.name || 'Jhon Doe/Jane Doe'}さんのレビューを追加"
@@ -130,7 +138,7 @@
                   = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
                   %hr
                   .content.has-text-centered
-                    = form.submit :subit,class:"button is-fullwidth is-medium-mobile"        
+                    = form.submit "レビューを投稿する",class:"button is-fullwidth is-medium-mobile"        
           -else
             =link_to "レビューを投稿するにはログインしてください",new_user_session_path
         -else
@@ -138,7 +146,8 @@
             %p まだレビューがありません
             -if user_signed_in?
               -unless current_user.books.find_by(identifier:params[:identifier]).present?
-                .content.new_review{style:"margin:10px"}
+                %a.button#openModaal{href:"#target"} レビューを投稿する
+                .content.new_review#target{style:"margin:10px;display:none"}
                   %p.has-text-centered
                     %strong
                       ="#{current_user.name|| 'Jhon Doe/ Jane Doe'}さんのレビューを追加"
@@ -180,7 +189,7 @@
                     = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
                     = hidden_field_tag :identifier, params[:identifier]
                     %hr
-                    = form.submit :subit,class:"button is-fullwidth is-medium-mobile"
+                    = form.submit "レビューを投稿する",class:"button is-fullwidth is-medium-mobile"
             -else
               =link_to "レビューを投稿するにはログインしてください"
     .column.is-2
@@ -218,6 +227,14 @@
             
     .column.is-1-desktop
   %hr
+
+
+  .columns.is-desktop
+    .has-text-left
+      %p.subtitle
+        %strong
+          この本に関連する記事
+  %hr
   .columns.is-desktop
     %p.subtitle
       %strong
@@ -227,11 +244,7 @@
     .has-text-left
       %p.subtitle
         %strong
-          この本に関連する記事
-  %hr
-  .columns.is-desktop
-    .has-text-left
-      %p.subtitle
-        %strong
           Ads
+%script
+  $("#openModaal").modaal({});
 .reloader{onload:"reloadBarChart()"}

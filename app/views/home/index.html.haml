@@ -121,7 +121,7 @@
         新着書籍
     .has-text-right.book_list.on_top_page
       =render "partials/book_list"
-      %a.more 新着書籍をもっと見る
+      %a.more{href:"/books/index?latest=latest"} 新着書籍をもっと見る
   %hr
   .content
     %p.subtitle#new_posts.section_title

@@ -2,7 +2,8 @@
 .container{style:"padding:30px 15px"}
   .has-text-centered
     %p
-      #{}件中、#{}～#{}件を表示
+      #{Review.count()}件中、#{@reviews.count()}件を表示
 
 
   =render "partials/review_list"
+  = paginate @reviews

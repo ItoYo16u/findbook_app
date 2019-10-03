@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
   def index
-    @books=Book.joins(:reviews).group(:id).order('count(user_id) desc').limit(15)
+    if params[:latest]
+      @books = Book.page(params[:page]).per(15)
+    else
+      @books=Book.joins(:reviews).group(:id).order('count(user_id) desc').limit(15)
+    end
   end
   def show
     
@@ -12,15 +16,16 @@ class BooksController < ApplicationController
       res_json
     end
     @book = Book.find_by(identifier: params[:identifier])
+
     @reviews= @book&.reviews.presence
     @reviewSummary = Review.summary(@book&.id)
     reviewCountByGroup=@reviews&.count_by_group
     if reviewCountByGroup
-      @recommend=reviewCountByGroup[:recommend].values
-      @price = reviewCountByGroup[:price].values
-      @understandable = reviewCountByGroup[:understandable].values
-      @trustable=reviewCountByGroup[:trustable].values
-      @interesting = reviewCountByGroup[:interesting].values
+      @recommend=reviewCountByGroup[:recommend].values||[]
+      @price = reviewCountByGroup[:price].values ||[]
+      @understandable = reviewCountByGroup[:understandable].values||[]
+      @trustable=reviewCountByGroup[:trustable].values||[]
+      @interesting = reviewCountByGroup[:interesting].values||[]
     end
     book_identifier = params[:identifier]
     counter=0
@@ -35,10 +40,10 @@ class BooksController < ApplicationController
     end
     if res_json["items"]
       target_book_info = res_json["items"][0]["volumeInfo"]
-      @book_title = target_book_info["title"]
-      @book_authors = target_book_info["authors"]
-      @book_img_urls = target_book_info["imageLinks"]
-      @book_description = target_book_info["subtitle"]
+      @book_title = target_book_info["title"] || ""
+      @book_authors = target_book_info["authors"]||[]
+      @book_img_urls = target_book_info["imageLinks"] ||"alternative img url"
+      @book_description = target_book_info["subtitle"] || "unfortunately, failed to get the description about this book."
 
     elsif res_json["error"] or res_json["errors"]
       #数回requestし直してそれでもerrorが出たら以下の処理を実行

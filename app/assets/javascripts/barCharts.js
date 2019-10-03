@@ -34,8 +34,10 @@ $(document).on("turbolinks:load",function(){
     var barChartCanvas = $("#reviewBarChart")
     if(barChartCanvas[0]){
         var barChartDataset = $("#barChartDataset")
-        barChartConfig.data.datasets[0].data =recommendData
-        var review_bar_chart = new Chart(barChartCanvas,barChartConfig)
+        if(doReviewsExist){
+          barChartConfig.data.datasets[0].data =recommendData
+          var review_bar_chart = new Chart(barChartCanvas,barChartConfig)
+        
     
         $(".tag").on("click",function(e){
             tags = $(".tag.for-barChart")
@@ -73,7 +75,8 @@ $(document).on("turbolinks:load",function(){
                 barChartConfig.data.datasets[0].data = interestingData
             }
             review_bar_chart.update()
-        })
+            })
+        }
     }
 
 })

@@ -15,6 +15,7 @@ gem 'amazon-ecs'
 gem 'puma', '~> 3.7'
 gem 'haml-rails'
 gem 'devise'
+gem 'kaminari'
 gem 'jquery-rails'
 gem 'meta-tags'
 # Use SCSS for stylesheets
