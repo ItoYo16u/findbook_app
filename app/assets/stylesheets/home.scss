@@ -37,12 +37,23 @@
 }
 .content.good-sellers{
    article.media{
+       
        figure.media-left{
            img{
                width:96px;
            }
        }
    }
+}
+.content{
+    .related_posts{
+        a{
+            font-size:16px;
+        }
+        .column{
+            max-width:25%;
+        }
+    }
 }
 
 .message-body{
@@ -134,5 +145,15 @@
     }
     .message-body{
         min-height:30px;
+    }
+    .content{
+        .related_posts{
+            a{
+                font-size:36px;
+            }
+            .column{
+                max-width:100%;
+            }
+        }
     }
 }

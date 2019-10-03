@@ -126,27 +126,28 @@
   .content
     %p.subtitle#new_posts.section_title
       %strong
-        新着記事  
-    .columns.is-desktop
-      .column.is-1-desktop
-      .column
-        %p.has-text-centered
-          %strong
-            content1
-        %hr
-      .column
-        %p.has-text-centered
-          %strong
-            content2
-        %hr
-      .column
-        %p.has-text-centered
-          %strong
-            content3
-        %hr
-      .column
-        %p.has-text-centered
-          %strong
-            content4
+        新着記事
+    %p
+      書籍に関連した外部サイトの新着記事を掲載しています。
+    %hr
+    .container
+      .columns.related_posts
+        -@related_posts.each do |p|
+          .column.card.has-text-centered
+            %artcle.media
+              %figure.media-left
+                %p
+                  = p.created_at.strftime("%Y/%m/%d")
+                %a.image{href:"//#{p.url}"}
+                  %img{src:p.book.img_url,style:"max-width:65%;"}
+              .media-content
+                .content{style:"width:100%;word-wrap:break-all;"}
+                  %p
+                    %strong
+                      Title
+                  %a{href:"//#{p.url}",style:"width:100%;word-wrap:break-word!important;"}
+                    =p.title.truncate(24)          
+                  
+
         %hr
       .column.is-1-desktop

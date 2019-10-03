@@ -32,7 +32,15 @@ button.button#show_more{
     }
 
     span.star.gray{
-        color:rgb(83, 83, 83);
+        color:rgb(161, 161, 161);
+    }
+}
+.related_posts{
+    p,a{
+        font-size:18px;
+    }
+    .related_posts{
+        margin:20px auto;
     }
 }
 
@@ -94,6 +102,14 @@ button.button#show_more{
             font-size:32px;
         }
 
+    }
+    .related_posts{
+        p,a{
+            font-size:32px;
+        }
+        .related_posts{
+            margin:20px auto;
+        }
     }
     .book_ranking{
         article.media{

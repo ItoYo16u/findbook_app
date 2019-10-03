@@ -229,16 +229,36 @@
   %hr
 
 
-  .columns.is-desktop
+  .container.is-desktop
     .has-text-left
       %p.subtitle
         %strong
           この本に関連する記事
+    .related_posts{style:"font-size:24px;"}
+      -@book&.related_posts.each do |p|
+        .realated_post
+          %hr
+          %span.tag.is-rounded{style:"font-size:18px"}
+            %b
+              =p.created_at.strftime("%Y/%m/%d")
+          %a.is-link{href:"//#{p.url}"}
+            %b
+              #{p.title.truncate(48)}
+          %span.tag.is-rounded{style:"font-size:18px"}
+            %b
+              Author: 
+          %span #{p.author||"unknown"}
+          %span.tag.is-rounded{style:"font-size:18px"}
+            %b
+              Link:
+          %a.is-link{href:"//#{p.url}"} #{p.url.truncate(24)}
+      
   %hr
-  .columns.is-desktop
+  .container.is-desktop
     %p.subtitle
       %strong
         関連書籍
+
   %hr
   .columns.is-desktop
     .has-text-left
