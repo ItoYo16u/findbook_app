@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'search' => 'search#search'
   root :to => 'home#index'
-
- 
+  get "timeline",to:"timeline#index"
     devise_for :users, controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',

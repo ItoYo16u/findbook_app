@@ -2,6 +2,13 @@
 .columns
   .column.is-2
   .column.is-8
+    #search-box.on_home{style:"margin-top:40px"}
+      =form_tag(search_path, method: :get,class:"field is-grouped is-expanded") do
+        %p.control.keyword_field.is-expanded
+          =text_field_tag :keyword, '', id:"book_search",class:"input",placeholder:"本のタイトルを入力してください"
+        %p.control.submit_field
+          %button.button#searchBtn{title:"search", type:"submit"} 検索する
+      %hr
     %p.subtitle
       あなたが探しているのは...
     -if @book_list

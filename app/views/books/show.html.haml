@@ -30,9 +30,9 @@
             %p
               総合評価
             %p{style:"color:#ffcd56;font-size:32px"}
-              ="★"*(@reviewSummary.inject(0.0){|r,i| r+=i }/@reviewSummary.size).floor
+              ="★"*(@reviewSummary.inject(0.0){|r,i| r+=i }/@reviewSummary.size).floor()
             %p
-              =@reviewSummary.inject(0.0){|r,i| r+=i }/@reviewSummary.size
+              =(@reviewSummary.inject(0.0){|r,i| r+=i }/@reviewSummary.size).floor(3)
             %hr
             %span
               著者: 
@@ -58,22 +58,27 @@
                 %p.image.is-64x64
                   %img{src:"https://bulma.io/images/placeholders/64x64.png"}
               %figure.media-left
+                %p{style:"font-size:12px;margin:0"} おすすめ度
                 %p.recommend
                   ="★"*review.recommend
                   %span.star.gray
                     ="★"*(5 - review.recommend)
+                %p{style:"font-size:12px;margin:0"} 価格
                 %p.price
                   ="★"*review.price
                   %span.star.gray
                     ="★"*(5-review.price)
+                %p{style:"font-size:12px;margin:0"} わかりやすさ
                 %p.understandable
                   ="★"*review.understandable
                   %span.star.gray
                     ="★"*(5-review.understandable)
+                %p{style:"font-size:12px;margin:0"} 信頼性
                 %p.trustable
                   ="★"*review.trustable
                   %span.star.gray
                     ="★"*(5-review.trustable)
+                %p{style:"font-size:12px;margin:0"} おもしろさ
                 %p.interest
                   ="★"*review.interesting
                   %span.star.gray

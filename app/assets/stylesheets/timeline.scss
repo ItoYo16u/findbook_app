@@ -1,0 +1,49 @@
+.card.inTimeline{
+    border-radius:5px;
+    padding:10px;
+    .book{
+        margin-top:40px;
+        img{
+            width:50%;
+            margin:auto;
+        }
+        .title{
+            a{
+                font-size:24px;
+            }
+        }
+    }
+    .review{
+        box-shadow:2px 3px 7px 1px rgba(0,0,0,0.1);
+        margin:10px;
+        padding:10px;
+        border-radius:2px;
+        .content.wrap{
+            p.postDate{
+                margin:5px;
+            }
+        }
+    }
+}
+@media (max-width:1000px){
+    .card.inTimeline{
+        .book{
+            a.button{
+                font-size:32px;
+                margin:15px 3px;
+            }
+        }
+        .review{
+            .content{
+                .wrap{
+                    a{
+                        font-size:32px;
+                    }
+                    p{
+                        font-size:24px;
+                    }
+                }
+            }
+        }
+    }
+}

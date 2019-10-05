@@ -1,0 +1,33 @@
+.container{style:"padding:20px"}
+  -reviewTable=@reviews.each_slice(3).to_a 
+  -reviewTable.each do |row|
+    .columns.is-desktop{style:"padding:30px;margin-bottom:40px"}
+      -row.each do |review|
+        .column.is-12-mobile.is-4-desktop
+          .card.inTimeline
+            .book
+              .image
+                %a{href:"/books/show?identifier=#{review.book.identifier}"}
+                  %img{src:review.book.img_url}
+              .title
+                %a{href:"/books/show?identifier=#{review.book.identifier}"}
+                  =review.book.title
+              =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{review.book.identifier}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
+            %hr
+            
+            .review     
+              .content
+                .wrap
+                  %a{href:"/users/show/#{review.user.id}"}
+                    %b
+                      =review.user.name
+                .wrap
+                  %p
+                    =review.content.truncate(24)
+                  %p.has-text-right.postDate
+                    =review.created_at.strftime("%Y/%m/%d")
+  = paginate @reviews
+
+       
+      
+      
