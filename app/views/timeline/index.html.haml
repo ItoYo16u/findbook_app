@@ -1,7 +1,7 @@
 .container{style:"padding:20px"}
   -reviewTable=@reviews.each_slice(3).to_a 
   -reviewTable.each do |row|
-    .columns.is-desktop{style:"padding:30px;margin-bottom:40px"}
+    .columns.is-desktop{style:"margin-bottom:40px"}
       -row.each do |review|
         .column.is-12-mobile.is-4-desktop
           .card.inTimeline

@@ -1,5 +1,5 @@
 nav.navbar{
-    width:101%;
+    width:100%;
     background-color:#66cdda;
     .navbar-brand p{
         color:#f0f8ff;
@@ -19,13 +19,13 @@ nav.navbar{
         padding-bottom: 3px;
         padding-right: 10px;
         input.book_search{
-            width:400px;
+            width:80%;
         }
     }
 }
 @media (max-width:1000px){
     nav{
-        padding:30px 15px;
+        padding:15px;
         .navbar-start a{
             color:#3273dc!important;
         }
@@ -33,8 +33,8 @@ nav.navbar{
     .navbar{
         a.navbar-burger{
             border:1px solid #FFFFFF;
-            width:70px;
-            height:70px;
+            width:50px;
+            height:50px;
         }
         .navbar-burger{
             span{
@@ -48,8 +48,7 @@ nav.navbar{
     .navbar-start{
         a{
             
-            font-size:24px;
-            padding:20px 10px;
+            font-size:16px;
         }
         a:before{
             content:">";
@@ -74,20 +73,15 @@ nav.navbar{
             padding-top: 24px;
             padding-bottom: 24px;
             border-bottom: 1px solid #bdbdbd;
-            p{
-                font-size:24px;
-            }
-            input#book_search{
-                font-size:24px;
-            }
+
+
             button.button#searchBtn{
-                font-size:24px;
-                padding: 0px 40px;
+ 
+                padding: 0px 30px;
             }
         }
         .buttons{
             a{
-                font-size:24px;
                 margin:20px 0px;
             }
         }

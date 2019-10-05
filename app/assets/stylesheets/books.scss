@@ -50,19 +50,16 @@ button.button#show_more{
         p.subtitle{
             font-size: 24px;
         }
-        a.button{
-            font-size:24px;
-        }
         .card-image{
             img{
-                height:400px;
+                width:250px;
             }
         }
     }
     .content.reviews-of-this-book{
         margin:30px 0px;
-        a{
-            font-size:24px;
+        p.recommend,p.price,p.understandable,p.trustable,p.interest{
+            font-size:12px;
         }
     }
     .content.new_review{
@@ -96,13 +93,12 @@ button.button#show_more{
         article.media{
             figure.media-left{
                 img{
-                    width:175px;
+                    width:100px;
                 }
             }
             .media-content{
                 a.button{
                     padding:20px;
-                    font-size:24px;
                 }
             }
         }
@@ -112,7 +108,7 @@ button.button#show_more{
         width:100%;
         span.tag.for-barChart{
             width:18%;
-            padding:40px;
+
         }
     }
 }

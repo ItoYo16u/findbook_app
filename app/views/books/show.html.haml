@@ -88,7 +88,7 @@
                   %a{href:"/users/show/#{review.user.id}"}
                     %strong
                       =review.user.name||"John Doe/Jane Doe"
-                  %span.created_at{style:"float:right"} post at #{review.created_at.strftime("%Y/%m/%d")}
+                  %span.created_at{style:"float:right"} #{review.created_at.strftime("%Y/%m/%d")}
                 %p
                   = review.content
           
@@ -239,21 +239,21 @@
       %p.subtitle
         %strong
           この本に関連する記事
-    .related_posts{style:"font-size:24px;"}
+    .related_posts
       -@book&.related_posts&.each do |p|
         .realated_post
           %hr
-          %span.tag.is-rounded{style:"font-size:18px"}
+          %span.tag.is-rounded
             %b
               =p.created_at.strftime("%Y/%m/%d")
           %a.is-link{href:"//#{p.url}"}
             %b
               #{p.title.truncate(48)}
-          %span.tag.is-rounded{style:"font-size:18px"}
+          %span.tag.is-rounded
             %b
               Author: 
           %span #{p.author||"unknown"}
-          %span.tag.is-rounded{style:"font-size:18px"}
+          %span.tag.is-rounded
             %b
               Link:
           %a.is-link{href:"//#{p.url}"} #{p.url.truncate(24)}

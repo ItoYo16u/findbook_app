@@ -60,13 +60,7 @@
     min-height:250px
 }
 @media (max-width:1000px){
-    #search-box.on_home{
-        .control{
-            input,button{
-                font-size:24px;
-            }
-        }
-    }
+
     .content{
         p.section_title{
             padding:10px 10px;
@@ -76,11 +70,11 @@
     .content.about-this-site{
 
         p.catch_copy{
-            font-size:32px;
+            font-size:24px;
             font-weight:600;
         }
         a.button.sign_up,a.button.sign_in{
-            font-size:24px;
+            font-size:16px;
             padding:30px 5px;;
         }
         a.link{
@@ -94,39 +88,29 @@
         .card{
             .card-image{
                 img{
-                    width:340px;
+                    width:250px;
                 }
             }
             .links{
                 a.button{
-                    font-size:24px;
                     margin:20px 0px;
                 }
             }
         }
     }
     .content.good-sellers{
-        p{
-            font-size:24px
-        }
         a.button{
-            font-size:24px;
             margin:20px 0px;
         }
         article.media{
             figure.media-left{
                 img{
-                    width:176px;
+                    width:100px;
                 }
             }
         }
     }
-    .content.review_list{
-        a{
-            font-size:24px;
-        }
-        
-    }
+
     .message-body{
         min-height:30px;
     }
