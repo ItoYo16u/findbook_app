@@ -7,7 +7,7 @@
         .content.review_list
           %article.message
             .message-body
-              %a.has-text-link{href:"/books/show?identifier=#{r.book.identifier}"}  
+              %a.has-text-link{href:"/books/show/#{r.book.identifier}"}  
                 =r.book.title
               %p
                 ="#{r.content.slice(0..99)}....."

@@ -9,7 +9,7 @@
               .image
                 %a{href:"/books/show/#{review.book.identifier}"}
                   %img{src:review.book.img_url}
-              .title
+              .bookTitle
                 %a{href:"/books/show/#{review.book.identifier}"}
                   =review.book.title
               =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{review.book.identifier}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
@@ -23,7 +23,7 @@
                       =review.user.name
                 .wrap
                   %p
-                    =review.content.truncate(24)
+                    =review.content.truncate(48)
                   %p.has-text-right.postDate
                     =review.created_at.strftime("%Y/%m/%d")
   = paginate @reviews

@@ -25,7 +25,7 @@ nav.navbar{
 }
 @media (max-width:1000px){
     nav{
-        padding:15px;
+        padding:10px;
         .navbar-start a{
             color:#3273dc!important;
         }
@@ -33,15 +33,16 @@ nav.navbar{
     .navbar{
         a.navbar-burger{
             border:1px solid #FFFFFF;
-            width:50px;
-            height:50px;
+            border-radius: 4px;
+            width:45px;
+            height:45px;
         }
         .navbar-burger{
             span{
-                width:60px;
-                height:3px;
+                width:44px;
+                height:2px;
                 color:#FFF;
-                left: calc(50% - 30px);
+                left: calc(50% - 22px);
             }
         }
     }
