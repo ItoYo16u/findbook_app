@@ -18,10 +18,10 @@
           みんなで共有しよう
         %p.description.has-text-centered
           %b
-            Service Name は参考書・教科書・実用書の書籍情報を見たり、書籍をレビューしたりできるサービスです。
+            Service Name は参考書・教科書・ビジネス書の情報を見たり、レビューしたりできるサービスです。
         %p.has-text-centered
           %b
-            気になるユーザーをフォローして役に立つ本の情報を手に入れましょう。
+            気になるユーザーをフォローして役に立つ情報を手に入れましょう。
         =link_to "今すぐ登録する(無料)",new_user_registration_path,class:"button is-fullwidth is-primary sign_up is-outlined"
         %br
         %p
@@ -52,10 +52,11 @@
             レビュー数ランキング
         -best_seller = @popular_books[0]
         -if best_seller.present?
-          .card{style:"padding-top:40px"}
+          .card{style:"padding-top:36px;"}
             .card-image
               %figure.image.has-text-centered
                 %img{src:best_seller.img_url||"https://bulma.io/images/placeholders/1280x960.png",style:"display:inline-block"}
+                  
             .card-content
               .media
                 .media-content.has-text-centered

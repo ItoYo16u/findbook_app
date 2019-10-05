@@ -13,7 +13,7 @@
     var doReviewsExist =false
 %dataset#reviewDataset{style:"display:none;",recommend:@reviewSummary[0],price:@reviewSummary[1],understandable:@reviewSummary[2],trustable:@reviewSummary[3],interesting:@reviewSummary[4]}
 
-.container
+.container{style:"padding-top:40px"}
   %p.subtitle
     %strong
       基本情報
@@ -47,7 +47,7 @@
             =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(params[:identifier])}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
       .ad.card
         %p.has-text-centered#ad-here-01
-          here is ad
+          
     .column.is-5-desktop{style:"padding:20px;padding-left:5px!important"}
       .content.reviews-of-this-book{style:"padding:20px;text-align:center;margin:20px 0px"}
         %p.subtitle #{@reviews&.count()}件のレビュー
@@ -269,7 +269,7 @@
     .has-text-left
       %p.subtitle
         %strong
-          Ads
+          
 %script
   $("#openModaal").modaal({});
 .reloader{onload:"reloadBarChart()"}
