@@ -1,7 +1,7 @@
 -this_user = User.find(params[:id])
 -@book_list =this_user&.books
       
--set_meta_tags title:"#{this_user.name}のマイページ",description:"#{this_user.name}のマイページです.#{this_user}が投稿した、参考書・実用書・教科書のレビューを見ることができます。"
+-set_meta_tags title:"#{this_user.name}のマイページ",description:"#{this_user.name}のマイページです.#{this_user.name}が投稿した、#{this_user&.reviews&.count()||0}件の参考書・実用書・教科書のレビューやその他プロフィールを見ることができます。"
 .container{style:"padding:30px 15px"}
   .columns.is-desktop
     .column.is-2
@@ -54,83 +54,84 @@
         all your data
       
     .column.is-2
-  .columns.is-desktop.tab_item#user_info_tab.is-active
-    .column.is-1
-    .column.is-10
-      .section.profile-heading
-        .columns.is-multiline
-          .column.is-2-desktop.is-4-tablet
-            %p{style:"padding-bottom:10px"}
-              %span.title.is-bold
-                =this_user.name
-              %p.is-bold.organization
-                ="所属組織：#{this_user.profile_link&.organization}"
-            %br
-            .profile
-              -if current_user == this_user
-                =""
-              -elsif current_user.following?(this_user)
-                %a.button.following{disabled:"disabled"} alrady following
-              -else
-                = form_with url: "/follow/#{this_user.id}" do |f|
-                  = f.submit "follow", class:"button is-info is-outlined"
+  
+  
+  .columns#user_info_tab.tab_item.is-active
+    .column
+      .columns
+        .column
+          %p{style:"padding-bottom:10px"}
+            %span.title.is-bold
+              =this_user.name
+          %p.is-bold.organization
+            ="所属組織：#{this_user.profile_link&.organization}"
+          %br
+          .profile
+            -if current_user == this_user
+              =""
+            -elsif current_user.following?(this_user)
+              %a.button.following{disabled:"disabled"} alrady following
+            -else
+              = form_with url: "/follow/#{this_user.id}" do |f|
+                = f.submit "follow", class:"button is-info is-outlined"
+          %hr
+          %a.following.button{href:"/follow/#{params[:id]}"} つながり
+          %p.instruction{style:"color:#888888;"}
+            ="#{this_user.name}さんのフォロー・フォロワーを見れます."
+        .column.name
+          .content.profile
+            .links
               %hr
-              %a.following.button{href:"/follow/#{params[:id]}"} つながり
-              %p.instruction{style:"color:#888888;"}
-                ="#{this_user.name}さんのフォロー・フォロワーを見れます."
-          .column.is-4-desktop.is-8-tablet.name
-            .content.profile
-              .links
-                %hr
-                .twitter
-                  %p.subtitle
-                    %span Twitter:
-                    %a{href:"//#{this_user&.profile_link&.twitter_url}"} 
-                      #{this_user&.profile_link&.twitter_url}
-                %hr
-                .note
-                  %p.subtitle
-                    %span Note:
-                    %a{href:"//#{this_user&.profile_link&.note_url}"}
-                      #{this_user&.profile_link&.note_url}
-                %hr
-                .blog
-                  %p.subtitle
-                    %span Website/Blog:
-                    %a{href:"//#{this_user&.profile_link&.website_url}"}
-                      #{this_user&.profile_link&.website_url}
-                %hr
-              -if current_user.id ==  params[:id].to_i
-                = form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f|
-                  =f.label :profile
-                  = f.text_area :profile,class:"textarea",style:"min-height:200px",placeholder:"このページはあなたのユーザーページです。自分のマイページに限り、フォームを生成してるので、プロフィールを更新することができます。変更するにはupdateボタンを押してください。"
-                  %br
-                  =f.submit "更新",class:"button"
-              -else
-                %p Profile
-                %p.tagline
-                  = this_user.profile
-            
-          .column.is-2-desktop.is-6-tablet.has-text-centered
-            %p.stat-val.subtitle{style:"padding-top:35px"}
-              %b
-                =this_user.created_at.strftime("%Y/%m/%d")
-            %br
-            %p から利用しています。
-          .column.is-4-desktop.is-6-tablet.has-text-centered
-            %p.stat-val
-              %strong
-                =User.find(params[:id]).reviews.count()
-            %br
-            %p.stat-key Reviews
-            %br
-            - latest_review = Review.find_by(user_id: this_user.id) || false
-            -if latest_review
-              %p 直近のレビュー
-              %a{href:"/books/show?identifier=#{latest_review.book.identifier}"}
-                #{latest_review.created_at.strftime("%Y/%m/%d")}
-            
-    .column.is-1
+              .twitter
+                %p.subtitle
+                  %span Twitter:
+                  %a{href:"//#{this_user&.profile_link&.twitter_url}"} 
+                    #{this_user&.profile_link&.twitter_url}
+              %hr
+              .note
+                %p.subtitle
+                  %span Note:
+                  %a{href:"//#{this_user&.profile_link&.note_url}"}
+                    #{this_user&.profile_link&.note_url}
+              %hr
+              .blog
+                %p.subtitle
+                  %span Website/Blog:
+                  %a{href:"//#{this_user&.profile_link&.website_url}"}
+                    #{this_user&.profile_link&.website_url}
+              %hr
+            -if current_user.id ==  params[:id].to_i
+              = form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f|
+                =f.label :profile
+                = f.text_area :profile,class:"textarea",style:"min-height:200px",placeholder:"このページはあなたのユーザーページです。自分のマイページに限り、フォームを生成してるので、プロフィールを更新することができます。変更するにはupdateボタンを押してください。"
+                %br
+                =f.submit "更新",class:"button"
+            -else
+              %p Profile
+              %p.tagline
+                = this_user.profile
+    .column
+      .columns.is-mobile
+        .column.has-text-centered
+          %p.stat-val.subtitle{style:"padding-top:35px"}
+            %b
+              =this_user.created_at.strftime("%Y/%m/%d")
+          %br
+          %p から利用しています。
+        .column.has-text-centered
+          %p.stat-val
+            %strong
+              =User.find(params[:id]).reviews.count()
+          %br
+          %p.stat-key Reviews
+          %br
+          - latest_review = Review.find_by(user_id: this_user.id) || false
+          -if latest_review
+            %p 直近のレビュー
+            %a{href:"/books/show?identifier=#{latest_review.book.identifier}"}
+              #{latest_review.created_at.strftime("%Y/%m/%d")}
+
+              
   %hr
     %p.subtitle
       %strong
@@ -144,4 +145,3 @@
         
   .content.ads
     .ad
-    

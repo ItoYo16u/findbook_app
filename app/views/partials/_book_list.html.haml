@@ -10,7 +10,7 @@
                 %img{src:book.img_url||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
             .media-content
               .content
-                %p
+                %p.subtitle
                   = book.title
                 =link_to "レビューを見る",books_show_path(identifier:book.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"

@@ -7,6 +7,11 @@
 .tab_item.is-active{
     display:flex!important;
 }
+@media (max-width:768px){
+  .tab_item.is-active{
+    display: block!important;
+  }
+}
 .stat-val {
     font-size: 3em;
     padding-top: 20px;
@@ -32,15 +37,6 @@
     }
   }
   .content.profile{
-    label{
-      font-size:24px;
-    }
-    textarea.textarea{
-      font-size:24px;
-    }
-    input{
-      font-size:32px;
-    }
     input.button{
       width:100%;
       padding:10px;
@@ -50,7 +46,6 @@
 
 
   .content.edit-user-info{
-    font-size:24px;
     padding:20px;
     label{
       font-size:24px;
@@ -71,9 +66,7 @@
   }
   .profile-heading{
     .follow,.following,.followed{
-      font-size:32px;
       padding:20px auto;
-      width:200px;
       margin:10px;
     }
     p.organization{
@@ -81,17 +74,15 @@
     }
   }
   input.button{
-    font-size:32px;
+    font-size:24px;
     padding:20px auto;
-    width:200px;
-    margin:10px;
   }
   
 }
 @media (max-width:1000px){
   .profile-heading{
     p.instruction{
-      font-size:24px;
+      font-size:16px;
     }
   }
 }

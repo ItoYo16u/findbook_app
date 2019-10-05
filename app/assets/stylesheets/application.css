@@ -16,6 +16,13 @@
  */
 body{
     font-size:16px;
+    
+}
+a,p{
+    font-size:16px;    
+}
+.subtitle{
+    font-size:24px;
 }
 #header-space{
     height:0px;
@@ -30,9 +37,6 @@ hr.dotted{
 }
 
 @media (max-width:1000px){
-    body{
-        font-size: 24px;
-    }
     #header-space{
         height:100px;
     }

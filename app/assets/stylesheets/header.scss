@@ -26,13 +26,9 @@ nav.navbar{
 @media (max-width:1000px){
     nav{
         padding:30px 15px;
-        font-size:32px;
         .navbar-start a{
             color:#3273dc!important;
         }
-    }
-    p{
-        font-size: 40px;
     }
     .navbar{
         a.navbar-burger{
@@ -52,7 +48,7 @@ nav.navbar{
     .navbar-start{
         a{
             
-            font-size:32px;
+            font-size:24px;
             padding:20px 10px;
         }
         a:before{
@@ -79,11 +75,10 @@ nav.navbar{
             padding-bottom: 24px;
             border-bottom: 1px solid #bdbdbd;
             p{
-                font-size:32px;
+                font-size:24px;
             }
             input#book_search{
                 font-size:24px;
-                width:500px;
             }
             button.button#searchBtn{
                 font-size:24px;

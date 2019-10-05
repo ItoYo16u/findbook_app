@@ -18,7 +18,7 @@
       -book_table.each do |books|
         .columns.is-desktop
           -books.each do |book|
-            %a.column.is-3-desktop.card{href:"/books/show?identifier=#{book.identifier[0]["identifier"]}&type=#{book.identifier[0]["type"]}",style:"border:1px solid #bdbdbd;margin:3px;text-align:center"}
+            %a.column.is-3-desktop.card{href:"/books/show/#{book.identifier[0]["identifier"]}?type=#{book.identifier[0]["type"]}",style:"border:1px solid #bdbdbd;margin:3px;text-align:center"}
               .div{style:"margin:10px;display:inline-block"}
                 -if book.image_url != nil
                   %img{src:"#{book.image_url["thumbnail"]}",style:"display:block;padding:10px;height:320px"}

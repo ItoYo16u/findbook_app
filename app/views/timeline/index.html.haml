@@ -7,10 +7,10 @@
           .card.inTimeline
             .book
               .image
-                %a{href:"/books/show?identifier=#{review.book.identifier}"}
+                %a{href:"/books/show/#{review.book.identifier}"}
                   %img{src:review.book.img_url}
               .title
-                %a{href:"/books/show?identifier=#{review.book.identifier}"}
+                %a{href:"/books/show/#{review.book.identifier}"}
                   =review.book.title
               =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{review.book.identifier}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
             %hr

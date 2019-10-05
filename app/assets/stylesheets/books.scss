@@ -36,9 +36,6 @@ button.button#show_more{
     }
 }
 .related_posts{
-    p,a{
-        font-size:18px;
-    }
     .related_posts{
         margin:20px auto;
     }
@@ -47,40 +44,28 @@ button.button#show_more{
 @media (max-width:1000px){
     button.button#show_more{
         margin:40px;
-        font-size:32px;
+        font-size:24px;
     }
-    
     .card.about-this-book{
-        font-size: 24px;
-        p{
-            font-size:24px;
-        }
         p.subtitle{
-            font-size: 32px;
+            font-size: 24px;
         }
         a.button{
-            font-size:32px;
+            font-size:24px;
         }
         .card-image{
             img{
-                height:512px;
+                height:400px;
             }
         }
     }
     .content.reviews-of-this-book{
         margin:30px 0px;
-        p{
-            font-size:24px;
-        }
-        p.subtitle{
-            font-size:32px;
-        }
         a{
-            font-size:32px;
+            font-size:24px;
         }
     }
     .content.new_review{
-        font-size:24px;
         p.subtitle{
             font-weight: 600;
         }
@@ -96,17 +81,13 @@ button.button#show_more{
             font-size:60px;
         }
         .button.is-medium-mobile{
-            width:300px;
             margin:auto;
             margin-top: 50px;
-            font-size:32px;
+            font-size:24px;
         }
 
     }
     .related_posts{
-        p,a{
-            font-size:32px;
-        }
         .related_posts{
             margin:20px auto;
         }
@@ -115,25 +96,22 @@ button.button#show_more{
         article.media{
             figure.media-left{
                 img{
-                    width:250px;
+                    width:175px;
                 }
             }
             .media-content{
-                font-size:32px;
                 a.button{
-                    padding:45px;
-                    font-size:32px;
+                    padding:20px;
+                    font-size:24px;
                 }
             }
         }
     }
     .tags{
         text-align:center;
-        font-size:32px;
         width:100%;
         span.tag.for-barChart{
-            font-size:24px!important;
-            width:19%;
+            width:18%;
             padding:40px;
         }
     }
