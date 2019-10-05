@@ -52,11 +52,12 @@ button.button#show_more{
         }
         .card-image{
             img{
-                width:250px;
+                width:200px;
             }
         }
     }
     .content.reviews-of-this-book{
+        padding:0px!important;
         margin:30px 0px;
         p.recommend,p.price,p.understandable,p.trustable,p.interest{
             font-size:12px;
@@ -104,10 +105,12 @@ button.button#show_more{
         }
     }
     .tags{
+      
         text-align:center;
         width:100%;
         span.tag.for-barChart{
             width:18%;
+            font-size:12px!important;
 
         }
     }
