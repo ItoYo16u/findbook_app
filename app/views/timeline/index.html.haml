@@ -22,8 +22,12 @@
                     %b
                       =review.user.name
                 .wrap
-                  %p
+                  %span
                     =review.content.truncate(48)
+                  %span
+                    %a{href:"/books/show/#{review.book.identifier}"}
+                      ="....詳しく見る"
+
                   %p.has-text-right.postDate
                     =review.created_at.strftime("%Y/%m/%d")
   = paginate @reviews

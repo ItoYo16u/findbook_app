@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   def index
     if params[:latest]
-      @books = Book.page(params[:page]).per(15)
+      @books = Book.order(created_at:"DESC").page(params[:page]).per(15)
     else
       @books=Book.joins(:reviews).group(:id).order('count(user_id) desc').limit(15)
     end

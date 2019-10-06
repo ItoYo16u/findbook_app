@@ -6,7 +6,7 @@
         .column
           %article.media{style:"padding:5px;margin-top:10px;"}
             %figure.media-left{href:"https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22"}
-              %a{href:"/books/show/?identifier=#{book.identifier}"}
+              %a{href:"/books/show/#{book.identifier}"}
                 %img{src:book.img_url||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
             .media-content
               .content

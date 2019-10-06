@@ -10,18 +10,16 @@
     .column.is-1
     .column{style:"margin:14px 10px;box-shadow: 0 0 5px rgba(0,0,0,0.2);"}
       .div.content.about-this-site
-        %p.subtitle.has-text-centered このサイトについて
+        %p.has-text-centered このサイトについて
         %hr
         %p.catch_copy.has-text-centered
-          成長につながる本を
+          本のアウトプットを
           %br
           みんなで共有しよう
         %p.description.has-text-centered
-          %b
-            Service Name は参考書・教科書・ビジネス書の情報を見たり、レビューしたりできるサービスです。
+          Service Name は参考書・教科書・ビジネス書の情報を見たり、メモを投稿できるサービスです。
         %p.has-text-centered
-          %b
-            気になるユーザーをフォローして役に立つ情報を手に入れましょう。
+          気になるユーザーをフォローして役に立つ情報を手に入れましょう。
         =link_to "今すぐ登録する(無料)",new_user_registration_path,class:"button is-fullwidth is-primary sign_up is-outlined"
         %br
         %p
@@ -31,11 +29,11 @@
         %p This Service はこんな使い方があります。
         %p 
           %b
-            ① レビュー機能
+            ① メモ機能
         %a.link{href:"#new_reviews"}最近投稿されたレビューを見てみる
         %p
           %b ② タイムライン
-        %a.link{href:""} タイムラインでフォロー中のユーザーのレビューをみる.
+        %a.link{href:"/timeline"} タイムラインでフォロー中のユーザーのレビューをみる.
         %p 
           %b
             ③ 関連記事を探す
@@ -49,7 +47,7 @@
       .content.best-seller
         %p.subtitle.has-text-left.section_title{style:"margin:20px 0px;"}
           %strong
-            レビュー数ランキング
+            メモ数ランキング
         -best_seller = @popular_books[0]
         -if best_seller.present?
           .card{style:"padding-top:36px;"}

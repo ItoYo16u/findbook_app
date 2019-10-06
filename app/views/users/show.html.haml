@@ -13,7 +13,7 @@
               基本情報
           %li.tab_menu{target:"#reviews_tab"}
             %a
-              レビュー済
+              本棚
     .column.is-2
 
   .columns.is-desktop.tab_item#reviews_tab
@@ -21,9 +21,9 @@
     .column.is-10
       .content
         %p.subtitle
-          #{this_user.name}さんのレビュー
+          #{this_user.name}さんのメモ
         %p
-          現在、#{this_user.name}さんは#{@book_list.count()||0}件のレビューを投稿しています。
+          現在、#{this_user.name}さんは#{@book_list.count()||0}件のメモを投稿しています。
       
       -if !@book_list.empty?
         -book_table=@book_list.each_slice(4).to_a
