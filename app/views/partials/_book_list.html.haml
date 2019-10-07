@@ -1,7 +1,7 @@
 .container
   -book_table=@books.each_slice(3).to_a
   -book_table.each do |books|
-    .columns.is-desktop.book_ranking
+    .columns.is-desktop.book_ranking{style:"margin:0px"}
       -books.each do |book|
         .column
           %article.media{style:"padding:5px;margin-top:10px;"}

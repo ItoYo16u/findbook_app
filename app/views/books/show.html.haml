@@ -13,18 +13,18 @@
     var doReviewsExist =false
 %dataset#reviewDataset{style:"display:none;",recommend:@reviewSummary[0],price:@reviewSummary[1],understandable:@reviewSummary[2],trustable:@reviewSummary[3],interesting:@reviewSummary[4]}
 
-.container{style:"padding-top:40px"}
-  %p.subtitle
+.container{style:"padding-top:30px"}
+  %p
     %strong
       基本情報
-  .columns.is-desktop
+  .columns.is-desktop{style:"margin:0px"}
     .column.is-2
-    .column.is-3-desktop{style:"padding:20px;padding-right:5px!important;"}
+    .column.is-3-desktop
       .card.about-this-book{style:"padding:20px;text-align:center;margin:20px 0px"}
         %p
           = @book_title
-        .card-image{style:"margin:10px"}
-          %img{src:"#{@book_img_urls["thumbnail"]}",style:"max-width:180px"}
+        .card-image
+          %img{src:"#{@book_img_urls["thumbnail"]}",style:"max-width:180px;margin:10px 0px"}
         .card-content
           .content
             %p
@@ -54,9 +54,6 @@
         -if @reviews.present?
           -@reviews.each.with_index do |review,idx|
             %article.media.card.review_card{style:"padding:15px;#{'display:none;' if idx >= 2}"} 
-              -#%figure.media-left
-                %p.image.is-64x64
-                  %img{src:"https://bulma.io/images/placeholders/64x64.png"}
               %figure.media-left{style:"margin:15px; margin-top:0px"}
                 %p{style:"font-size:12px;margin:0"} おすすめ度
                 %p.recommend
@@ -246,7 +243,7 @@
   %p.subtitle
     %strong
       Analytics
-  .columns.is-desktop
+  .columns.is-desktop{style:"margin:0px"}
     .column.is-1-desktop
     .column
       %p
