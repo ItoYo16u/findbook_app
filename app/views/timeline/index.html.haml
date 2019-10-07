@@ -8,11 +8,12 @@
             .book
               .image
                 %a{href:"/books/show/#{review.book.identifier}"}
-                  %img{src:review.book.img_url}
-              .bookTitle
+                  %img{src:review.book.img_url,style:"max-width:130px"}
+              .bookTitle.has-text-centered{style:"margin-bottom:5px"}
                 %a{href:"/books/show/#{review.book.identifier}"}
                   =review.book.title
-              =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{review.book.identifier}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
+              .has-text-centered
+                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{review.book.identifier}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light"
             %hr
             
             .review     
