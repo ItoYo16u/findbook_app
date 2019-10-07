@@ -10,11 +10,11 @@ module ApplicationHelper
     def default_meta_tags
         {
             site: "findbook app",
-            title:"参考書・ビジネス書・教科書のレビューサイト",
+            title:"専門書・ビジネス書・技術書のメモ共有サイト",
             reverse: true,
             canonical:request.original_url,
             charset:"utf-8",
-            keywords:"実用書・ビジネス書, 要約,学習,レビュー",
+            keywords:"自己啓発,プログラミング,デザイン,アート,要約,学習,アウトプット,メモ",
             separator: "|",
             og:default_og,
             twitter: default_twitter_card

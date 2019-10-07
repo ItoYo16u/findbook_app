@@ -94,7 +94,7 @@
                   = review.bad
                 %p.label{style:"font-size:14px;"} 要点メモ
                 %p{style:"font-size:14px;"}
-                  = review.content
+                  =simple_format(review.content)
                 
           
           -if @reviews.length >= 3
