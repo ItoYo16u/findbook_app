@@ -9,6 +9,26 @@
         margin:auto;
     }
 }
+.tag.is-biz ,.is-tech,.is-humanity,.is-design,.is-academic{
+    color:#FFF!important;
+}
+.tags{
+    .is-biz{
+    background-color: #088aa1!important;
+    }
+    .is-tech{
+        background-color: #688bff!important;
+    }
+    .is-humanity{
+        background-color: #ffcc00!important;
+    }
+    .is-design{
+        background-color: #f08080!important;
+    }
+    .is-academic{
+        background-color: #9932cc!important;
+    
+}}
 button.button#show_more{
     margin:10px;
     font-size:20px;

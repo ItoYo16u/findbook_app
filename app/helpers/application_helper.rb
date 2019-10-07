@@ -21,6 +21,24 @@ module ApplicationHelper
         }
     end
 
+
+    def genre_tag_style(book)
+        case book.genre
+        when "テクノロジー"
+            'is-tech'
+        when "アート/カルチャー"
+            'is-humanity'
+        when "ビジネス"
+            'is-biz'
+        when "アカデミック"
+            'is-academic'
+        when "デザイン"
+            'is-design'
+        else
+            ''
+        end
+    end
+
     private
     def default_og
         {
@@ -39,5 +57,6 @@ module ApplicationHelper
             site: "@by110416"
         }
     end
+    
 
 end

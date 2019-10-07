@@ -106,13 +106,16 @@
                 %p
                   ="#{current_user.name || 'Jhon Doe/Jane Doe'}さんのメモを追加"
                 = form_with model: @reviews,local: true,url: review_create_path do |form|
+                  .label
+                    %label
+                      カテゴリ
+                  .select
+                    = select_tag :genre,options_for_select([["テクノロジー","テクノロジー"],["ビジネス","ビジネス"],["デザイン","デザイン"],["アート/カルチャー","アート/カルチャー"],["アカデミック","アカデミック"]])
                   
-                  %label
-                    カテゴリ
-                  = text_field_tag :genre,"",class:"input"
-                  %label
-                    キーワード
-                  = text_field_tag :keyword,"",class:"input"
+                  .label
+                    %label
+                      キーワード
+                  = text_field_tag :keyword,"",class:"input",maxlength:"10",placeholder:"10文字以内"
 
                   .textarea_wrap
                     = form.text_area :content,class:"textarea",required:"required",placeholder:"わかりやすく要点をまとめてみよう"
@@ -173,12 +176,15 @@
 
                   
                   = form_with model: Review.new,local: true,url: review_create_path do |form|
-                    %label
-                      カテゴリ
-                    = text_field_tag :genre,"",class:"input"
-                    %label
-                      キーワード
-                    = text_field_tag :keyword,"",class:"input"
+                    .label  
+                      %label
+                        カテゴリ
+                    .select
+                      = select_tag :genre,options_for_select([["テクノロジー","テクノロジー"],["ビジネス","ビジネス"],["デザイン","デザイン"],["アート/カルチャー","アート/カルチャー"],["アカデミック","アカデミック"]])
+                    .label
+                      %label
+                        キーワード
+                    = text_field_tag :keyword,"",class:"input",maxlength:"10",placeholder:"10文字以内"
                     %label
                       メモ
                     .textarea_wrap

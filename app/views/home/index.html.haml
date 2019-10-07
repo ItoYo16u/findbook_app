@@ -50,7 +50,13 @@
             メモ数ランキング
         -best_seller = @popular_books[0]
         -if best_seller.present?
-          .card{style:"padding-top:36px;"}
+          .card{style:"padding-top:20px;"}
+            .genreAndKeyword{style:"padding:5px;"}
+              .tags
+                .tag{class:genre_tag_style(best_seller)}
+                  カテゴリ:#{best_seller.genre||"Unknown"}
+                .tag
+                  キーワード:#{best_seller.keyword|| "Unkwon"}
             .card-image
               %figure.image.has-text-centered
                 %img{src:best_seller.img_url||"https://bulma.io/images/placeholders/1280x960.png",style:"display:inline-block"}
@@ -76,6 +82,13 @@
               .content
                 %p
                   = book.title
+                .genreAndKeyword{style:"padding:5px;"}
+                  .tags
+                    .tag{class:genre_tag_style(book)}
+                      #{book.genre||"Unknown"}
+                    .tag
+                      #{book.keyword|| "Unkwon"}
+                
                 =link_to "メモを見る",books_show_path(identifier:book.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"  
         %a.more{href:"books/index"} もっと見る            
