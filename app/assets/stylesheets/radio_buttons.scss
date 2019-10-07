@@ -16,6 +16,11 @@
     cursor: pointer;
     font-size: 25px;
 }
+@media (max-width:1000px){
+    .interesting label, .evaluation label{
+        font-size:16px;
+    }
+}
 .stars label:hover,
 .stars label:hover ~ label,
 .stars input[type='radio']:checked ~ label{

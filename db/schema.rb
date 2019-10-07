@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190930173336) do
+ActiveRecord::Schema.define(version: 20191007064145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,10 @@ ActiveRecord::Schema.define(version: 20190930173336) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "img_url"
+    t.text "description"
+    t.string "genre"
+    t.string "keyword"
+    t.datetime "published_at"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -50,6 +54,7 @@ ActiveRecord::Schema.define(version: 20190930173336) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.datetime "published_at"
     t.index ["book_id"], name: "index_related_posts_on_book_id"
     t.index ["user_id"], name: "index_related_posts_on_user_id"
   end
@@ -65,6 +70,8 @@ ActiveRecord::Schema.define(version: 20190930173336) do
     t.integer "understandable"
     t.integer "recommend"
     t.integer "price"
+    t.string "good"
+    t.string "bad"
     t.index ["book_id"], name: "index_reviews_on_book_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

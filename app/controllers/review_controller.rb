@@ -13,9 +13,11 @@ class ReviewController < ApplicationController
                 understandable:params[:review][:understandable],
                 interesting:params[:review][:interesting],
                 recommend:params[:review][:recommend],
-                price:params[:review][:recommend]
+                price:params[:review][:recommend],
+                good:params[:review][:good],
+                bad:params[:review][:bad],
             )
-            flash[:notice] = "レビューを投稿しました。"
+            flash[:notice] = "メモを登録しました。"
             redirect_to root_path
         else
           @book=Book.create(book_params)
@@ -28,10 +30,12 @@ class ReviewController < ApplicationController
                 understandable:params[:review][:understandable],
                 interesting:params[:review][:interesting],
                 recommend:params[:review][:recommend],
-                price:params[:review][:price]
+                price:params[:review][:price],
+                good:params[:review][:good],
+                bad:params[:review][:bad],
             )
             if @rvw.save
-                flash[:notice] = "レビューを投稿しました。"
+                flash[:notice] = "メモを登録しました。"
             end
             redirect_to root_path
           end
@@ -39,9 +43,9 @@ class ReviewController < ApplicationController
 
     end
     def review_params
-        params.require(:review).permit(:content,:interesting,:understandable,:trustable,:recommend,:price)
+        params.require(:review).permit(:content,:good,:bad,:interesting,:understandable,:trustable,:recommend,:price)
     end
     def book_params
-        params.permit(:title,:identifier,:img_url)
+        params.permit(:title,:identifier,:img_url,:description,:genre,:keyword,:published_at)
     end
 end

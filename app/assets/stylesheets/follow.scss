@@ -5,7 +5,6 @@
     width:100%;
 }
 .content.followings,.content.followers{
-    font-size:24px;
     padding:20px;
     width:600px;
     margin:auto;
@@ -22,23 +21,16 @@
 @media (max-width:1000px){
     .content.followings,.content.followers{
         padding:25px;
-        font-size:24px;
         width:100%;
         a.following_name,a.follower_name{
-            font-size:40px;
             font-weight:600;
         }
         span.right{
             float:right;
-            font-size:32px;
             vertical-align: middle;
         }
-        p.profile_content_head{
-            font-size:24px;
-        }
-    
+      
         .button{
-            font-size:32px;
             width:300px;
         }
     }

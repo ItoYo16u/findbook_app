@@ -1,5 +1,5 @@
 
--set_meta_tags title:"#{@book_title}",description:"#{@book_authors.join(",")}が書いた#{@book_title}の詳細情報ページです.#{@book_title}のレビューが#{@reviews&.count()}件掲載されています."
+-set_meta_tags title:"#{@book_title}",description:"#{@book_authors.join(",")}が書いた#{@book_title}の詳細情報ページです.#{@book_title}のメモが#{@reviews&.count()}件掲載されています."
 -if @reviews
   %script{onload:"paramsLoaded()"}
     var doReviewsExist = true
@@ -50,7 +50,7 @@
           
     .column.is-5-desktop{style:"padding:20px;padding-left:5px!important"}
       .content.reviews-of-this-book{style:"padding:20px;text-align:center;margin:20px 0px"}
-        %p.subtitle #{@reviews&.count()}件のレビュー
+        %p.subtitle #{@reviews&.count()}件のメモ
         -if @reviews.present?
           -@reviews.each.with_index do |review,idx|
             %article.media.card.review_card{style:"padding:15px;#{'display:none;' if idx >= 2}"} 
@@ -95,97 +95,125 @@
           -if @reviews.length >= 3
             %hr.dotted
             %button.button.is-large#show_more
-              レビューをもっとみる
+              メモをもっとみる
               
           -if user_signed_in?
             -unless current_user.books.find_by(identifier:params[:identifier]).present?
               %br
-              %a.button#openModaal{href:"#target"} レビューを投稿する
+              %a.button#openModaal{href:"#target"} メモを投稿する
               .content.new_review#target{style:"margin:10px;display:none"}
                 %hr
                 %p
-                  ="#{current_user.name || 'Jhon Doe/Jane Doe'}さんのレビューを追加"
+                  ="#{current_user.name || 'Jhon Doe/Jane Doe'}さんのメモを追加"
                 = form_with model: @reviews,local: true,url: review_create_path do |form|
+                  
+                  %label
+                    カテゴリ
+                  = text_field_tag :genre,"",class:"input"
+                  %label
+                    キーワード
+                  = text_field_tag :keyword,"",class:"input"
+
                   .textarea_wrap
-                    = form.text_area :content,class:"textarea",required:"required"
+                    = form.text_area :content,class:"textarea",required:"required",placeholder:"わかりやすく要点をまとめてみよう"
+                  .text_fields
+                    =form.label "良い点"
+                    =form.text_field :good,class:"input",placeholder:"良い点をまとめてみよう"
+                    =form.label "悪い点"
+                    =form.text_field :bad,class:"input",placeholder:"悪い点をまとめてみよう" 
                   %hr
-                  %p.subtitle わかりやすさ
+                  %p わかりやすさ
                   .evaluation.stars
                     -(1..5).each do |i|
                       =form.radio_button :understandable,"#{6-i}",id:"star_#{6-i}",required:"required"
                       =form.label "★",value:"#{6-i}",for:"star_#{6-i}",class:"star"
                   %hr
-                  %p.subtitle 信頼性
+                  %p 信頼性
                   .evaluation.stars.blue
                     -('a'..'e').each.with_index do |c,i|
                       =form.radio_button :trustable,"#{5-i}",id:"star_#{c}",required:"required"
                       =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
                   %hr
-                  %p.subtitle おもしろさ
+                  %p おもしろさ
                   .evaluation.stars.pink
                     -('f'..'j').each.with_index do |c,i|
                       =form.radio_button :interesting,"#{5-i}",id:"star_#{c}",required:"required"
                       =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
                   %hr
-                  %p.subtitle おすすめ度
+                  %p おすすめ度
                   .evaluation.stars.purple
                     -('k'..'o').each.with_index do |c,i|
                       =form.radio_button :recommend,"#{5-i}",id:"star_#{c}",required:"required"
                       =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
                   %hr
-                  %p.subtitle 価格
+                  %p 価格
                   .evaluation.stars.green
                     -('p'..'t').each.with_index do |c,i|
                       =form.radio_button :price,"#{5-i}",id:"star_#{c}",required:"required"
                       =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
                   = hidden_field_tag :title, @book_title
+                  =hidden_field_tag :description,""
                   = hidden_field_tag :identifier, params[:identifier]
                   = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
                   %hr
                   .content.has-text-centered
-                    = form.submit "レビューを投稿する",class:"button is-fullwidth is-medium-mobile"        
+                    = form.submit "メモを登録する",class:"button is-fullwidth is-medium-mobile"        
           -else
-            =link_to "レビューを投稿するにはログインしてください",new_user_session_path
+            =link_to "メモを登録するにはログインしてください",new_user_session_path
         -else
           %article{style:"padding:5px"}
-            %p まだレビューがありません
+            %p まだメモがありません
             -if user_signed_in?
               -unless current_user.books.find_by(identifier:params[:identifier]).present?
-                %a.button#openModaal{href:"#target"} レビューを投稿する
-                .content.new_review#target{style:"margin:10px;display:none"}
+                %a.button#openModaal{href:"#target"} メモを登録する
+                .content.new_review#target{style:"margin:10px;padding:20px 40px;display:none"}
                   %p.has-text-centered
                     %strong
-                      ="#{current_user.name|| 'Jhon Doe/ Jane Doe'}さんのレビューを追加"
+                      ="#{current_user.name|| 'Jhon Doe/ Jane Doe'}さんのメモを追加"
+
                   
                   = form_with model: Review.new,local: true,url: review_create_path do |form|
+                    %label
+                      カテゴリ
+                    = text_field_tag :genre,"",class:"input"
+                    %label
+                      キーワード
+                    = text_field_tag :keyword,"",class:"input"
+                    %label
+                      メモ
                     .textarea_wrap
-                      = form.text_area :content,class:"textarea",required:"required"
+                      = form.text_area :content,class:"textarea",required:"required",placeholder:"わかりやすく要点をまとめてみよう"
+                    .text_fields
+                      =form.label "良い点"
+                      =form.text_field :good,class:"input",placeholder:"良い点をまとめてみよう"
+                      = form.label "悪い点"
+                      =form.text_field  :bad,class:"input",placeholder:"悪い点をまとめてみよう" 
                     %hr
-                    %p.subtitle わかりやすさ
+                    %p わかりやすさ
                     .evaluation.stars
                       -(1..5).each do |i|
                         =form.radio_button :understandable,"#{6-i}",id:"star_#{6-i}",required:"required"
                         =form.label :understandable,"★",value:"#{6-i}",for:"star_#{6-i}",class:"star"
                     %hr
-                    %p.subtitle 信頼性
+                    %p 信頼性
                     .evaluation.stars.blue
                       -('a'..'e').each.with_index do |c,i|
                         =form.radio_button :trustable,"#{5-i}",id:"star_#{c}",required:"required"
                         =form.label :trustable,"★",value:"#{5-i}",for:"star_#{c}",class:"star"
                     %hr
-                    %p.subtitle おもしろさ
+                    %p おもしろさ
                     .evaluation.stars.pink
                       -('f'..'j').each.with_index do |c,i|
                         =form.radio_button :interesting,"#{5-i}",id:"star_#{c}",required:"required"
                         =form.label :interesting,"★",value:"#{5-i}",for:"star_#{c}",class:"star"
                     %hr
-                    %p.subtitle おすすめ度
+                    %p おすすめ度
                     .evaluation.stars.purple
                       -('k'..'o').each.with_index do |c,i|
                         =form.radio_button :recommend,"#{5-i}",id:"star_#{c}",required:"required"
                         =form.label :recommend,"★",value:"#{5-i}",for:"star_#{c}",class:"star"
                     %hr
-                    %p.subtitle 価格
+                    %p 価格
                     .evaluation.stars.green
                       -('p'..'t').each.with_index do |c,i|
                         =form.radio_button :price,"#{5-i}",id:"star_#{c}",required:"required"
@@ -194,9 +222,9 @@
                     = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
                     = hidden_field_tag :identifier, params[:identifier]
                     %hr
-                    = form.submit "レビューを投稿する",class:"button is-fullwidth is-medium-mobile"
+                    = form.submit "メモを登録する",class:"button is-fullwidth is-medium-mobile"
             -else
-              =link_to "レビューを投稿するにはログインしてください"
+              =link_to "メモを登録するにはログインしてください"
     .column.is-2
   %hr
   %p.subtitle
@@ -206,7 +234,7 @@
     .column.is-1-desktop
     .column
       %p
-        レビュー数分布
+        メモ数分布
       .bar_chart_wrap
         .bar_chart
           %canvas#reviewBarChart
@@ -238,7 +266,7 @@
     .has-text-left
       %p.subtitle
         %strong
-          この本に関連する記事
+          この本に関連するメディア
     .related_posts
       -@book&.related_posts&.each do |p|
         .realated_post

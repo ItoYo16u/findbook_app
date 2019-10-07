@@ -40,7 +40,7 @@
         %a.link{href:"#new_posts"} 最近追加された記事を見てみる
         %hr
         %p
-          あなたの読書記録やレビューは
+          あなたの読書記録やメモは
           %a{href:"/users/show/#{current_user&.id}"} マイページ
           %span から確認できます。
     .column
@@ -62,7 +62,7 @@
                     %p
                       = best_seller.title
               .links
-                =link_to "レビューを見る",books_show_path(identifier:best_seller.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
+                =link_to "メモを見る",books_show_path(identifier:best_seller.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(best_seller.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
     .column
       .content.good-sellers
@@ -76,7 +76,7 @@
               .content
                 %p
                   = book.title
-                =link_to "レビューを見る",books_show_path(identifier:book.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
+                =link_to "メモを見る",books_show_path(identifier:book.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"  
         %a.more{href:"books/index"} もっと見る            
     .column.is-1
@@ -108,10 +108,10 @@
   .content
     %p.subtitle#new_reviews.section_title
       %strong
-        新着レビュー
+        新着メモ
     =render :partial=>"partials/review_list"
     .has-text-right
-      %a.more{href:"/review/index"} レビューをもっと見る
+      %a.more{href:"/review/index"} メモをもっと見る
   %hr
   .content
     %p.subtitle#new_books.section_title

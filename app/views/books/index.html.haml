@@ -5,7 +5,7 @@
       #{Book.count()}件中,#{from = ((params[:page]||1).to_i-1)*15 + 1}～#{from+@books.count()-1}を表示
 -else
   .has-text-centered
-    %p 今月のレビュー数上位30の書籍
+    %p 今月のメモ数上位30の書籍
 = render "partials/book_list"
 -if params[:latest]
   .container
