@@ -17,7 +17,7 @@
           %br
           みんなで共有しよう
         %p.description.has-text-centered
-          Service Name は参考書・教科書・ビジネス書の情報を見たり、メモを投稿できるサービスです。
+          Service Name は・実用書・ビジネス書の情報を見たり、メモを投稿できるサービスです。
         %p.has-text-centered
           気になるユーザーをフォローして役に立つ情報を手に入れましょう。
         =link_to "今すぐ登録する(無料)",new_user_registration_path,class:"button is-fullwidth is-primary sign_up is-outlined"
@@ -54,9 +54,9 @@
             .genreAndKeyword{style:"padding:5px;"}
               .tags
                 .tag{class:genre_tag_style(best_seller)}
-                  カテゴリ:#{best_seller.genre||"Unknown"}
+                  #{best_seller.genre||"Unknown"}
                 .tag
-                  キーワード:#{best_seller.keyword|| "Unkwon"}
+                  #{best_seller.keyword|| "Unkwon"}
             .card-image
               %figure.image.has-text-centered
                 %img{src:best_seller.img_url||"https://bulma.io/images/placeholders/1280x960.png",style:"display:inline-block"}
@@ -86,8 +86,7 @@
                   .tags
                     .tag{class:genre_tag_style(book)}
                       #{book.genre||"Unknown"}
-                    .tag
-                      #{book.keyword|| "Unkwon"}
+
                 
                 =link_to "メモを見る",books_show_path(identifier:book.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"  
@@ -104,7 +103,7 @@
         .content.information
           %table.table.is-striped.is-fullwidth
             %tbody
-              - @info= Notification.order(created_at: "DESC").limit(5)
+              - @info = Notification.order(created_at: "DESC").limit(5)
               - @info.each do |notification|
                 %tr
                   %td.is-narrow
@@ -116,8 +115,113 @@
                         =notification.created_at.strftime("%Y-%m-%d")
                   %td
                     =link_to "#{notification.description}",notification.url
-      .column.is-1         
+      .column.is-1
   %hr
+  .content
+    %p.subtitle.section_title
+      %strong
+        デザインのカテゴリで人気の本
+    .columns.is-desktop
+      - @popular_design_books.each.with_index do |book,idx|
+        .column.is-4-desktop
+          .card{style:"padding:10px;margin:30px"}
+            .genreAndKeyword{style:"padding:5px;"}
+              .tags
+                .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:#f08080;color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
+                  =idx+1
+            .img.has-text-centered
+              %img{src:book.img_url,style:"max-height:150px"}
+            .content
+              %p.has-text-centered
+                = book.title
+                .button_wrap.has-text-centered{style:"margin:5px 0px"}
+                  =link_to "メモを見る",books_show_path(identifier:book.identifier),class:"button",style:"width:170px"
+                .button_wrap.has-text-centered
+                  =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
+  .content
+    %p.subtitle.section_title
+      %strong
+        ビジネスのカテゴリで人気の本
+    .columns.is-desktop
+      - @popular_biz_books.each.with_index do |book,idx|
+        .column.is-4-desktop
+          .card{style:"padding:10px;margin:30px"}
+            .genreAndKeyword{style:"padding:5px;"}
+              .tags
+                .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:#088aa1;color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
+                  =idx+1
+            .img.has-text-centered
+              %img{src:book.img_url,style:"max-height:150px"}
+            .content
+              %p.has-text-centered
+                = book.title
+                .button_wrap.has-text-centered{style:"margin:5px 0px"}
+                  =link_to "メモを見る",books_show_path(identifier:book.identifier),class:"button",style:"width:170px"
+                .button_wrap.has-text-centered
+                  =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
+  .content
+    %p.subtitle.section_title
+      %strong
+        テクノロジーのカテゴリで人気の本
+    .columns.is-desktop
+      - @popular_tech_books.each.with_index do |book,idx|
+        .column.is-4-desktop
+          .card{style:"padding:10px;margin:30px"}
+            .genreAndKeyword{style:"padding:5px;"}
+              .tags
+                .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:#688bff;color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
+                  =idx+1
+            .img.has-text-centered
+              %img{src:book.img_url,style:"max-height:150px"}
+            .content
+              %p.has-text-centered
+                = book.title
+                .button_wrap.has-text-centered{style:"margin:5px 0px"}
+                  =link_to "メモを見る",books_show_path(identifier:book.identifier),class:"button",style:"width:170px"
+                .button_wrap.has-text-centered
+                  =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
+  .content
+    %p.subtitle.section_title
+      %strong
+        アート/カルチャーのカテゴリで人気の本
+    .columns.is-desktop
+      - @popular_humanity_books.each.with_index do |book,idx|
+        .column.is-4-desktop
+          .card{style:"padding:10px;margin:30px"}
+            .genreAndKeyword{style:"padding:5px;"}
+              .tags
+                .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:gold;color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
+                  =idx+1
+            .img.has-text-centered
+              %img{src:book.img_url,style:"max-height:150px"}
+            .content
+              %p.has-text-centered
+                = book.title
+                .button_wrap.has-text-centered{style:"margin:5px 0px"}
+                  =link_to "メモを見る",books_show_path(identifier:book.identifier),class:"button",style:"width:170px"
+                .button_wrap.has-text-centered
+                  =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"   
+  .content
+    %p.subtitle.section_title
+      %strong
+        アカデミックのカテゴリで人気の本
+    .columns.is-desktop
+      - @popular_academic_books.each.with_index do |book,idx|
+        .column.is-4-desktop
+          .card{style:"padding:10px;margin:30px"}
+            .genreAndKeyword{style:"padding:5px;"}
+              .tags
+                .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:#9932cc;color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
+                  =idx+1
+            .img.has-text-centered
+              %img{src:book.img_url,style:"max-height:150px"}
+            .content
+              %p.has-text-centered
+                = book.title
+                .button_wrap.has-text-centered{style:"margin:5px 0px"}
+                  =link_to "メモを見る",books_show_path(identifier:book.identifier),class:"button",style:"width:170px"
+                .button_wrap.has-text-centered
+                  =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"     
   .content
     %p.subtitle#new_reviews.section_title
       %strong
