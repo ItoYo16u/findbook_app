@@ -184,12 +184,12 @@
 
                   
                   = form_with model: Review.new,local: true,url: review_create_path do |form|
-                    -unless Book.find_by(identifier:isbn13to10(params[:identifier]))
-                      .label
-                        %label
-                          カテゴリ
-                      .select
-                        =select_tag :genre,options_for_select([["テクノロジー","テクノロジー"],["アカデミック","アカデミック"],["ビジネス","ビジネス"],["アート/カルチャー","アート/カルチャー"],["デザイン","デザイン"]])
+                    -#unless Book.find_by(identifier:isbn13to10(params[:identifier]))
+                    .label
+                      %label
+                        カテゴリ
+                    .select
+                      =select_tag :genre,options_for_select([["テクノロジー","テクノロジー"],["アカデミック","アカデミック"],["ビジネス","ビジネス"],["アート/カルチャー","アート/カルチャー"],["デザイン","デザイン"]])
 
                     .label
                       %label
