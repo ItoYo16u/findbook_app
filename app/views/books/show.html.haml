@@ -114,11 +114,11 @@
                 %p
                   ="#{current_user.name || 'Jhon Doe/Jane Doe'}さんのメモを追加"
                 = form_with model: @reviews,local: true,url: review_create_path do |form|
-                  - unless Book.find_by(identifier:isbn13to10(params[:identifier]))
-                    .label
-                      %label カテゴリ
-                    .select
-                      =select_tag :genre,options_for_select([["テクノロジー","テクノロジー"],["アカデミック","アカデミック"],["ビジネス","ビジネス"],["アート/カルチャー","アート/カルチャー"],["デザイン","デザイン"]])
+                  
+                  .label
+                    %label カテゴリ
+                  .select
+                    =select_tag :genre,options_for_select([["テクノロジー","テクノロジー"],["アカデミック","アカデミック"],["ビジネス","ビジネス"],["アート/カルチャー","アート/カルチャー"],["デザイン","デザイン"]])
                   
                   .label
                     %label
