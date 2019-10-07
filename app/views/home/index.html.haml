@@ -45,7 +45,7 @@
           %span から確認できます。
     .column
       .content.best-seller
-        %p.subtitle.has-text-left.section_title{style:"margin:20px 0px;"}
+        %p.has-text-left.section_title{style:"margin:20px 0px;"}
           %strong
             メモ数ランキング
         -best_seller = @popular_books[0]
@@ -53,10 +53,11 @@
           .card{style:"padding-top:20px;"}
             .genreAndKeyword{style:"padding:5px;"}
               .tags
+                .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:gold;color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
+                  1
                 .tag{class:genre_tag_style(best_seller)}
                   #{best_seller.genre||"Unknown"}
-                .tag
-                  #{best_seller.keyword|| "Unkwon"}
+                
             .card-image
               %figure.image.has-text-centered
                 %a{href:"/books/show/#{best_seller.identifier}"}
@@ -66,37 +67,38 @@
               .media
                 .media-content.has-text-centered
                   .subtitle.is-4{style:"font-size:20px"}
-                    %p
+                    %a{href:"/books/show/#{best_seller.identifier}"}
                       = best_seller.title
               .links
-                =link_to "メモを見る",books_show_path(identifier:best_seller.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(best_seller.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
     .column
       .content.good-sellers
         .space{style:"height:50px"}
         -popular_books=@popular_books.drop(1)
-        -popular_books.each do |book|
+        -popular_books.each.with_index do |book,idx|
           %article.media{style:"padding:5px;margin-top:10px"}
             %figure.media-left
               %a{href:"/books/show/#{book.identifier}"}
                 %img{src:book.img_url||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
             .media-content
+              .genreAndKeyword{style:"padding:5px;"}
+                .tags
+                  .ranking{style:"border-radius:10px;width:32px;height:32px;font-size:20px;background-color:#808080;color:#FFF;text-align:center;margin-bottom:10px;margin-right:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
+                    =idx+2
+                  .tag{class:genre_tag_style(book)}
+                    #{book.genre||"Unknown"}
               .content
-                %p
+                %a{href:"/books/show/#{book.identifier}"}
                   = book.title
-                .genreAndKeyword{style:"padding:5px;"}
-                  .tags
-                    .tag{class:genre_tag_style(book)}
-                      #{book.genre||"Unknown"}
-
                 
-                =link_to "メモを見る",books_show_path(identifier:book.identifier),class:"button is-fullwidth",style:"margin:5px 0px"
-                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"  
+
+                .links{style:"margin-top:10px"}
+                  =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"  
         %a.more{href:"books/index"} もっと見る            
     .column.is-1
   %hr
   .content
-    %p.subtitle.section_title
+    %p.section_title
       %strong
         お知らせ
     .columns.is-desktop
@@ -120,7 +122,7 @@
       .column.is-1
   %hr
   .content
-    %p.subtitle.section_title
+    %p.section_title
       %strong
         デザインのカテゴリで人気の本
     .columns.is-desktop
@@ -142,7 +144,7 @@
                 .button_wrap.has-text-centered
                   =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
   .content
-    %p.subtitle.section_title
+    %p.section_title
       %strong
         ビジネスのカテゴリで人気の本
     .columns.is-desktop
@@ -164,7 +166,7 @@
                 .button_wrap.has-text-centered
                   =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
   .content
-    %p.subtitle.section_title
+    %p.section_title
       %strong
         テクノロジーのカテゴリで人気の本
     .columns.is-desktop
@@ -186,7 +188,7 @@
                 .button_wrap.has-text-centered
                   =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
   .content
-    %p.subtitle.section_title
+    %p.section_title
       %strong
         アート/カルチャーのカテゴリで人気の本
     .columns.is-desktop
@@ -208,7 +210,7 @@
                 .button_wrap.has-text-centered
                   =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"   
   .content
-    %p.subtitle.section_title
+    %p.section_title
       %strong
         アカデミックのカテゴリで人気の本
     .columns.is-desktop
@@ -230,7 +232,7 @@
                 .button_wrap.has-text-centered
                   =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"     
   .content
-    %p.subtitle#new_reviews.section_title
+    %p#new_reviews.section_title
       %strong
         新着メモ
     =render :partial=>"partials/review_list"
@@ -246,7 +248,7 @@
       %a.more{href:"/books/index?latest=latest"} 新着書籍をもっと見る
   %hr
   .content
-    %p.subtitle#new_posts.section_title
+    %p#new_posts.section_title
       %strong
         新着記事
     %p
