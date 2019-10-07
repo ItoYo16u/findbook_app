@@ -5,6 +5,8 @@ class ReviewController < ApplicationController
     def create
         existing_book = Book.find_by(identifier: params[:identifier])
         if existing_book.present?
+            # temp change
+            existing_book.update(genre:prams[:genre])
             current_user.reviews.create(
                 user_id:current_user.id,
                 content:params[:review][:content],
