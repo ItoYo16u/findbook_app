@@ -41,8 +41,8 @@
                 - @book_authors.try(:each) do |name|
                   = name
             %hr
-            %p
-              = @book_description || "No Description"
+            
+            = simple_format(@book_description || "No Description",style:"font-size:14px")
             %hr
             %p
               ページ数 #{@page_count}
@@ -54,7 +54,9 @@
           
     .column.is-5-desktop{style:"padding:20px;padding-left:5px!important"}
       .content.reviews-of-this-book{style:"padding:20px;text-align:center;margin:20px 0px"}
-        %p.subtitle #{@reviews&.count()}件のメモ
+        %p
+          %b
+            #{@reviews&.count()}件のメモ
         -if @reviews.present?
           -@reviews.each.with_index do |review,idx|
             %article.media.card.review_card{style:"padding:15px;#{'display:none;' if idx >= 2}"} 
@@ -97,8 +99,7 @@
                 %p{style:"font-size:14px;"}
                   = review.bad
                 %p.label{style:"font-size:14px;"} 要点メモ
-                %p{style:"font-size:14px;"}
-                  =simple_format(review.content)
+                =simple_format(review.content,style:"font-size:14px")
                 
           
           -if @reviews.length >= 3
