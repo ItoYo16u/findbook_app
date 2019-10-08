@@ -7,10 +7,13 @@ module ApplicationHelper
             isbn
         end
     end
+    def http2https(url)
+        url.gsub("http://","https://")
+    end
     def default_meta_tags
         {
             site: "findbook app",
-            title:"専門書・ビジネス書・技術書のメモ共有サイト",
+            title:"専門書・ビジネス書・技術書のメモ共有サイトBookI/O(ブッキオ)",
             reverse: true,
             canonical:request.original_url,
             charset:"utf-8",
@@ -57,6 +60,4 @@ module ApplicationHelper
             site: "@by110416"
         }
     end
-    
-
 end

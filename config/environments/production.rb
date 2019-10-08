@@ -61,6 +61,23 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "investbookfinder_#{Rails.env}"
   config.action_mailer.perform_caching = false
+  
+  # SendGrid Configuration
+  # heroku addons:create sendgrid:$plan
+  # run "$ heroku config" to find sendgrid user_name and password
+  # config.action_mailer.default_url_options ={host:"yourApp.herokuapp.com"}
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings ={
+  # user_name:ENV["SENDGRID_USER_NAME"],
+  # password:ENV["SENDGRID_`PASSWORD"],
+  # domain:"heroku.com",# or your own domain
+  # adress:"smtp.sendgrid.net",
+  # port:587,#default
+  # authentication: :plain,
+  # enable_starttls_auto:true,
+  #}
+
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

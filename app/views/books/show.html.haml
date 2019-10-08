@@ -44,6 +44,10 @@
             %p
               = @book_description || "No Description"
             %hr
+            %p
+              ページ数 #{@page_count}
+            %p
+              出版日 #{@published_at}
             =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(params[:identifier])}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
       .ad.card
         %p.has-text-centered#ad-here-01

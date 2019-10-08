@@ -42,9 +42,10 @@ class BooksController < ApplicationController
       target_book_info = res_json["items"][0]["volumeInfo"]
       @book_title = target_book_info["title"] || ""
       @book_authors = target_book_info["authors"]||[]
-      @book_img_urls = target_book_info["imageLinks"] ||"alternative img url"
-      @book_description = target_book_info["subtitle"] || "unfortunately, failed to get the description about this book."
-
+      @book_img_urls = http2https(target_book_info["imageLinks"]) ||"alternative img url"
+      @book_description = target_book_info["description"].truncate(170)|| "unfortunately, failed to get the description about this book."
+      @published_at = target_book_info["publishedDate"]
+      @page_count = target_book_info["pageCount"]
     elsif res_json["error"] or res_json["errors"]
       #数回requestし直してそれでもerrorが出たら以下の処理を実行
       flash[:alert]= "errorが発生しました"

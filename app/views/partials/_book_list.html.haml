@@ -11,7 +11,7 @@
                   #{book.genre||"Unknown"}
 
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:book.img_url||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
+                %img{src:http2https(book.img_url)||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
             .media-content
               .content{style:"margin-top:50px"}
                 %a{href:"/books/show/#{book.identifier}"}

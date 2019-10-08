@@ -10,14 +10,14 @@
     .column.is-1
     .column{style:"margin:14px 10px;box-shadow: 0 0 5px rgba(0,0,0,0.2);"}
       .div.content.about-this-site
-        %p.has-text-centered このサイトについて
+        %p.has-text-centered BookI/O(ブッキオ)について
         %hr
         %p.catch_copy.has-text-centered
           本のアウトプットを
           %br
           みんなで共有しよう
         %p.description.has-text-centered
-          Service Name は・実用書・ビジネス書の情報を見たり、メモを投稿できるサービスです。
+          BookI/Oは・実用書・ビジネス書の情報を見たり、メモを投稿できるサービスです。
         %p.has-text-centered
           気になるユーザーをフォローして役に立つ情報を手に入れましょう。
         =link_to "今すぐ登録する(無料)",new_user_registration_path,class:"button is-fullwidth is-primary sign_up is-outlined"
@@ -26,7 +26,7 @@
           登録済みの方は...
         =link_to "ログイン",new_user_session_path,class:"button is-fullwidth is-info sign_in is-outlined"
         %hr
-        %p This Service はこんな使い方があります。
+        %p BookI/Oはこんな使い方があります。
         %p 
           %b
             ① メモ機能
@@ -61,7 +61,7 @@
             .card-image
               %figure.image.has-text-centered
                 %a{href:"/books/show/#{best_seller.identifier}"}
-                  %img{src:best_seller.img_url||"https://bulma.io/images/placeholders/1280x960.png",style:"display:inline-block;max-width:130px"}
+                  %img{src:http2https(best_seller.img_url)||"https://bulma.io/images/placeholders/1280x960.png",style:"display:inline-block;max-width:130px"}
                   
             .card-content
               .media
@@ -79,7 +79,7 @@
           %article.media{style:"padding:5px;margin-top:10px"}
             %figure.media-left
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:book.img_url||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
+                %img{src:http2https(book.img_url)||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
             .media-content
               .genreAndKeyword{style:"padding:5px;"}
                 .tags
@@ -135,7 +135,7 @@
                   =idx+1
             .img.has-text-centered
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:book.img_url,style:"max-height:150px"}
+                %img{src:http2https(book.img_url),style:"max-height:150px"}
             .content
               .has-text-centered{style:"margin:10px 0px"}
                 %a{href:"/books/show/#{book.identifier}"}
@@ -157,7 +157,7 @@
                   =idx+1
             .img.has-text-centered
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:book.img_url,style:"max-height:150px"}
+                %img{src:http2https(book.img_url),style:"max-height:150px"}
             .content
               .has-text-centered{style:"margin:10px 0px"}
                 %a{href:"/books/show/#{book.identifier}"}
@@ -179,7 +179,7 @@
                   =idx+1
             .img.has-text-centered
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:book.img_url,style:"max-height:150px"}
+                %img{src:http2https(book.img_url),style:"max-height:150px"}
             .content
               .has-text-centered{style:"margin:10px 0px"}
                 %a{href:"/books/show/#{book.identifier}"}
@@ -200,7 +200,7 @@
                   =idx+1
             .img.has-text-centered
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:book.img_url,style:"max-height:150px"}
+                %img{src:http2https(book.img_url),style:"max-height:150px"}
             .content
               .has-text-centered{style:"margin:10px 0px"}
                 %a{href:"/books/show/#{book.identifier}"}
@@ -221,7 +221,7 @@
                   =idx+1
             .img.has-text-centered
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:book.img_url,style:"max-height:150px"}
+                %img{src:http2https(book.img_url),style:"max-height:150px"}
             .content
               .has-text-centered{style:"margin:10px 0px"}
                 %a{href:"/books/show/#{book.identifier}"}
@@ -260,7 +260,7 @@
                 %p
                   = p.created_at.strftime("%Y/%m/%d")
                 %a.image{href:"//#{p.url}"}
-                  %img{src:p.book.img_url,style:"max-width:65%;"}
+                  %img{src:http2https(p.book.img_url),style:"max-width:65%;"}
               .media-content
                 .content{style:"width:100%;word-wrap:break-all;"}
                   %p
