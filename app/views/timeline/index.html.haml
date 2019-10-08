@@ -8,7 +8,7 @@
             .book
               .image
                 %a{href:"/books/show/#{review.book.identifier}"}
-                  %img{src:review.book.img_url,style:"max-width:130px"}
+                  %img{src:http2https(review.book.img_url),style:"max-width:130px"}
               .bookTitle.has-text-centered{style:"margin-bottom:5px"}
                 %a{href:"/books/show/#{review.book.identifier}"}
                   =review.book.title
