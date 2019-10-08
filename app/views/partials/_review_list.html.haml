@@ -9,10 +9,12 @@
             .message-body
               %a.has-text-link{href:"/books/show/#{r.book.identifier}"}  
                 =r.book.title
-              %p
+              %p{style:"font-size:14px"}
                 ="#{r.content.slice(0..36)}....."
               %p.has-text-right
-                ="reviewed by :"
+                ="by :"
                 %i
                   ="#{r.user.name ||"John Doe/Jane Doe" }"
+
+                
     .column.is-1-desktop
