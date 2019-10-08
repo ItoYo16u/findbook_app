@@ -65,14 +65,15 @@ Rails.application.configure do
   # SendGrid Configuration
   # heroku addons:create sendgrid:$plan
   # run "$ heroku config" to find sendgrid user_name and password
-  config.action_mailer.default_url_options ={host:"findbook-app-test.herokuapp.com"}
+  config.action_mailer.default_url_options ={ host:"findbook-app-test.herokuapp.com"}
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings ={
   user_name:ENV["SENDGRID_USERNAME"],
   password:ENV["SENDGRID_PASSWORD"],
-  domain:"heroku.com",# or your own domain
+  domain:"heroku.com",
   adress:"smtp.sendgrid.net",
-  port:587,#default
+  port:587,
   authentication: :plain,
   enable_starttls_auto:true,
   }
