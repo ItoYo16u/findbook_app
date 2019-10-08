@@ -2,6 +2,8 @@ class BooksController < ApplicationController
   def index
     if params[:latest]
       @books = Book.order(created_at:"DESC").page(params[:page]).per(15)
+    elsif params[:genre]
+       @books = Book.where(genre:params[:genre]).joins(:reviews).group(:id).order('count(user_id) desc').limit(15)
     else
       @books=Book.joins(:reviews).group(:id).order('count(user_id) desc').limit(15)
     end

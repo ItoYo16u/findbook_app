@@ -40,7 +40,7 @@
                   =book.title
       - else
         %p
-          まだレビューが投稿されていません。
+          まだメモが投稿されていません。
         %p 
           画面右上のフォームから検索できます。
         %script
@@ -127,7 +127,7 @@
           %br
           - latest_review = Review.find_by(user_id: this_user.id) || false
           -if latest_review
-            %p 直近のレビュー
+            %p 直近のメモ
             %a{href:"/books/show/#{latest_review.book.identifier}"}
               #{latest_review.created_at.strftime("%Y/%m/%d")}
 
