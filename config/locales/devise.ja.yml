@@ -41,6 +41,8 @@ ja:
 #      inactive: 'Your account was not activated yet.'
       already_authenticated: すでにログインしています.
       user:
+        signed_up_but_unconfirmed:
+          メールアドレスの認証が完了していません。
         not_found_in_database:
           ユーザーデータが見つかりません。メールアドレスとパスワードを確認してください。
     sessions:
