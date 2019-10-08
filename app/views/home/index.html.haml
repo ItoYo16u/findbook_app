@@ -30,10 +30,10 @@
         %p 
           %b
             ① メモ機能
-        %a.link{href:"#new_reviews"}最近投稿されたレビューを見てみる
+        %a.link{href:"#new_reviews"}最近投稿されたメモを見てみる
         %p
           %b ② タイムライン
-        %a.link{href:"/timeline"} タイムラインでフォロー中のユーザーのレビューをみる.
+        %a.link{href:"/timeline"} タイムラインでフォロー中のユーザーのメモをみる.
         %p 
           %b
             ③ 関連記事を探す
@@ -251,9 +251,10 @@
     %p
       書籍に関連した外部サイトの新着記事を掲載しています。
     %hr
-    .container
-      .columns.related_posts
-        -@related_posts.each do |p|
+    .container      
+      -@related_posts.each_slice(4) do |row|
+        .columns.related_posts
+          -row.each do |p|
           .column.card.has-text-centered
             %artcle.media
               %figure.media-left
