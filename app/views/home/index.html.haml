@@ -10,14 +10,14 @@
     .column.is-1
     .column{style:"margin:14px 10px;box-shadow: 0 0 5px rgba(0,0,0,0.2);"}
       .div.content.about-this-site
-        %p.has-text-centered BookI/O(ブッキオ)について
+        %p.has-text-centered #{service_name()}について
         %hr
         %p.catch_copy.has-text-centered
           本のアウトプットを
           %br
           みんなで共有しよう
         %p.description.has-text-centered
-          BookI/Oは・実用書・ビジネス書の情報を見たり、メモを投稿できるサービスです。
+          #{service_name()}は・実用書・ビジネス書の情報を見たり、メモを投稿できるサービスです。
         %p.has-text-centered
           気になるユーザーをフォローして役に立つ情報を手に入れましょう。
         =link_to "今すぐ登録する(無料)",new_user_registration_path,class:"button is-fullwidth is-primary sign_up is-outlined"

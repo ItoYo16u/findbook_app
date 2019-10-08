@@ -10,6 +10,7 @@ module ApplicationHelper
     def http2https(url)
         url.gsub("http://","https://")
     end
+
     def default_meta_tags
         {
             site: "findbook app",
@@ -22,6 +23,11 @@ module ApplicationHelper
             og:default_og,
             twitter: default_twitter_card
         }
+    end
+    
+    #view values
+    def service_name
+        "BookI/O"
     end
 
 

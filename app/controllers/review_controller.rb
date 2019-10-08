@@ -1,4 +1,5 @@
 class ReviewController < ApplicationController
+    before_action :authenticate_user!,except: [:index]
     def index
         @reviews = Review.page(params[:page]).per(20) 
     end
@@ -43,6 +44,8 @@ class ReviewController < ApplicationController
         end
 
     end
+    
+    private
     def review_params
         params.require(:review).permit(:content,:good,:bad,:interesting,:understandable,:trustable,:recommend,:price)
     end

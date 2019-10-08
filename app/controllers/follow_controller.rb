@@ -1,6 +1,8 @@
 class FollowController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   def index
   end
+  
   def create
     user = User.find(params[:follow_id])
     following = current_user.follow(user)

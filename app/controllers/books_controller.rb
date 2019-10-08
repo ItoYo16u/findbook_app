@@ -7,16 +7,7 @@ class BooksController < ApplicationController
     end
   end
   def show
-    
-    def request_google_book_api_with(isbn_code)
-      url="https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn_code}"
-      url=URI.encode(url)
-      res=Net::HTTP.get(URI.parse(url))
-      res_json = JSON.parse(res)
-      res_json
-    end
     @book = Book.find_by(identifier: params[:identifier])
-
     @reviews= @book&.reviews.presence
     @reviewSummary = Review.summary(@book&.id)
     reviewCountByGroup=@reviews&.count_by_group
@@ -28,8 +19,8 @@ class BooksController < ApplicationController
       @interesting = reviewCountByGroup[:interesting].values||[]
     end
     book_identifier = params[:identifier]
-    counter=0
     
+    counter=0
     while true do
       res_json=request_google_book_api_with(book_identifier)
       if counter >= 3 or res_json["items"]
@@ -38,6 +29,7 @@ class BooksController < ApplicationController
       end
       counter+=1
     end
+
     if res_json["items"]
       target_book_info = res_json["items"][0]["volumeInfo"]
       @book_title = target_book_info["title"] || ""
@@ -56,7 +48,5 @@ class BooksController < ApplicationController
     end
   end
 
-  private
-  def set_book_information
-  end
+
 end
