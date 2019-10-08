@@ -5,4 +5,4 @@
 %p 
   下記のリンクからアカウント認証を完了させてください.
 
-%p= link_to 'アカウントを認証する', confirmation_url(@resource, confirmation_token: @token)
+%p= link_to 'アカウントを認証する', confirmation_url(@resource, confirmation_token: @token,protocol:"https")
