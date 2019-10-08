@@ -22,7 +22,8 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',
-      "users/show" => "users#show"
+      mailer: 'users/mailer',
+      "users/show" => "users#show",
     }
  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

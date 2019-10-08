@@ -1,4 +1,8 @@
 %p
-  Welcome #{@email}!
-%p You can confirm your account email through the link below:
-%p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+  BookI/Oへようこそ. #{@email}さん!
+%p
+  登録完了まであと少しです。
+%p 
+  下記のリンクからアカウント認証を完了させてください.
+
+%p= link_to 'アカウントを認証する', confirmation_url(@resource, confirmation_token: @token)
