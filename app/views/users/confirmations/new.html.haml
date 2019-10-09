@@ -1,10 +1,19 @@
-%h2 Resend confirmation instructions
-= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
-  .actions
-    = f.submit "Resend confirmation instructions"
-= render "users/shared/links"
+-set_meta_tags title:"認証メール送信",description:"#{service_name()}のアカウント認証メール送信ページです."
+.columns.is-desktop{style:"margin:0px"}
+  .column.is-4
+  .column.is-4-desktop.is-12-mobile.is-12-tablet{style:"margin-top:100px"}
+    .box
+      = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .fields
+          .field
+            .control
+              = f.label :email,class:"label"
+              %br/
+              = f.email_field :email, autofocus: true, autocomplete: "email",class:"input", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+          .actions.has-text-centered
+            = f.submit "認証用メールを送信する",class:"button"
+      = render "users/shared/links"
+  .column.is-4
+
+
