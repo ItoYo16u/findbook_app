@@ -128,12 +128,12 @@
                   = text_field_tag :keyword,"",class:"input",maxlength:"10",placeholder:"10文字以内"
 
                   .textarea_wrap
-                    = form.text_area :content,class:"textarea",required:"required",placeholder:"わかりやすく要点をまとめてみよう"
+                    = form.text_area :content,class:"textarea",required:"required",maxlength:"200",placeholder:"わかりやすく要点をまとめてみよう"
                   .text_fields
                     =form.label "良い点"
-                    =form.text_field :good,class:"input",placeholder:"良い点をまとめてみよう"
+                    =form.text_field :good,class:"input",placeholder:"良い点をまとめてみよう",maxlength:"50"
                     =form.label "悪い点"
-                    =form.text_field :bad,class:"input",placeholder:"悪い点をまとめてみよう" 
+                    =form.text_field :bad,class:"input",placeholder:"悪い点をまとめてみよう" ,maxlength:"50"
                   %hr
                   %p わかりやすさ
                   .evaluation.stars
@@ -200,12 +200,12 @@
                     %label
                       メモ
                     .textarea_wrap
-                      = form.text_area :content,class:"textarea",required:"required",placeholder:"わかりやすく要点をまとめてみよう"
+                      = form.text_area :content,class:"textarea",required:"required",placeholder:"わかりやすく要点をまとめてみよう",maxlength:"200"
                     .text_fields
                       =form.label "良い点"
-                      =form.text_field :good,class:"input",placeholder:"良い点をまとめてみよう"
+                      =form.text_field :good,class:"input",placeholder:"良い点をまとめてみよう",maxlength:"50"
                       = form.label "悪い点"
-                      =form.text_field  :bad,class:"input",placeholder:"悪い点をまとめてみよう" 
+                      =form.text_field  :bad,class:"input",placeholder:"悪い点をまとめてみよう",maxlength:"50"
                     %hr
                     %p わかりやすさ
                     .evaluation.stars
