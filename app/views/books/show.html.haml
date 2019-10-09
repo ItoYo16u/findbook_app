@@ -165,7 +165,7 @@
                       =form.radio_button :price,"#{5-i}",id:"star_#{c}",required:"required"
                       =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
                   = hidden_field_tag :title, @book_title
-                  =hidden_field_tag :description,""
+                  = hidden_field_tag :description,@book_description
                   = hidden_field_tag :identifier, params[:identifier]
                   = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
                   %hr
@@ -237,6 +237,7 @@
                         =form.radio_button :price,"#{5-i}",id:"star_#{c}",required:"required"
                         =form.label :price,"★",value:"#{5-i}",for:"star_#{c}",class:"star"
                     = hidden_field_tag :title, @book_title
+                    = hidden_field_tag :description, @book_description
                     = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
                     = hidden_field_tag :identifier, params[:identifier]
                     %hr
