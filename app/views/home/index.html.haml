@@ -69,6 +69,8 @@
                   .subtitle.is-4{style:"font-size:20px"}
                     %a{href:"/books/show/#{best_seller.identifier}"}
                       = best_seller.title
+                    %p{style:"font-size:12px"}
+                      = best_seller&.description
               .links
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(best_seller.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
     .column
@@ -90,6 +92,8 @@
               .content
                 %a{href:"/books/show/#{book.identifier}"}
                   = book.title
+                %p{style:"font-size:12px"}
+                  = book&.description
                 
 
                 .links{style:"margin-top:10px"}
@@ -140,6 +144,8 @@
               .has-text-centered{style:"margin:10px 0px"}
                 %a{href:"/books/show/#{book.identifier}"}
                   = book.title
+                %p{style:"font-size:12px"}
+                  = book&.description
                 
               .button_wrap.has-text-centered
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
