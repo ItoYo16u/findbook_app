@@ -1,10 +1,17 @@
-%h2 Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "Send me reset password instructions"
-= render "users/shared/links"
+-set_meta_tags title:"パスワード再発行",description:"#{service_name()}のパスワード再発行メール送信ページです."
+.columns.is-desktop{style:"margin:0px"}
+  .column.is-4
+  .column.is-4-desktop.is-12-mobile.is-12-tablet{style:"margin-top:100px"}
+    .box
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .fields
+          .field
+            .control
+              = f.label :email,class:"label"
+              %br/
+              = f.email_field :email, autofocus: true, autocomplete: "email",class:"input"
+          .actions.has-text-centered
+            = f.submit "パスワードを再発行する",class:"button"
+      = render "users/shared/links"
+  .column.is-4
