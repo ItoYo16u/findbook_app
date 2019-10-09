@@ -33,11 +33,13 @@ class BooksController < ApplicationController
     end
 
     if res_json["items"]
-      logger.debug(res_json)
       target_book_info = res_json["items"][0]["volumeInfo"]
       @book_title = target_book_info["title"] || ""
       @book_authors = target_book_info["authors"]||[]
-      @book_img_urls = (target_book_info["imageLinks"]).map{|key,url| [key,url.gsub("http://","https://")]}.to_h ||"alternative img url"
+      # items[0]はherokuからアクセスするとアメリカからアクセスしたことになるので
+      # items[0]で指定するとローカルホストは日本国内にあるから動作するけど
+      # heroku からアクセスすると失敗する
+      @book_img_urls = (target_book_info["imageLinks"])&.map{|key,url| [key,url.gsub("http://","https://")]}.to_h ||"alternative img url"
       @book_description = target_book_info["description"]&.truncate(170)|| target_book_info["subtitle"]
       @published_at = target_book_info["publishedDate"]
       @page_count = target_book_info["pageCount"]
