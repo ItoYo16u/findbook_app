@@ -70,7 +70,7 @@
                     %a{href:"/books/show/#{best_seller.identifier}"}
                       = best_seller.title
                     %p{style:"font-size:12px"}
-                      = best_seller&.description&.truncate(24)
+                      = best_seller&.description&.truncate(36)
               .links
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(best_seller.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
     .column
@@ -93,7 +93,7 @@
                 %a{href:"/books/show/#{book.identifier}"}
                   = book.title
                 %p{style:"font-size:12px"}
-                  = book&.description&.truncate(24)
+                  = book&.description&.truncate(36)
                 
 
                 .links{style:"margin-top:10px"}
@@ -145,7 +145,7 @@
                 %a{href:"/books/show/#{book.identifier}"}
                   = book.title
                 %p{style:"font-size:12px"}
-                  = book&.description&.truncate(24)
+                  = book&.description&.truncate(36)
                 
               .button_wrap.has-text-centered
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
@@ -171,7 +171,7 @@
                 %a{href:"/books/show/#{book.identifier}"}
                   = book.title
                 %p{style:"font-size:12px"}
-                  = book&.description&.truncate(24)
+                  = book&.description&.truncate(36)
                 
               .button_wrap.has-text-centered
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
@@ -197,7 +197,7 @@
                 %a{href:"/books/show/#{book.identifier}"}
                   = book.title
                 %p{style:"font-size:12px"}
-                  = book&.description&.truncate(24)
+                  = book&.description&.truncate(36)
               .button_wrap.has-text-centered
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
     .has-text-right
@@ -222,7 +222,7 @@
                 %a{href:"/books/show/#{book.identifier}"}
                   = book.title
                 %p{style:"font-size:12px"}
-                  = book&.description&.truncate(24)
+                  = book&.description&.truncate(36)
               .button_wrap.has-text-centered
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"   
     .has-text-right
@@ -247,7 +247,7 @@
                 %a{href:"/books/show/#{book.identifier}"}
                   = book.title
                 %p{style:"font-size:12px"}
-                  = book&.description&.truncate(24)
+                  = book&.description&.truncate(36)
               .button_wrap.has-text-centered
                 =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"     
     .has-text-right
