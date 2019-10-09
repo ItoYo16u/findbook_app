@@ -5,7 +5,7 @@
       -books.each do |book|
         .column
           %article.media{style:"padding:5px;margin-top:10px;"}
-            %figure.media-left{href:"https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",style:"margin:20px"}
+            %figure.media-left{href:"https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",style:"margin:20px;margin-top:0px;"}
               .tags
                 .tag{class:genre_tag_style(book)}
                   #{book.genre||"Unknown"}
