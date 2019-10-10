@@ -310,7 +310,23 @@
     %p.subtitle
       %strong
         関連書籍
-
+    .columns.is-desktop{style:"margin:auto 0px"}
+      -@related_books.each do |book|
+        .column.is-4-desktop
+          %article.media{style:"padding:5px;margin-top:10px"}
+            %figure.media-left
+              %a{href:"/books/show/#{book.identifier}"}
+                %img{src:http2https(book.img_url)||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
+            .media-content
+              .genreAndKeyword{style:"padding:5px;"}
+                .tags
+                  .tag{class:genre_tag_style(book)}
+                    #{book.genre||"Unknown"}
+              .content
+                %a{href:"/books/show/#{book.identifier}"}
+                  = book.title
+                %p{style:"font-size:12px"}
+                  = book&.description&.truncate(24)||"no description"
   %hr
   .columns.is-desktop
     .has-text-left
