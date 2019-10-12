@@ -122,10 +122,7 @@
                     .select
                       =select_tag :genre,options_for_select([["テクノロジー","テクノロジー"],["アカデミック","アカデミック"],["ビジネス","ビジネス"],["アート/カルチャー","アート/カルチャー"],["デザイン","デザイン"]])
                   
-                  .label
-                    %label
-                      キーワード
-                  = text_field_tag :keyword,"",class:"input",maxlength:"10",placeholder:"10文字以内"
+                  
 
                   .textarea_wrap
                     = form.text_area :content,class:"textarea",required:"required",maxlength:"200",placeholder:"わかりやすく要点をまとめてみよう"
@@ -193,10 +190,7 @@
                       .select
                         =select_tag :genre,options_for_select([["テクノロジー","テクノロジー"],["アカデミック","アカデミック"],["ビジネス","ビジネス"],["アート/カルチャー","アート/カルチャー"],["デザイン","デザイン"]])
 
-                    .label
-                      %label
-                        キーワード
-                    = text_field_tag :keyword,"",class:"input",maxlength:"10",placeholder:"10文字以内"
+                    
                     %label
                       メモ
                     .textarea_wrap
