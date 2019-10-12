@@ -326,7 +326,7 @@
                 %a{href:"/books/show/#{book.identifier}"}
                   = book.title
                 %p{style:"font-size:12px"}
-                  = book&.description&.truncate(24)||"no description"
+                  = book&.description&.truncate(36)||"no description"
   %hr
   .columns.is-desktop
     .has-text-left

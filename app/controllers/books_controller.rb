@@ -10,7 +10,11 @@ class BooksController < ApplicationController
   end
   def show
     @book = Book.find_by(identifier: params[:identifier])
-    @related_books = Book.where(genre:@book.genre).distinct.where.not(id: @book.id).sample(3)
+    if @book
+      @related_books = Book.where(genre:@book.genre).distinct.where.not(id: @book.id).sample(3)
+    else
+      @related_books=[]
+    end
     # sample(n) method returns an array containing n items
     # when n > array.length, returns an array randomly sorted
     @reviews= @book&.reviews.presence
