@@ -68,7 +68,7 @@
             .card-image
               %figure.image.has-text-centered
                 %a{href:"/books/show/#{best_seller.identifier}"}
-                  %img{src:http2https(best_seller.img_url)||"https://bulma.io/images/placeholders/1280x960.png",style:"display:inline-block;max-width:130px"}
+                  %img{src:http2https(best_seller.img_url)||"https://bulma.io/images/placeholders/1280x960.png",style:"display:inline-block;max-width:130px",alt:"#{best_seller.title}"}
                   
             .card-content
               .media
@@ -88,7 +88,7 @@
           %article.media{style:"padding:5px;margin-top:10px"}
             %figure.media-left
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url)||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px"}
+                %img{src:http2https(book.img_url)||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px",alt:"#{book.title}"}
             .media-content
               .genreAndKeyword{style:"padding:5px;"}
                 .tags
@@ -146,7 +146,7 @@
                   =idx+1
             .img.has-text-centered
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url),style:"max-height:150px"}
+                %img{src:http2https(book.img_url),style:"max-height:150px",alt:book.title}
             .content
               .has-text-centered{style:"margin:10px 0px"}
                 %a{href:"/books/show/#{book.identifier}"}
@@ -172,7 +172,7 @@
                   =idx+1
             .img.has-text-centered
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url),style:"max-height:150px"}
+                %img{src:http2https(book.img_url),style:"max-height:150px",alt:book.title}
             .content
               .has-text-centered{style:"margin:10px 0px"}
                 %a{href:"/books/show/#{book.identifier}"}
@@ -198,7 +198,7 @@
                   =idx+1
             .img.has-text-centered
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url),style:"max-height:150px"}
+                %img{src:http2https(book.img_url),style:"max-height:150px",alt:book.title}
             .content
               .has-text-centered{style:"margin:10px 0px"}
                 %a{href:"/books/show/#{book.identifier}"}
@@ -223,7 +223,7 @@
                   =idx+1
             .img.has-text-centered
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url),style:"max-height:150px"}
+                %img{src:http2https(book.img_url),style:"max-height:150px",alt:book.title}
             .content
               .has-text-centered{style:"margin:10px 0px"}
                 %a{href:"/books/show/#{book.identifier}"}
@@ -248,7 +248,7 @@
                   =idx+1
             .img.has-text-centered
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url),style:"max-height:150px"}
+                %img{src:http2https(book.img_url),style:"max-height:150px",alt:book.title}
             .content
               .has-text-centered{style:"margin:10px 0px"}
                 %a{href:"/books/show/#{book.identifier}"}
