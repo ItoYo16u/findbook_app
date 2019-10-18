@@ -315,7 +315,7 @@
           %article.media{style:"padding:5px;margin-top:10px"}
             %figure.media-left
               %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url)||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px;max-width:150px"}
+                %img{src:http2https(book.img_url)||"https://bulma.io/images/placeholders/96x96.png",style:"margin:3px 0px;max-width:150px",alt:book.title}
             .media-content
               .genreAndKeyword{style:"padding:5px;"}
                 .tags
