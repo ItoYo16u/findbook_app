@@ -21,7 +21,7 @@ module ApplicationHelper
             keywords:"自己啓発,プログラミング,デザイン,アート,要約,学習,アウトプット,メモ",
             separator: "|",
             og:default_og,
-            description:"このサイトは読書のアウトプットとして専門書・ビジネス書・技術書の要約メモを記録する情報共有サービスです。ソーシャルリーディング、つまり人ベースで本を探すこともできます。",
+            description:"このサイトは、読書のアウトプットとして専門書・ビジネス書・技術書の要約メモを記録して共有できるソーシャルリーディングサービスです。",
             twitter: default_twitter_card
         }
     end
