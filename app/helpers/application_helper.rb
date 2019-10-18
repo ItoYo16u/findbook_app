@@ -14,7 +14,7 @@ module ApplicationHelper
     def default_meta_tags
         {
             site: "BookI/O",
-            title:"専門書・ビジネス書・技術書のメモ共有サイトBookI/O",
+            title:"専門書・ビジネス書・技術書の要約メモ共有サイトBookI/O",
             reverse: true,
             canonical:request.original_url,
             charset:"utf-8",

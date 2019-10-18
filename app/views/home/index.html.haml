@@ -17,12 +17,12 @@
           %br
           みんなで共有しよう
         %p.description.has-text-centered
-          #{service_name()}は専門書・ビジネス書・技術書の情報を見たり、本のメモを共有できるサービスです。
+          #{service_name()}は専門書・ビジネス書・技術書の情報を見たり、本の要約メモを共有できるソーシャルリーディングサービスです。
         %p.has-text-centered
           気になるユーザーをフォローして役に立つ情報を手に入れましょう。
         -if user_signed_in?
           .has-text-centered
-            %p まずはインプットの目標をツイートしよう
+            %p まずは読書の目標をツイートしよう
             %a.twitter-share-button{href:"https://twitter.com/share?ref_src=twsrc%5Etfw","data-show-count":"false","data-text": "【#{current_user.name}の読書目標】:ここに目標を書こう！(例：OOを今週中に読み終える.)&#13;&#10;".html_safe,"data-lang":"ja","data-hashtags":"BookI/O","data-via":"by110416"}
             %script{async:"async",src:"https://platform.twitter.com/widgets.js",charset:"utf-8"}
 
