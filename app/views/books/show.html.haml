@@ -1,5 +1,5 @@
 
--set_meta_tags title:"#{@book_title}",description:"#{@book_authors.join(",")}が書いた#{@book_title}の詳細情報ページです.#{@book_title}のメモが#{@reviews&.count()}件掲載されています."
+-set_meta_tags title:"#{@book_title}",description:"#{@book_authors.join(",")}著、「#{@book_title}」の詳細情報ページ.#{@book_title}の総合評価は#{(@reviewSummary.inject(0.0){|r,i| r+=i }/@reviewSummary.size).floor(3)}点です.要約メモが#{@reviews&.count()}件あります."
 -if @reviews
   %script{onload:"paramsLoaded()"}
     var doReviewsExist = true
