@@ -48,7 +48,7 @@
       - followers.each do |follower|
         .content.followers.card
           %a.follower_name{href:"/users/show/#{follower.id}"}
-          = follower.name
+            = follower.name
           %span.right.review_count
             ="#{follower.reviews.count()}件のレビューを投稿しています." 
           %hr
