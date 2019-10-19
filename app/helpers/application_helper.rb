@@ -55,10 +55,10 @@ module ApplicationHelper
             title: :full_title,
             description: :description,
             url: request.url,
-            image:"",
+            image:"https://eggineer.s3.amazonaws.com/uploads/post/picture/345/b463f159-e46f-438c-a067-f20a3e1e8902.jpg",
             locale:"ja_JP",
             type:"website",
-            site_name:"bookio.info",
+            site_name:"bookI/O",
         }
     end
     
