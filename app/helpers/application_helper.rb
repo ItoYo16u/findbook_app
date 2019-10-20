@@ -16,7 +16,7 @@ module ApplicationHelper
             site: "BookI/O",
             title:"専門書・ビジネス書・技術書の要約メモ共有サイトBookI/O",
             reverse: true,
-            canonical:request.original_url,
+            canonical:request.original_url.sub("http://","https://"),
             charset:"utf-8",
             keywords:"自己啓発,プログラミング,デザイン,アート,要約,学習,アウトプット,メモ",
             separator: "|",
