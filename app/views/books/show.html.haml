@@ -154,9 +154,6 @@
                       %label カテゴリ
                     .select
                       =select_tag :genre,options_for_select([["テクノロジー","テクノロジー"],["アカデミック","アカデミック"],["ビジネス","ビジネス"],["アート/カルチャー","アート/カルチャー"],["デザイン","デザイン"]])
-                  
-                  
-
                   .textarea_wrap
                     = form.text_area :content,class:"textarea",required:"required",maxlength:"200",placeholder:"わかりやすく要点をまとめてみよう"
                   .text_fields
