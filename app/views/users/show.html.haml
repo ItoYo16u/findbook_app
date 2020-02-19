@@ -81,25 +81,87 @@
         .column.name
           .content.profile
             .links
-              %hr
-              .twitter
-                %p.subtitle
-                  %span Twitter:
-                  %a{href:"//#{this_user&.profile_link&.twitter_url}"} 
-                    #{this_user&.profile_link&.twitter_url}
-              %hr
-              .note
-                %p.subtitle
-                  %span Note:
-                  %a{href:"//#{this_user&.profile_link&.note_url}"}
-                    #{this_user&.profile_link&.note_url}
-              %hr
-              .blog
-                %p.subtitle
-                  %span Website/Blog:
-                  %a{href:"//#{this_user&.profile_link&.website_url}"}
-                    #{this_user&.profile_link&.website_url}
-              %hr
+              -if current_user.id == params[:id].to_i
+                -if current_user.profile_link
+                  %hr
+                  = form_for(current_user.profile_link,url: profile_link_update_path, html: {method: :put},remote: true) do |f|
+                    = f.hidden_field :id,value: current_user.profile_link.id
+                    .twitter
+                      .field.is-horizontal
+                        .field-label.is-normal Twitter:
+                        .field-body
+                          .field
+                            .control
+                              = f.text_field :twitter_url,class:"input"
+                    .note
+                      .field.is-horizontal
+                        .field-label.is-normal note:
+                        .field-body
+                          .field
+                            .control
+                              = f.text_field :note_url,class:"input"
+                    .blog
+                      .field.is-horizontal
+                        .field-label.is-normal Website:
+                        .field-body
+                          .field
+                            .control
+                              = f.text_field :website_url,class:"input"
+                    
+                    
+                    = f.submit "更新",class:"button"
+
+                -else
+                  = form_for(ProfileLink.new(),url: profile_link_create_path, html: {method: :post},remote: true) do |f|
+                    %hr
+                    .twitter
+                      .field.is-horizontal
+                        .field-label.is-normal Twitter:
+                        .field-body
+                          .field
+                            .control
+                              = f.text_field :twitter_url,class:"input"
+                    %hr
+                    .note
+                      .field.is-horizontal
+                        .field-label.is-normal note:
+                        .field-body
+                          .field
+                            .control
+                              = f.text_field :note_url,class:"input"
+                    %hr
+                    .blog
+                      .field.is-horizontal
+                        .field-label.is-normal Website:
+                        .field-body
+                          .field
+                            .control
+                              = f.text_field :website_url,class:"input"
+                    
+                    %hr
+                    = f.submit "登録",class:"button"
+              -else 
+                %hr
+                .twitter
+                  %p.subtitle
+                    %span Twitter:
+                    %a{href:"//#{this_user&.profile_link&.twitter_url}"} 
+                      #{this_user&.profile_link&.twitter_url}
+                %hr
+                .note
+                  %p.subtitle
+                    %span Note:
+                    %a{href:"//#{this_user&.profile_link&.note_url}"}
+                      #{this_user&.profile_link&.note_url}
+                %hr
+                .blog
+                  %p.subtitle
+                    %span Website/Blog:
+                    %a{href:"//#{this_user&.profile_link&.website_url}"}
+                      #{this_user&.profile_link&.website_url}
+                %hr
+              
+            
             -if current_user.id ==  params[:id].to_i
               = form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f|
                 =f.label :profile

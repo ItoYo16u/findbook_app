@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   post 'review/create' => 'review#create'
   put 'review/update' => "review#update"
   
-  
-  
+  post "profile_link/create" => "profile_link#create"
+  put  "profile_link/update" => "profile_link#update"
     devise_for :users, controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',
