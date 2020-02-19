@@ -1,25 +1,7 @@
-# README
+# 概要
+Ruby on Railsを使って作った書籍検索ウェブアプリケーション.
+Google Book APIを利用して書籍情報を取得したり、書籍にレビューを投稿したり、他のユーザーをフォローしたりする機能がある.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 技術
+Ruby, Rails
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-#findbook_app
