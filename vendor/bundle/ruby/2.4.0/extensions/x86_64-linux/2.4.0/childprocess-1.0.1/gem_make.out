@@ -1,0 +1,13 @@
+current directory: /mnt/d/81801/workspace/findbook_app/vendor/bundle/ruby/2.4.0/gems/childprocess-1.0.1/ext
+/home/yoichiro/.rbenv/versions/2.4.2/bin/ruby mkrf_conf.rb
+
+current directory: /mnt/d/81801/workspace/findbook_app/vendor/bundle/ruby/2.4.0/gems/childprocess-1.0.1/ext
+/home/yoichiro/.rbenv/versions/2.4.2/bin/ruby -rubygems /mnt/d/81801/workspace/findbook_app/vendor/bundle/ruby/2.4.0/gems/rake-12.3.3/exe/rake RUBYARCHDIR=/mnt/d/81801/workspace/findbook_app/vendor/bundle/ruby/2.4.0/extensions/x86_64-linux/2.4.0/childprocess-1.0.1 RUBYLIBDIR=/mnt/d/81801/workspace/findbook_app/vendor/bundle/ruby/2.4.0/extensions/x86_64-linux/2.4.0/childprocess-1.0.1
+Ignoring bcrypt-3.1.12 because its extensions are not built.  Try: gem pristine bcrypt --version 3.1.12
+Ignoring bindex-0.5.0 because its extensions are not built.  Try: gem pristine bindex --version 0.5.0
+Ignoring ffi-1.11.1 because its extensions are not built.  Try: gem pristine ffi --version 1.11.1
+Ignoring ffi-1.10.0 because its extensions are not built.  Try: gem pristine ffi --version 1.10.0
+Ignoring nio4r-2.3.1 because its extensions are not built.  Try: gem pristine nio4r --version 2.3.1
+Ignoring nokogiri-1.10.2 because its extensions are not built.  Try: gem pristine nokogiri --version 1.10.2
+Ignoring pg-1.1.4 because its extensions are not built.  Try: gem pristine pg --version 1.1.4
+Ignoring puma-3.12.1 because its extensions are not built.  Try: gem pristine puma --version 3.12.1

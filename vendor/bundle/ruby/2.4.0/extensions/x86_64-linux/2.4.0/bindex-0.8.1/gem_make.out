@@ -1,0 +1,15 @@
+current directory: /mnt/d/81801/workspace/findbook_app/vendor/bundle/ruby/2.4.0/gems/bindex-0.8.1/ext/skiptrace
+/home/yoichiro/.rbenv/versions/2.4.2/bin/ruby -r ./siteconf20200219-24910-1ng2lqw.rb extconf.rb
+creating Makefile
+
+current directory: /mnt/d/81801/workspace/findbook_app/vendor/bundle/ruby/2.4.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /mnt/d/81801/workspace/findbook_app/vendor/bundle/ruby/2.4.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+
+current directory: /mnt/d/81801/workspace/findbook_app/vendor/bundle/ruby/2.4.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20200219-24910-yc7tty/skiptrace/internal

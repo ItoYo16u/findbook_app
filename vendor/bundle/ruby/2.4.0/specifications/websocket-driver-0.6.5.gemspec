@@ -17,10 +17,10 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/faye/websocket-driver-ruby".freeze
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze, "--markup".freeze, "markdown".freeze]
-  s.rubygems_version = "3.0.3".freeze
+  s.rubygems_version = "2.6.13".freeze
   s.summary = "WebSocket protocol handler with pluggable I/O".freeze
 
-  s.installed_by_version = "3.0.3" if s.respond_to? :installed_by_version
+  s.installed_by_version = "2.6.13" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

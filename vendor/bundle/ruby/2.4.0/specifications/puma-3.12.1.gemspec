@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
   s.homepage = "http://puma.io".freeze
   s.licenses = ["BSD-3-Clause".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.2".freeze)
-  s.rubygems_version = "3.0.3".freeze
+  s.rubygems_version = "2.6.13".freeze
   s.summary = "Puma is a simple, fast, threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications".freeze
 
-  s.installed_by_version = "3.0.3" if s.respond_to? :installed_by_version
+  s.installed_by_version = "2.6.13" if s.respond_to? :installed_by_version
 end

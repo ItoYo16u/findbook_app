@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.3.0".freeze)
-  s.rubygems_version = "3.0.3".freeze
+  s.rubygems_version = "2.6.13".freeze
   s.summary = "Nokogiri (\u92F8) is an HTML, XML, SAX, and Reader parser".freeze
 
-  s.installed_by_version = "3.0.3" if s.respond_to? :installed_by_version
+  s.installed_by_version = "2.6.13" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rexical>.freeze, ["~> 1.0.5"])
       s.add_development_dependency(%q<rubocop>.freeze, ["~> 0.73"])
       s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.16"])
-      s.add_development_dependency(%q<rdoc>.freeze, [">= 4.0", "< 7"])
+      s.add_development_dependency(%q<rdoc>.freeze, ["< 7", ">= 4.0"])
       s.add_development_dependency(%q<hoe>.freeze, ["~> 3.18"])
     else
       s.add_dependency(%q<mini_portile2>.freeze, ["~> 2.4.0"])
@@ -59,7 +59,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rexical>.freeze, ["~> 1.0.5"])
       s.add_dependency(%q<rubocop>.freeze, ["~> 0.73"])
       s.add_dependency(%q<simplecov>.freeze, ["~> 0.16"])
-      s.add_dependency(%q<rdoc>.freeze, [">= 4.0", "< 7"])
+      s.add_dependency(%q<rdoc>.freeze, ["< 7", ">= 4.0"])
       s.add_dependency(%q<hoe>.freeze, ["~> 3.18"])
     end
   else
@@ -77,7 +77,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rexical>.freeze, ["~> 1.0.5"])
     s.add_dependency(%q<rubocop>.freeze, ["~> 0.73"])
     s.add_dependency(%q<simplecov>.freeze, ["~> 0.16"])
-    s.add_dependency(%q<rdoc>.freeze, [">= 4.0", "< 7"])
+    s.add_dependency(%q<rdoc>.freeze, ["< 7", ">= 4.0"])
     s.add_dependency(%q<hoe>.freeze, ["~> 3.18"])
   end
 end

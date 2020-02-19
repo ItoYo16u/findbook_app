@@ -14,9 +14,6 @@
 %dataset#reviewDataset{style:"display:none;",recommend:@reviewSummary[0],price:@reviewSummary[1],understandable:@reviewSummary[2],trustable:@reviewSummary[3],interesting:@reviewSummary[4]}
 
 .container{style:"padding-top:30px"}
-  %p
-    %strong
-      基本情報
   .columns.is-desktop{style:"margin:0px"}
     .column.is-2
     .column.is-3-desktop
@@ -61,6 +58,8 @@
           -@reviews.each.with_index do |review,idx|
             %article.media.card.review_card{style:"padding:15px;#{'display:none;' if idx >= 2}"} 
               %figure.media-left{style:"margin:15px; margin-top:0px"}
+                %span.created_at{style:"font-size:12px;margin:0"} #{review.created_at.strftime("%Y/%m/%d")}
+                %hr
                 %p{style:"font-size:12px;margin:0"} おすすめ度
                 %p.recommend
                   ="★"*review.recommend
@@ -91,20 +90,49 @@
                   %a{href:"/users/show/#{review.user.id}"}
                     %strong
                       =review.user.name||"John Doe/Jane Doe"
-                  %span.created_at{style:"float:right"} #{review.created_at.strftime("%Y/%m/%d")}
+                  %a{style:"float:right"} good
+                  %span{style:"float:right"} good.count()
+                  %hr
+                    
+                  
                 %p.label{style:"font-size:14px;"} 良い点
-                %p{style:"font-size:14px;"}
-                  = review.good
+                -if current_user.id == review.user.id
+                  = form_for(review,url: review_update_path(review), html: {method: :put},remote: true) do |f|
+                    = f.hidden_field :id, value: review.id
+                    = f.text_area :good
+                    
+                    =f.submit "更新",class:"button"
+                -else
+                  %p{style:"font-size:14px;"}
+                    = review.good
                 %p.label{style:"font-size:14px;"} 悪い点
-                %p{style:"font-size:14px;"}
-                  = review.bad
+                -if current_user.id == review.user.id
+                  = form_for(review,url: review_update_path(review), html: {method: :put},remote: true) do |f|
+                    = f.hidden_field :id, value: review.id
+                    = f.text_area :bad
+                    
+                    =f.submit "更新",class:"button"
+                -else
+                  %p{style:"font-size:14px;"}
+                    = review.bad
                 %p.label{style:"font-size:14px;"} 要点メモ
-                =simple_format(review.content,style:"font-size:14px")
-                .has-text-right
-                  %p{style:"font-size:12px"} twitterでメモをシェア
-                  %span
-                    %a.twitter-share-button{href:"https://twitter.com/share?ref_src=twsrc%5Etfw","data-show-count":"false","data-text": "【#{review.user.name}の読書メモ】:#{@book_title.truncate(16)}&#13;&#10;#{review.content.truncate(100)}&#13;&#10;".html_safe,"data-lang":"ja","data-hashtags":"BookI/O"}
-                    %script{async:"async",src:"https://platform.twitter.com/widgets.js",charset:"utf-8"}
+                -if current_user.id == review.user.id
+                  = form_for(review,url: review_update_path(review), html: {method: :put},remote: true) do |f|
+                    = f.hidden_field :id, value: review.id
+                    = f.text_area :content,class: "textarea"                    
+                    =f.submit "更新",class:"button"
+                  .has-text-right
+                    %p{style:"font-size:12px"} twitterでメモをシェア
+                    %span
+                      %a.twitter-share-button{href:"https://twitter.com/share?ref_src=twsrc%5Etfw","data-show-count":"false","data-text": "【#{review.user.name}の読書メモ】:#{@book_title.truncate(16)}&#13;&#10;#{review.content.truncate(100)}&#13;&#10;".html_safe,"data-lang":"ja","data-hashtags":"読書メモ"}
+                      %script{async:"async",src:"https://platform.twitter.com/widgets.js",charset:"utf-8"}
+                -else
+                  =simple_format(review.content,style:"font-size:14px")
+                  .has-text-right
+                    %p{style:"font-size:12px"} twitterでメモをシェア
+                    %span
+                      %a.twitter-share-button{href:"https://twitter.com/share?ref_src=twsrc%5Etfw","data-show-count":"false","data-text": "【#{review.user.name}の読書メモ】:#{@book_title.truncate(16)}&#13;&#10;#{review.content.truncate(100)}&#13;&#10;".html_safe,"data-lang":"ja","data-hashtags":"読書メモ"}
+                      %script{async:"async",src:"https://platform.twitter.com/widgets.js",charset:"utf-8"}
                 
           
           -if @reviews.length >= 3
@@ -242,7 +270,7 @@
                     %hr
                     = form.submit "メモを登録する",class:"button is-fullwidth is-medium-mobile"
             -else
-              =link_to "メモを登録するにはログインしてください"
+              =link_to "会員登録してメモを追加する"
     .column.is-2
   %hr
   %p.subtitle

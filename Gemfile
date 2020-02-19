@@ -9,6 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6', '>= 5.1.6.1'
 # Use postgresql as the database for Active Record
+gem "pry"
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'amazon-ecs'
 # Use Puma as the app server

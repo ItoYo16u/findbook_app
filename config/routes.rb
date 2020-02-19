@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   
   get 'review/index',to:"review#index"
   post 'review/create' => 'review#create'
-  
+  put 'review/update' => "review#update"
   
   
   
