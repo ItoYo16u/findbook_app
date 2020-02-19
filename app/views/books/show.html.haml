@@ -96,7 +96,8 @@
                     
                   
                 %p.label{style:"font-size:14px;"} 良い点
-                -if current_user.id == review.user.id
+                
+                -if current_user&.id == review.user.id
                   = form_for(review,url: review_update_path(review), html: {method: :put},remote: true) do |f|
                     = f.hidden_field :id, value: review.id
                     = f.text_area :good
@@ -106,7 +107,7 @@
                   %p{style:"font-size:14px;"}
                     = review.good
                 %p.label{style:"font-size:14px;"} 悪い点
-                -if current_user.id == review.user.id
+                -if current_user&.id == review.user.id
                   = form_for(review,url: review_update_path(review), html: {method: :put},remote: true) do |f|
                     = f.hidden_field :id, value: review.id
                     = f.text_area :bad
@@ -116,7 +117,7 @@
                   %p{style:"font-size:14px;"}
                     = review.bad
                 %p.label{style:"font-size:14px;"} 要点メモ
-                -if current_user.id == review.user.id
+                -if current_user&.id == review.user.id
                   = form_for(review,url: review_update_path(review), html: {method: :put},remote: true) do |f|
                     = f.hidden_field :id, value: review.id
                     = f.text_area :content,class: "textarea"                    
