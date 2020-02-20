@@ -60,31 +60,7 @@
               %figure.media-left{style:"margin:15px; margin-top:0px"}
                 %span.created_at{style:"font-size:12px;margin:0"} #{review.created_at.strftime("%Y/%m/%d")}
                 %hr
-                %p{style:"font-size:12px;margin:0"} おすすめ度
-                %p.recommend
-                  ="★"*review.recommend
-                  %span.star.gray
-                    ="★"*(5 - review.recommend)
-                %p{style:"font-size:12px;margin:0"} 価格
-                %p.price
-                  ="★"*review.price
-                  %span.star.gray
-                    ="★"*(5-review.price)
-                %p{style:"font-size:12px;margin:0"} わかりやすさ
-                %p.understandable
-                  ="★"*review.understandable
-                  %span.star.gray
-                    ="★"*(5-review.understandable)
-                %p{style:"font-size:12px;margin:0"} 信頼性
-                %p.trustable
-                  ="★"*review.trustable
-                  %span.star.gray
-                    ="★"*(5-review.trustable)
-                %p{style:"font-size:12px;margin:0"} おもしろさ
-                %p.interest
-                  ="★"*review.interesting
-                  %span.star.gray
-                    ="★"*(5-review.interesting)
+                = render partial: "partials/review_stars",locals: {review: review}
               .media-content
                 %p
                   %a{href:"/users/show/#{review.user.id}"}
@@ -122,18 +98,10 @@
                     = f.hidden_field :id, value: review.id
                     = f.text_area :content,class: "textarea"                    
                     =f.submit "更新",class:"button"
-                  .has-text-right
-                    %p{style:"font-size:12px"} twitterでメモをシェア
-                    %span
-                      %a.twitter-share-button{href:"https://twitter.com/share?ref_src=twsrc%5Etfw","data-show-count":"false","data-text": "【#{review.user.name}の読書メモ】:#{@book_title.truncate(16)}&#13;&#10;#{review.content.truncate(100)}&#13;&#10;".html_safe,"data-lang":"ja","data-hashtags":"読書メモ"}
-                      %script{async:"async",src:"https://platform.twitter.com/widgets.js",charset:"utf-8"}
+
                 -else
                   =simple_format(review.content,style:"font-size:14px")
-                  .has-text-right
-                    %p{style:"font-size:12px"} twitterでメモをシェア
-                    %span
-                      %a.twitter-share-button{href:"https://twitter.com/share?ref_src=twsrc%5Etfw","data-show-count":"false","data-text": "【#{review.user.name}の読書メモ】:#{@book_title.truncate(16)}&#13;&#10;#{review.content.truncate(100)}&#13;&#10;".html_safe,"data-lang":"ja","data-hashtags":"読書メモ"}
-                      %script{async:"async",src:"https://platform.twitter.com/widgets.js",charset:"utf-8"}
+                = render partial: "partials/twitter_share",locals: {review:review,book_title: @book_title}
                 
           
           -if @reviews.length >= 3

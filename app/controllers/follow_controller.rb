@@ -15,7 +15,7 @@ class FollowController < ApplicationController
   end
 
   def destroy
-    uer = User.find(params[:follow_id])
+    user = User.find(params[:follow_id])
     following = current_user.unfollow(user)
     if following.destroy
       flash[:success] ="#{user.name}のフォローを解除しました."

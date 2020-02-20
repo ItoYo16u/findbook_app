@@ -1,0 +1,5 @@
+.has-text-right
+  %p{style:"font-size:12px"} twitterでメモをシェア
+  %span
+    %a.twitter-share-button{href:"https://twitter.com/share?ref_src=twsrc%5Etfw","data-show-count":"false","data-text": "【#{review.user.name}の読書メモ】:#{book_title.truncate(16)}&#13;&#10;#{review.content.truncate(100)}&#13;&#10;".html_safe,"data-lang":"ja","data-hashtags":"読書メモ"}
+    %script{async:"async",src:"https://platform.twitter.com/widgets.js",charset:"utf-8"}

@@ -68,7 +68,7 @@
             .card-image
               %figure.image.has-text-centered
                 %a{href:"/books/show/#{best_seller.identifier}"}
-                  %img{src:http2https(best_seller.img_url)||"https://bulma.io/images/placeholders/1280x960.png",style:"display:inline-block;max-width:130px",alt:"#{best_seller.title}"}
+                  %img{src:http2https(best_seller.img_url)||img_placeholder_1280x960(),style:"display:inline-block;max-width:130px",alt:"#{best_seller.title}"}
                   
             .card-content
               .media
@@ -139,25 +139,9 @@
     .columns.is-desktop
       - @popular_design_books.each.with_index do |book,idx|
         .column.is-4-desktop
-          .card{style:"padding:10px;margin:30px"}
-            .genreAndKeyword{style:"padding:5px;"}
-              .tags
-                .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:#f08080;color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
-                  =idx+1
-            .img.has-text-centered
-              %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url),style:"max-height:150px",alt:book.title}
-            .content
-              .has-text-centered{style:"margin:10px 0px"}
-                %a{href:"/books/show/#{book.identifier}"}
-                  = book.title
-                %p{style:"font-size:12px"}
-                  = book&.description&.truncate(36)
-                
-              .button_wrap.has-text-centered
-                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
-    .has-text-right
-      %a.more{href:"/books/index?genre=デザイン"} もっと見る
+          = render partial: "partials/book_card",locals: {book: book,idx: idx}
+    = render partial: "partials/show_more", locals: {genre: "デザイン"}
+
   .content
     %p.section_title
       %strong
@@ -165,25 +149,9 @@
     .columns.is-desktop
       - @popular_biz_books.each.with_index do |book,idx|
         .column.is-4-desktop
-          .card{style:"padding:10px;margin:30px"}
-            .genreAndKeyword{style:"padding:5px;"}
-              .tags
-                .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:#088aa1;color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
-                  =idx+1
-            .img.has-text-centered
-              %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url),style:"max-height:150px",alt:book.title}
-            .content
-              .has-text-centered{style:"margin:10px 0px"}
-                %a{href:"/books/show/#{book.identifier}"}
-                  = book.title
-                %p{style:"font-size:12px"}
-                  = book&.description&.truncate(36)
-                
-              .button_wrap.has-text-centered
-                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
-    .has-text-right
-      %a.more{href:"/books/index?genre=ビジネス"} もっと見る
+          = render partial: "partials/book_card",locals: {book: book,idx: idx}
+
+    = render partial: "partials/show_more", locals: {genre: "ビジネス"}
   .content
     %p.section_title
       %strong
@@ -191,24 +159,8 @@
     .columns.is-desktop
       - @popular_tech_books.each.with_index do |book,idx|
         .column.is-4-desktop
-          .card{style:"padding:10px;margin:30px"}
-            .genreAndKeyword{style:"padding:5px;"}
-              .tags
-                .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:#688bff;color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
-                  =idx+1
-            .img.has-text-centered
-              %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url),style:"max-height:150px",alt:book.title}
-            .content
-              .has-text-centered{style:"margin:10px 0px"}
-                %a{href:"/books/show/#{book.identifier}"}
-                  = book.title
-                %p{style:"font-size:12px"}
-                  = book&.description&.truncate(36)
-              .button_wrap.has-text-centered
-                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"
-    .has-text-right
-      %a.more{href:"/books/index?genre=テクノロジー"} もっと見る
+          = render partial: "/partials/book_card",locals: {book: book,idx: idx}
+    = render partial: "partials/show_more",locals: {genre: "テクノロジー"}
   .content
     %p.section_title
       %strong
@@ -216,24 +168,9 @@
     .columns.is-desktop
       - @popular_humanity_books.each.with_index do |book,idx|
         .column.is-4-desktop
-          .card{style:"padding:10px;margin:30px"}
-            .genreAndKeyword{style:"padding:5px;"}
-              .tags
-                .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:gold;color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
-                  =idx+1
-            .img.has-text-centered
-              %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url),style:"max-height:150px",alt:book.title}
-            .content
-              .has-text-centered{style:"margin:10px 0px"}
-                %a{href:"/books/show/#{book.identifier}"}
-                  = book.title
-                %p{style:"font-size:12px"}
-                  = book&.description&.truncate(36)
-              .button_wrap.has-text-centered
-                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"   
-    .has-text-right
-      %a.more{href:"/books/index?genre=アート/カルチャー"} もっと見る
+          = render partial: "/partials/book_card",locals: {book: book,idx: idx}
+    = render partial: "partials/show_more", locals: {genre: "アート/カルチャー"}
+
   .content
     %p.section_title
       %strong
@@ -241,24 +178,9 @@
     .columns.is-desktop
       - @popular_academic_books.each.with_index do |book,idx|
         .column.is-4-desktop
-          .card{style:"padding:10px;margin:30px"}
-            .genreAndKeyword{style:"padding:5px;"}
-              .tags
-                .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:#9932cc;color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
-                  =idx+1
-            .img.has-text-centered
-              %a{href:"/books/show/#{book.identifier}"}
-                %img{src:http2https(book.img_url),style:"max-height:150px",alt:book.title}
-            .content
-              .has-text-centered{style:"margin:10px 0px"}
-                %a{href:"/books/show/#{book.identifier}"}
-                  = book.title
-                %p{style:"font-size:12px"}
-                  = book&.description&.truncate(36)
-              .button_wrap.has-text-centered
-                =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"     
-    .has-text-right
-      %a.more{href:"/books/index?genre=アカデミック"} もっと見る
+          = render partial: "partials/book_card",locals: {book: book,idx: idx}
+    = render partial: "partials/show_more", locals: {genre: "アカデミック"}
+
   .content
     %p#new_reviews.section_title
       %strong

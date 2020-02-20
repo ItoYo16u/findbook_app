@@ -1,0 +1,16 @@
+.card{style:"padding:10px;margin:30px;"}
+  .genreAndKeyword{style:"padding:5px;"}
+    .tags
+      .ranking{style:"border-radius:10px;width:40px;height:40px;font-size:24px;background-color:#{category_color(book)};color:#FFF;text-align:center;margin:0px 10px;margin-bottom:10px;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2)"}
+        =idx+1
+  .img.has-text-centered
+    %a{href:"/books/show/#{book.identifier}"}
+      %img{src:http2https(book.img_url),style:"max-height:150px",alt:book.title}
+  .content
+    .has-text-centered{style:"margin:10px 0px"}
+      %a{href:"/books/show/#{book.identifier}"}
+        = book.title
+      %p{style:"font-size:12px"}
+        = book&.description&.truncate(36)        
+    .button_wrap.has-text-centered
+      =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(book.identifier)}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light",style:"width:170px"

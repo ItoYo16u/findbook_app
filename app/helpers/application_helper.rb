@@ -31,6 +31,10 @@ module ApplicationHelper
         "BookI/O"
     end
 
+    def img_placeholder_1280x960
+        "https://bulma.io/images/placeholders/1280x960.png"
+    end
+
 
     def genre_tag_style(book)
         case book.genre
