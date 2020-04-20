@@ -29,11 +29,11 @@ Rails.application.routes.draw do
     }
   namespace "api" do
     namespace "v1" do
-      namespace "books" do
+      scope "books" do
         get "/latest/:count", to: "books#latest"
       end
       namespace "review" do
-        get "/latest/:count", to: "review#latest"
+        get "/latest/:count", to: "#latest"
       end
 	  end
   end
