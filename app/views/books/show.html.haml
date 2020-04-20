@@ -35,7 +35,7 @@
               著者: 
             %span
               %strong
-                - @book_authors.try(:each) do |name|
+                - @target_book.authors.each do |name|
                   = name
             %hr
             
@@ -280,7 +280,7 @@
         %strong
           この本に関連するメディア
     .related_posts
-      -@book&.related_posts&.each do |p|
+      -@related_posts.each do |p|
         .realated_post
           %hr
           %span.tag.is-rounded
