@@ -15,7 +15,6 @@ class GoogleBooksService
           data: {}
         }.to_json
       end
-
       # TODO: use array args and parse it
       #       or option parameters
       uri = google_api_url + "#{keyword}"
@@ -50,5 +49,6 @@ class GoogleBooksService
     def google_api_url
       "https://www.googleapis.com/books/v1/volumes?q="
     end
+
   end
 end
