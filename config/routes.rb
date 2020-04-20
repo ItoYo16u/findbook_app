@@ -27,6 +27,9 @@ Rails.application.routes.draw do
       mailer: 'users/mailer',
       "users/show" => "users#show",
     }
- 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace "api" do
+	  namespace "v1" do
+	  end
+  end
+    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
