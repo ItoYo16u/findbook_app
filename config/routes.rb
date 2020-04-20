@@ -28,7 +28,13 @@ Rails.application.routes.draw do
       "users/show" => "users#show",
     }
   namespace "api" do
-	  namespace "v1" do
+    namespace "v1" do
+      namespace "books" do
+        get "/latest/:count", to: "books#latest"
+      end
+      namespace "review" do
+        get "/latest/:count", to: "review#latest"
+      end
 	  end
   end
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
