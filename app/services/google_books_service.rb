@@ -47,8 +47,10 @@ class GoogleBooksService
     end
 
     private
+
     def google_api_url
       "https://www.googleapis.com/books/v1/volumes?q="
     end
+
   end
 end

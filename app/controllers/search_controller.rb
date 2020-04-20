@@ -17,7 +17,7 @@ class SearchController < ApplicationController
       end
         
       if res_json["items"]
-        @book_list = res_json["items"].map{|json| BookData.from_json(json)}
+        @book_list = res_json["items"].map{|json| BooksHelper::BookData.from_json(json)}
         
         render action: :index
       else
@@ -30,24 +30,5 @@ class SearchController < ApplicationController
         redirect_to root_path  
     end
   end
-  private
-  class BookData
-    attr_accessor :title,:identifier,:url, :image_url
-    def initialize(title,identifier,url,image_url)
-      @title = title
-      
-      @identifier = identifier
-      @url = url
-      @image_url = image_url
-    end
-
-    def self.from_json(json)
-      BookData.new(
-        json["volumeInfo"]["title"],
-        json["volumeInfo"]["industryIdentifiers"],
-        json["selfLink"],
-        json["volumeInfo"]["imageLinks"],
-      )
-    end
-  end
+  
 end

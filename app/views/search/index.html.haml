@@ -12,16 +12,16 @@
     %p.subtitle
       あなたが探しているのは...
     -if @book_list
-      -@book_list.select!{|target| target.identifier.present?}
-      -@book_list.select!{|book| book.identifier.find{|hash| hash["type"]=="ISBN_10" or hash["type"] =="ISBN_13" }  }
+      -@book_list.select!{|target| target.identifiers.present?}
+      -@book_list.select!{|book| book.identifiers.find{|hash| hash["type"]=="ISBN_10" or hash["type"] =="ISBN_13" }  }
       -book_table=@book_list.each_slice(4).to_a
       -book_table.each do |books|
         .columns.is-desktop
           -books.each do |book|
-            %a.column.is-3-desktop.card{href:"/books/show/#{book.identifier[0]["identifier"]}?type=#{book.identifier[0]["type"]}",style:"border:1px solid #bdbdbd;margin:3px;text-align:center"}
+            %a.column.is-3-desktop.card{href:"/books/show/#{book.identifiers[0]["identifier"]}?type=#{book.identifiers[0]["type"]}",style:"border:1px solid #bdbdbd;margin:3px;text-align:center"}
               .div{style:"margin:10px;display:inline-block"}
-                -if book.image_url != nil
-                  %img{src:"#{http2https(book.image_url["thumbnail"])}",style:"display:block;padding:10px;max-width:150px"}
+                -if book.image_urls != nil
+                  %img{src:"#{http2https(book.image_urls["thumbnail"])}",style:"display:block;padding:10px;max-width:150px"}
                 -else
                   %img{src:"https://bulma.io/images/placeholders/64x64.png"}
               %p{style:"font-size:10px"}
