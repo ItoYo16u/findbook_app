@@ -15,9 +15,9 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find_by(identifier: params[:identifier])
-    if @book
-      @related_books = Book.select_randomly_from_the_same_category_as(@book,3)
+    book = Book.find_by(identifier: params[:identifier])
+    if book
+      @related_books = Book.select_randomly_from_the_same_category_as(book,3)
     else
       @related_books=[]
     end
@@ -47,12 +47,7 @@ class BooksController < ApplicationController
   private
   def parse_book_information_of(response_json)
     target_book_info = response_json["items"][0]["volumeInfo"]
-    @book_title = target_book_info["title"] || ""
-    @book_authors = target_book_info["authors"]||[]
-    @book_img_urls = (target_book_info["imageLinks"])&.map{|key,url| [key,url.gsub("http://","https://")]}&.to_h ||{"thumbnail"=>"https://bulma.io/images/placeholders/480x600.png"}
-    @book_description = target_book_info["description"]&.truncate(170)|| target_book_info["subtitle"]
-    @published_at = target_book_info["publishedDate"]
-    @page_count = target_book_info["pageCount"]
+    @target_book = BooksHelper::BookData.detail_from_json(target_book_info)
   end
 
   def request_information_of_the_book_by(identifier,limit=5)

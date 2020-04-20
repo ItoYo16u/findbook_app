@@ -1,5 +1,5 @@
 
--set_meta_tags title:"#{@book_title}",description:"#{@book_authors.join(",")}著、「#{@book_title}」の詳細情報ページ.#{@book_title}の総合評価は#{(@reviewSummary.inject(0.0){|r,i| r+=i }/@reviewSummary.size).floor(3)}点です.要約メモが#{@reviews&.count()}件あります."
+-set_meta_tags title:"#{@target_book.title}",description:"#{@target_book.authors.join(",")}著、「#{@target_book.title}」の詳細情報ページ.#{@target_book.title}の総合評価は#{(@reviewSummary.inject(0.0){|r,i| r+=i }/@reviewSummary.size).floor(3)}点です.要約メモが#{@reviews&.count()}件あります."
 -if @reviews
   %script{onload:"paramsLoaded()"}
     var doReviewsExist = true
@@ -19,9 +19,9 @@
     .column.is-3-desktop
       .card.about-this-book{style:"padding:20px;text-align:center;margin:20px 0px"}
         %p
-          = @book_title
+          = @target_book.title
         .card-image
-          %img{src:"#{http2https(@book_img_urls["thumbnail"])}",style:"max-width:160px;margin:10px 0px"}
+          %img{src:"#{@target_book.image_urls["thumbnail"]}",style:"max-width:160px;margin:10px 0px"}
         .card-content
           .content
             %p
@@ -39,12 +39,12 @@
                   = name
             %hr
             
-            = simple_format(@book_description || "No Description",style:"font-size:14px")
+            = simple_format(@target_book.description,style:"font-size:14px")
             %hr
             %p
-              ページ数 #{@page_count}
+              ページ数 #{@target_book.page_count}
             %p
-              出版日 #{@published_at}
+              出版日 #{@target_book.published_at}
             =link_to "Amazonで詳細を見る","https://www.amazon.co.jp/exec/obidos/ASIN/#{isbn13to10(params[:identifier])}/xhateblo11041-22?tag=xhateblo11041-22",class:"button is-light is-fullwidth"
       .ad.card
         %p.has-text-centered#ad-here-01
@@ -163,7 +163,7 @@
                   = hidden_field_tag :title, @book_title
                   = hidden_field_tag :description,@book_description
                   = hidden_field_tag :identifier, params[:identifier]
-                  = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
+                  = hidden_field_tag :img_url,@target_book.image_urls["thumbnail"]
                   %hr
                   .content.has-text-centered
                     = form.submit "メモを登録する",class:"button is-fullwidth is-medium-mobile"        
@@ -231,7 +231,7 @@
                         =form.label :price,"★",value:"#{5-i}",for:"star_#{c}",class:"star"
                     = hidden_field_tag :title, @book_title
                     = hidden_field_tag :description, @book_description
-                    = hidden_field_tag :img_url,@book_img_urls["thumbnail"]
+                    = hidden_field_tag :img_url,@target_book.image_urls["thumbnail"]
                     = hidden_field_tag :identifier, params[:identifier]
                     %hr
                     = form.submit "メモを登録する",class:"button is-fullwidth is-medium-mobile"
