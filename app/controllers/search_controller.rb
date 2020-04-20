@@ -7,7 +7,7 @@ class SearchController < ApplicationController
       keyword=params[:keyword]
       counter=0
       while true do
-        res_json=request_google_book_api_by(keyword)
+        res_json=GoogleBooksService.fetch_books_by(keyword)
         if counter >= 3 or res_json["items"]
           res_json
           break
