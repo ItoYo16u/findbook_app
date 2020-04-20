@@ -1,6 +1,6 @@
 class ReviewController < ApplicationController
   def latest
     count = params[:count]
-    @reviews = Review.where(created_at: "DESC").limit(count)
+    @reviews = Review.latest(count)
   end
 end

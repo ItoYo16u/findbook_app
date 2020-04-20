@@ -6,7 +6,7 @@ module Api
         if count >= 50
           #TODO: return nothing
         else
-          @books = Book.order(created_at:"DESC").limit(count)
+          @books = Book.latest(count)
           render json: { status: 'SUCCESS', message: "found #{count} books", data: @books }
         end
       end

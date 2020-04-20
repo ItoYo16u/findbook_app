@@ -4,6 +4,7 @@ class SearchController < ApplicationController
   def search
 
     if params[:keyword].present?
+      # TODO: implement keyword parser
       keyword=params[:keyword]
       counter=0
       while true do
@@ -16,20 +17,15 @@ class SearchController < ApplicationController
       end
         
       if res_json["items"]
-        book_list=res_json["items"]
-        @book_list = book_list.map{|json| BookData.from_json(json)}
+        @book_list = res_json["items"].map{|json| BookData.from_json(json)}
         
         render action: :index
       else
         flash["alert"]="データの取得に失敗しました"
         redirect_to root_path
       end
-      #hash = JSON.parse(res)
-      #@book_list=[]
-      #hash.each do |key, value|
-      #end
       
-      else 
+    else 
         flash["alert"] = "キーワードを入力してください"
         redirect_to root_path  
     end
