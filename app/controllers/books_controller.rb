@@ -22,8 +22,8 @@ class BooksController < ApplicationController
     else
       @related_books=[]
     end
-    @reviews= @book&.reviews.presence
-    @reviewSummary = Review.summary(@book&.id)
+    @reviews= book&.reviews.presence
+    @reviewSummary = Review.summary(book&.id)
     reviewCountByGroup=@reviews&.count_by_group
     if reviewCountByGroup
       @recommend=reviewCountByGroup[:recommend].values||[]

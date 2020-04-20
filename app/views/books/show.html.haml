@@ -101,7 +101,7 @@
 
                 -else
                   =simple_format(review.content,style:"font-size:14px")
-                = render partial: "partials/twitter_share",locals: {review:review,book_title: @book_title}
+                = render partial: "partials/twitter_share",locals: {review:review,book_title: @target_book.title}
                 
           
           -if @reviews.length >= 3
@@ -160,8 +160,8 @@
                     -('p'..'t').each.with_index do |c,i|
                       =form.radio_button :price,"#{5-i}",id:"star_#{c}",required:"required"
                       =form.label "★",value:"#{5-i}",for:"star_#{c}",class:"star"
-                  = hidden_field_tag :title, @book_title
-                  = hidden_field_tag :description,@book_description
+                  = hidden_field_tag :title, @target_book.title
+                  = hidden_field_tag :description,@target_book.description
                   = hidden_field_tag :identifier, params[:identifier]
                   = hidden_field_tag :img_url,@target_book.image_urls["thumbnail"]
                   %hr
@@ -229,8 +229,8 @@
                       -('p'..'t').each.with_index do |c,i|
                         =form.radio_button :price,"#{5-i}",id:"star_#{c}",required:"required"
                         =form.label :price,"★",value:"#{5-i}",for:"star_#{c}",class:"star"
-                    = hidden_field_tag :title, @book_title
-                    = hidden_field_tag :description, @book_description
+                    = hidden_field_tag :title, @target_book.title
+                    = hidden_field_tag :description, @target_book.description
                     = hidden_field_tag :img_url,@target_book.image_urls["thumbnail"]
                     = hidden_field_tag :identifier, params[:identifier]
                     %hr
