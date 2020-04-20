@@ -18,6 +18,7 @@ class BooksController < ApplicationController
     book = Book.find_by(identifier: params[:identifier])
     if book
       @related_books = Book.select_randomly_from_the_same_category_as(book,3)
+      #TODO BooksHelper::BookDataにパースしてフロントでnull checkをする処理を減らす
     else
       @related_books=[]
     end
