@@ -23,7 +23,6 @@ class BooksController < ApplicationController
     else
       @related_books= []
       @related_posts = []
-
     end
     @reviews= book&.reviews.presence
     @reviewSummary = Review.summary(book&.id)

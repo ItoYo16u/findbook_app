@@ -11,6 +11,13 @@ class Review < ApplicationRecord
       review_summary.map!{|v| v ? v : 0}
    end
 
+   def self.summary_v2(book_id)
+      review_summary ={recommend: 0,price: 0,understandable: 0,trustable: 0,interesting: 0}
+      review_summary.map do |key,val|
+      review_summary[key] = self.where(book_id:book_id).average(key)
+      end
+      review_summary
+   end
    def self.count_by_group
       counts_by_group_hashes ={
          recommend:{},
