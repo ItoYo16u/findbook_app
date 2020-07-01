@@ -35,9 +35,57 @@ hr.dotted{
     margin:5px 0px;
 
 }
+#shutter{
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: #5870da;
+    z-index: 9999;
+    animation: shutterAnimation 1.0s forwards;
+}
+#shutter::before{
+    content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: #fff;
+  width: 0;
+  height: 1px;
+  -webkit-animation: loadingBar 1.0s forwards;
+  animation: loadingBar 1.0s forwards;
+}
+@keyframes shutterAnimation {
+    70% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+      z-index: -1;
+    }
+}
+
 
 @media (max-width:1000px){
     #header-space{
         height:50px;
     }
 }
+@keyframes loadingBar {
+    0%{
+      width: 0;
+      height: 1px;
+    }
+    50%{
+      width:100%;
+      height: 1px;
+    }
+    100% {
+      width:100%;
+      height:100%;
+    }
+  }

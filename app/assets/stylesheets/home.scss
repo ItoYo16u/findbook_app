@@ -1,6 +1,13 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.card{
+    transition: all 0.2s;
+    &:hover {
+        transform: scale(1.02);
+        box-shadow:0  4 15px rgba(0,0,0,.2);
+    }
+}
 #search-box.on_home{
     text-align:center;
     .control{
