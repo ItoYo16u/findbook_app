@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.6.3" # for heroku
+#ruby "2.6.3" # for heroku
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
