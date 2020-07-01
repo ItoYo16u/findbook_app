@@ -16,8 +16,8 @@ gem "rubyzip", ">= 1.3.0"
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'amazon-ecs'
 # Use Puma as the app server
-gem "puma", ">= 3.12.2"
-gem "rack", ">= 2.0.8"
+gem "puma", ">= 4.3.5"
+gem "rack", ">= 2.2.3"
 
 gem 'haml-rails'
 gem 'devise',">=4.7.1"
