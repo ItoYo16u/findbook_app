@@ -2,13 +2,8 @@ module Api
   module V1
     class BooksController < ApplicationController
       def latest
-        count = params[:count].to_i
-        if count >= 50
-          #TODO: return nothing
-        else
-          @books = Book.latest(latest_params[:count])
-          render json: { status: 'SUCCESS', message: "found #{count} books", data: @books }
-        end
+          @books = Book.latest(latest_params)
+          render json: { status: 'SUCCESS', message: "found #{@books.length} books", data: @books }
       end
 
       def summary
@@ -38,9 +33,7 @@ module Api
         }
       end
       private
-      def latest_params
-        params.require(:count)
-      end
+
       def summary_params
         params.require(:book_id)
       end

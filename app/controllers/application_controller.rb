@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
     res_json = JSON.parse(res)
     res_json
   end
+
+  private
+  def latest_params
+    params.require(:count).to_i
+  end
 end

@@ -1,6 +1,10 @@
-class ReviewController < ApplicationController
-  def latest
-    count = params[:count]
-    @reviews = Review.latest(count)
+module Api
+  module V1
+    class ReviewController < ApplicationController
+      def latest
+        @reviews = Review.latest(latest_params)
+        render json: { status: 'SUCCESS', message: "found #{@reviews.length} reviews", data: @reviews }
+      end
+    end
   end
 end

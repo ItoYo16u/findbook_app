@@ -34,8 +34,8 @@ Rails.application.routes.draw do
         get "/summary/:book_id", to: "books#summary"
         get "/:id/reviews/:count", to: "books#reviews"
       end
-      namespace "review" do
-        get "/latest/:count", to: "#latest"
+      scope "review" do
+        get "/latest/:count", to: "review#latest"
       end
 	  end
   end
